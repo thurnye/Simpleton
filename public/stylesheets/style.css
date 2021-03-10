@@ -6,3 +6,29 @@ body {
 a {
   color: #00B7FF;
 }
+
+.nav-link{
+  text-align: left;
+}
+
+.d-flex{
+  border: 2px solid red;
+}
+
+.nav{
+  justify-content: space-evenly;
+}
+.nav-link{
+  font-size: 29px;
+  height: 70px;
+}
+
+form {
+  width: 700px;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: auto;
+}
