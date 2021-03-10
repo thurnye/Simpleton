@@ -1,12 +1,86 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <p>THIS IS THE ADMIN INDEX VIEW </p>
-  </body>
-</html>
+
+<%- include('../includes/admin/head.ejs')  %> 
+    
+Add items here
+
+
+<form action='/admin' method="POST" >
+    <div class="input-group mb-3">
+        <span class="input-group-text">Product Name</span>
+        <input type="text" aria-label="productName" name="productName" class="form-control">
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text">Ratings</span>
+        <input type="text" aria-label="ratings" name="productName" class="form-control">
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text">$</span>
+        <input type="text" class="form-control"  name="price" aria-label="Amount (to the nearest dollar)">
+        <span class="input-group-text">.00</span>
+    </div>
+
+    <div class="input-group mb-3">
+        <label class="input-group-text" for="inputGroupSelect01">Categories</label>
+        <select class="form-select" id="inputGroupSelect01" name="Categories">
+          <option selected>Choose...</option>
+          <option value="1">Electronics</option>
+          <option value="2">Automobiles</option>
+          <option value="3">Baby Products</option>
+          <option value="4">Beauty $ Personal Care</option>
+          <option value="5">Women's Fashion</option>
+          <option value="6">Men's Fashion</option>
+          <option value="7">Girls' Fashion</option>
+          <option value="8">Boys' Fashion</option>
+          <option value="9">Health and Households</option>
+          <option value="10">Home and Kitchen</option>
+          <option value=11>Industrial and Scientific</option>
+          <option value="12">Luggage</option>
+          <option value="13">Movies and Television</option>
+          <option value="14">Pet Supplies</option>
+          <option value="14">Sports and Outdoors</option>
+          <option value="16">Tools and Home Improvements</option>
+          <option value="17">Toys and Games</option>
+          <option value="18">Video Games</option>
+        </select>
+    </div>
+
+    <div class="input-group mb-3">
+        <label class="input-group-text" for="inputGroupSelect01">Delivery Method</label>
+        <select class="form-select" id="inputGroupSelect01" name="Categories">
+          <option selected>Choose...</option>
+          <option value="1">PickUp</option>
+          <option value="2">Shipping</option>
+        </select>
+    </div>
+    <div class="input-group mb-3">
+        <label class="input-group-text" for="inputGroupFile01">Image</label>
+        <input type="file" class="form-control" id="inputGroupFile01" name="imageUrl">
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text">Product Description</span>
+        <textarea class="form-control" aria-label="With textarea" name="description"></textarea>
+    </div>
+    
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <button class="btn btn-primary" type="submit">Add Product</button>
+      </div>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<%- include('../includes/admin/footer.ejs')  %> 
+      

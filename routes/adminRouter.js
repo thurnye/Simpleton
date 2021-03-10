@@ -1,9 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
+const adminCtrl = require('../controller/adminCtrl');
+
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.render('admin/adIndex', { title: 'Simpleton' });
-});
+router.get('/', adminCtrl.getAdminIndex);
+
+router.get('/preview', adminCtrl.getPreview);
+
 
 module.exports = router;
