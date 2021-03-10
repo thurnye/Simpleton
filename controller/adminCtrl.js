@@ -1,0 +1,1 @@
+//the admin has to have the products model

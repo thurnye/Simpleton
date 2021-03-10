@@ -1,0 +1,1 @@
+//the shop has to have the product model 
