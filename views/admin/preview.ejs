@@ -1,4 +1,29 @@
 <%- include('../includes/admin/head.ejs')  %> 
 
+
+<%- include('../includes/admin/navigation.ejs')  %> 
+
+
+
+    
+    <% if(products.length > 0){ %> 
+      <div class=" row">
+        <% for(let item of products){ %> 
+            <div class="col-12	col-sm-6 col-md-4 col-lg-3 col-xl-3	col-xxl-2">
+                <div class="card" >
+                    <img src=<%= item.image %>  class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+            </div>
+        <% } %> 
+      </div>
+    <% }else{ %> 
+      <h1>Shop not Set up yet</h1>
+    <% } %> 
+   
+
+
 Preview items here
 <%- include('../includes/admin/footer.ejs')  %> 
