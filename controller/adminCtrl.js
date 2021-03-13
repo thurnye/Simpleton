@@ -57,10 +57,10 @@ const createProducts = async (req, res, next) => {
         })
         // console.log(newProduct)
        newProduct.save()
-     res.render('admin/new',{data:body.data.link})
+       res.redirect('/admin/preview')
+    //  res.render('admin/new',{data:body.data.link})
     })
 
-    res.redirect('/admin/preview')
   
 }
 
@@ -95,6 +95,23 @@ const getOne = async (req, res) => {
         res.render('admin/product', {
             title: 'Simpleton',
             product: product,
+        })
+    }catch (err) {
+        console.log(err)
+    }
+}
+
+
+//Edit PRODUCT
+const getEdit = async (req,res) => {
+    try{
+        const prodId = req.params.id
+        // console.log(prodId)
+        const product = await Products.findById(prodId)
+        // console.log(product)
+        res.render('admin/edit', {
+            title: 'Simpleton',
+            product: product,
             editing: true
 
         })
@@ -104,15 +121,100 @@ const getOne = async (req, res) => {
 }
 
 
-//UPDATE PRODUCT
-const getUpdate = async (req,res) => {
+//UPDATE Product
+const getUpdate = async (req, res) => {
+    try{
+        const prodId = req.body.prodId
+        console.log(prodId)
+        const product = await Products.findById(prodId)
 
+        if(prodId.toString() !== product._id){
+            res.redirect('/admin')
+        }
+
+        if(req.body.check) {
+            //change image
+            function base64_encode(image) {
+                var bitmap = fs.readFileSync(image);
+                return bitmap.toString('base64');
+            }
+            const imageUrl = base64_encode(req.files.image.file)
+
+            const options = {
+                method: 'POST',
+                url: 'https://api.imgur.com/3/image',
+                headers: {
+                    Authorization: process.env.Authorization
+                },
+                formData: {
+                image: imageUrl,
+                type: 'base64'
+                },
+            }
+
+            //do the update here
+             request(options, function(err, response){
+                if(err) return console.log(err);
+                let body = JSON.parse(response.body)
+
+                    product.name =          req.body.itemName,
+                    product.description =   req.body.description,
+                    product.price =         req.body.price,
+                    product.ratings =       req.body.ratings,
+                    product.image=          body.data.link,
+                    product.delivery =      req.body.delivery,
+                    product.category =      req.body.category,
+                
+                // console.log(newProduct)
+            product.save()
+            res.redirect('/admin/preview')
+
+            // res.render('admin/new',{data:body.data.link})
+            })
+        } else{
+            // console.log("don't change") 
+            const image = product.image
+            product.name =          req.body.itemName,
+            product.description =   req.body.description,
+            product.price =         req.body.price,
+            product.ratings =       req.body.ratings,
+            product.image=          image,
+            product.delivery =      req.body.delivery,
+            product.category =      req.body.category,
+        
+                // console.log(newProduct)
+            product.save()
+            res.redirect('/admin/preview')
+        }
+    }catch (err){
+        console.log(err)
+    }
 }
+
+
+// DELETE PRODUCT
+const deleteOne = async (req, res) => {
+    try {const prodId = req.params.id
+  console.log(prodId)
+ await Products.findByIdAndDelete(prodId)
+ res.redirect('/admin/preview')
+} catch(err){
+    console.log(err)
+}
+}
+
+
+
+
+
 
 
 module.exports = {
     getAdminIndex,
     createProducts,
     getPreview,
-    getOne
+    getOne, 
+    getEdit,
+    getUpdate,
+    deleteOne,
 }

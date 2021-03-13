@@ -3,30 +3,30 @@
 <%- include('../includes/admin/head.ejs')  %> 
 <%- include('../includes/admin/navigation.ejs')  %> 
     
-Add items here
+Edit items here
 
 
-<form action='/admin' method="POST" enctype="multipart/form-data" class="addform">
+<form action='/admin/preview/edit' method="POST" enctype="multipart/form-data" class="addform">
     <div class="input-group mb-3">
         <span class="input-group-text">Product Name</span>
-        <input type="text" aria-label="productName" name="itemName" class="form-control">
+        <input type="text" aria-label="productName" name="itemName" class="form-control" value=<%= product.name %> >
     </div>
 
     <div class="input-group mb-3">
         <span class="input-group-text">Ratings</span>
-        <input type="text" aria-label="ratings" name="ratings" class="form-control">
+        <input type="text" aria-label="ratings" name="ratings" class="form-control" value=<%= product.ratings %> >
     </div>
 
     <div class="input-group mb-3">
         <span class="input-group-text">$</span>
-        <input type="text" class="form-control"  name="price" aria-label="Amount (to the nearest dollar)">
+        <input type="text" class="form-control"  name="price" aria-label="Amount (to the nearest dollar)" value=<%= product.price %> >
         <span class="input-group-text">.00</span>
     </div>
 
     <div class="input-group mb-3">
         <label class="input-group-text" for="inputGroupSelect01">Categories</label>
         <select class="form-select" id="inputGroupSelect01" name="category">
-          <option selected>Choose...</option>
+          <option selected><%= product.category %> </option>
           <option value="electronisc">Electronics</option>
           <option value="automobiles">Automobiles</option>
           <option value="baby product">Baby Products</option>
@@ -51,23 +51,30 @@ Add items here
     <div class="input-group mb-3">
         <label class="input-group-text" for="inputGroupSelect01">Delivery Method</label>
         <select class="form-select" id="inputGroupSelect01" name="delivery">
-          <option selected>Choose...</option>
+          <option selected><%= product.delivery %> </option>
           <option value="pickup">PickUp</option>
           <option value="shipping">Shipping</option>
         </select>
     </div>
+   
     <div class="input-group mb-3">
         <label class="input-group-text" for="inputGroupFile01">Image</label>
         <input type="file" class="form-control" id="inputGroupFile01" name="image">
+        <div class="form-check ">
+            <input class="form-check-input" type="checkbox" name="check" id="flexCheckChecked" >
+            <label class="form-check-label" for="flexCheckChecked">change Image</label>
+          </div>
     </div>
+   
+    
 
     <div class="input-group mb-3">
         <span class="input-group-text">Product Description</span>
-        <textarea class="form-control" aria-label="With textarea" name="description"></textarea>
+        <textarea class="form-control" aria-label="With textarea" name="description" ><%= product.description %> </textarea>
     </div>
-    
+    <input type="hidden" name='prodId' value=<%= product._id %> >
     <div class="d-grid gap-2 col-6 mx-auto">
-        <button class="btn btn-primary" type="submit">Add Product</button>
+        <button class="btn btn-primary" type="submit">Update Product</button>
       </div>
 </form>
 
