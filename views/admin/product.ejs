@@ -1,0 +1,110 @@
+<%- include('../includes/admin/head.ejs')  %> 
+
+
+<%- include('../includes/admin/navigation.ejs')  %> 
+
+product details here....
+<%#  %> 
+ <div class="container">
+    <div class="row">
+
+        <%# product image %> 
+        <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 col-xxl-4 ">
+            <img src=<%= product.image %>  class=" mx-auto d-block product-image" alt="...">
+
+            <%# sub images coming from the db %> 
+            <!-- <div class="product-sub-image ">
+                <img src=<%= product.image %>  class=" card mx-auto d-block prodImage col-md-3" alt="..."> 
+                <img src=<%= product.image %>  class=" card mx-auto d-block prodImage col-md-3" alt="..."> 
+                <img src=<%= product.image %>  class=" card mx-auto d-block prodImage col-md-3" alt="...">    
+            </div> -->
+        </div>
+
+
+        <%# Product Info %> 
+        <div class="col-12	col-sm-12 col-md-12 col-lg-8 col-xl-8	col-xxl-8">
+            <div class="product-name"><h1><%= product.name %> </h1></div>
+            <div class="product-price-rating">
+                <h2 class="price">$<%= product.price %> </h2>
+                <span>Ratings: (<%= product.ratings %>) </span>
+            </div>
+            <div class="product-description dimtext">
+                <p><%= product.description %> </p>
+            </div>
+
+            <%# warranty number from the database %> 
+            <div class="product-warranty">
+                <p>1 year Simpleton Brand Warranty</p>
+            </div>
+
+            <%# return policy number from db %> 
+            <div class="return-policy">
+                <p>30 days return policy</p>
+            </div>
+
+            <div class="delivery-method">
+                <p>Cash on delivery available</p>
+                <p>Delivery: <%= product.delivery %> </p>
+            </div>
+
+            <%# colors from the data base %> 
+            <div class="product-color">
+               <p class="dimtext">Color :</p>
+               <span class="color1" style="background-color: rgb(135, 85, 75)"></span>
+               <span class="color2" style="background-color: rgb(51, 51, 51)"></span>
+               <span class="color3" style="background-color: rgb(218, 50, 63)" ></span>
+            </div>
+            <div class="product-quantity-cart-wishlist"></div>
+            
+
+            <%# sizes from the data base %> 
+            <div class="product-size"> 
+                <p class="dimtext">Size:</p>             
+                    <span>xs</span>
+                    <span>s</span>
+                    <span>m</span>
+                    <span>l</span>
+                    <span>xl</span>
+            </div>
+            <hr>
+            <div class="product-category">
+                <p class="dimtext">Category:</p>
+                <span><%= product.category %></span>
+            </div>
+
+            <%# tags from the data base %> 
+            <div class="product-tags">
+                <p class="dimtext">Tags:</p>
+                <ul>
+                    <li>
+                        <%= product.category %>
+                    </li>
+                    <li>
+                        <%= product.category %>
+                    </li>
+                    <li>
+                        <%= product.category %>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="share">
+                <p class="dimtext">Share:</p>
+                <span>facebook</span>
+                <span>twitter</span>
+                <span>instagram</span>
+            </div>
+        </div>
+    </div>
+ </div>   
+   
+
+
+
+<%- include('../includes/AddInfo.ejs')  %> 
+
+<h1>Related Products</h1>
+<%# Add Related Product %> 
+
+<%- include('../includes/admin/footer.ejs')  %> 
+

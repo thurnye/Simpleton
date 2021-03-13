@@ -6,12 +6,15 @@ const fs = require('fs');
 
 //GET ADMIN MAIN PAGE
 const getAdminIndex = (req, res, next) => {
-    res.render('admin/adIndex', { title: 'Simpleton' });
+    res.render('admin/adIndex', { 
+        title: 'Simpleton',
+        editing: false
+     });
 };
 
 
 
-
+//CREATE
 const createProducts = async (req, res, next) => {
 
     function base64_encode(image) {
@@ -30,7 +33,7 @@ const createProducts = async (req, res, next) => {
         method: 'POST',
         url: 'https://api.imgur.com/3/image',
         headers: {
-            Authorization: ` CLIENT-ID 2d9f6939661e681`
+            Authorization: process.env.Authorization
         },
         formData: {
           image: imageUrl,
@@ -52,9 +55,9 @@ const createProducts = async (req, res, next) => {
             delivery :      req.body.delivery,
             category :      req.body.category,
         })
-        console.log(newProduct)
+        // console.log(newProduct)
        newProduct.save()
-     // res.render('new',{data:body.data.link})
+     res.render('admin/new',{data:body.data.link})
     })
 
     res.redirect('/admin/preview')
@@ -62,17 +65,7 @@ const createProducts = async (req, res, next) => {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-//GET THE PREVIEW
+//RETRIEVE ALL THE PREVIEW
 const getPreview = async (req, res) => {
 
    try{
@@ -87,17 +80,39 @@ const getPreview = async (req, res) => {
     console.log(err)
    }
 
-
-
-
-
-
 }
 
+
+//RETRIEVE PRODUCT DETAIL
+
+const getOne = async (req, res) => {
+
+    try{
+        const prodId = req.params.id
+        // console.log(prodId)
+        const product = await Products.findById(prodId)
+        // console.log(product)
+        res.render('admin/product', {
+            title: 'Simpleton',
+            product: product,
+            editing: true
+
+        })
+    }catch (err) {
+        console.log(err)
+    }
+}
+
+
+//UPDATE PRODUCT
+const getUpdate = async (req,res) => {
+
+}
 
 
 module.exports = {
     getAdminIndex,
     createProducts,
-    getPreview
+    getPreview,
+    getOne
 }

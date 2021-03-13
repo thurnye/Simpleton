@@ -6,13 +6,16 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.2",
     "body-parser": "^1.18.3",
     "connect-busboy": "^0.0.2",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "express-busboy": "^8.0.0",
+    "fontawesome": "^5.6.3",
     "fs": "^0.0.1-security",
     "http-errors": "~1.6.3",
     "mongoose": "^5.11.19",
