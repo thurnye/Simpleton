@@ -2,18 +2,20 @@
 
 
 <%- include('../includes/admin/navigation.ejs')  %> 
-
-
-
-    
     <% if(products.length > 0){ %> 
       <div class=" row">
         <% for(let item of products){ %> 
-            <div class="col-12	col-sm-6 col-md-4 col-lg-3 col-xl-3	col-xxl-2">
+            <div class="col-12	col-sm-6 col-md-4 col-lg-3 col-xl-3	col-xxl-2 spacebttm">
                 <div class="card" >
                     <img src=<%= item.image %>  class="card-img-top" alt="...">
                     <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <p class="card-text"><%= item.name %></p>
+                        <p class="card-text price">$<%= item.price %></p>
+                    </div>
+                    <div class="triplet">
+                        <a href="/admin/preview/product/<%= item._id %>" class="btn  btn-primary">view</a>
+                        <a href="/admin/preview/edit/<%= item._id %>" class="btn  btn-secondary">edit</a>
+                        <button type="submit" class=" btn btn-danger">Delete</button>
                     </div>
                 </div>
             </div>

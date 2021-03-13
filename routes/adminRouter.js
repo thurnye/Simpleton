@@ -8,6 +8,7 @@ router.get('/', adminCtrl.getAdminIndex);
 
 router.post('/', adminCtrl.createProducts)
 
+router.get('/preview/product/:id', adminCtrl.getOne)
 
 
 

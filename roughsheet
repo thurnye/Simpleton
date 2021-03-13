@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row">
+
+        <%# product image %> 
+        <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 col-xxl-4 ">
+            <img src=<%= product.image %>  class=" mx-auto d-block product-image" alt="...">
+            <div class="product-sub-image ">
+                <img src=<%= product.image %>  class=" card mx-auto d-block prodImage col-md-3" alt="..."> 
+                <img src=<%= product.image %>  class=" card mx-auto d-block prodImage col-md-3" alt="..."> 
+                <img src=<%= product.image %>  class=" card mx-auto d-block prodImage col-md-3" alt="...">    
+            </div>
+        </div>
+
+
+        <%# Product Info %> 
+        <div class="col-12	col-sm-12 col-md-12 col-lg-8 col-xl-8	col-xxl-8">
+            <div class="product-name"><h1><%= product.name %> </h1></div>
+            <div class="product-price-rating">
+                <h2 class="price"><%= product.price %> </h2>
+                <span><%= product.ratings %> </span>
+            </div>
+            <div class="product-description">
+                <p><%= product.description %> </p>
+            </div>
+            <div class="product-warranty"></div>
+            <div class="return-policy"></div>
+            <div class="delivery-method"></div>
+            <div class="product-color">
+                <p>Delivery: <%= product.delivery %> </p>
+            </div>
+            <div class="product-quantity-cart-wishlist"></div>
+            <div class="product-category">
+                <p>Delivery: <%= product.category %> </p>
+            </div>
+            <div class="product-tags"></div>
+            <div class="share"></div>
+        </div>
+    </div>
+ </div>   
+   

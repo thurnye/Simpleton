@@ -5,9 +5,10 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const multer = require('multer')
 var bb = require('express-busboy');
+// require('@fortawesome/fontawesome-free')
 
 require('./config/db');
-
+require('dotenv').config();
 
 
 
