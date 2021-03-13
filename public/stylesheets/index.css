@@ -1,0 +1,64 @@
+body{
+    margin: 0px;
+    display: flex;
+    background: rgb(229,235,238);
+    background: linear-gradient(90deg, rgba(229,235,238,1) 0%, rgba(213,228,238,1) 16%, rgba(193,222,244,1) 54%);
+}
+
+.stripe{
+    display: flex;
+    margin-left: 50px;
+    height: 100vh;
+    width: 150px;
+}
+.stripe1{
+    width: 12px;
+    height: 100%;
+    background: white;
+
+}
+.stripe2{
+    width: 65px;
+    height: 100%;
+    background: #8ddeff
+}
+.stripe3{
+    width: 65px;
+    height: 100%;
+    background: #1184bd;
+}
+
+.name{
+    width: 375px;
+    height: 130px;
+    background: whitesmoke;
+    border: 4px solid rgb(165, 179, 224);
+    align-self: center;
+    margin: auto;
+    border-radius: 30px;
+    text-align: center;
+}
+.name h1 {
+    margin-bottom: 0px;
+    margin-top: -15px;
+    font-size: 45px;
+}
+.span1, .span2, .span3{
+    display: inline-block;
+    height: 40px;
+    width: 8px;
+    justify-self: center;
+    margin-right: -9px;
+}
+.span1{
+    background: rgba(229,235,238,1);
+}
+.span2{
+    background: #8ddeff;
+}
+.span3{
+    background: #1184bd;
+}
+.name p {
+    margin-top: 0px;
+}
