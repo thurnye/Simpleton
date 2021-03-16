@@ -128,10 +128,7 @@ const getUpdate = async (req, res) => {
         console.log(prodId)
         const product = await Products.findById(prodId)
 
-        if(prodId.toString() !== product._id){
-            res.redirect('/admin')
-        }
-
+        //check for the chedkbox
         if(req.body.check) {
             //change image
             function base64_encode(image) {
@@ -153,7 +150,8 @@ const getUpdate = async (req, res) => {
             }
 
             //do the update here
-             request(options, function(err, response){
+            request(options, function(err, response){
+
                 if(err) return console.log(err);
                 let body = JSON.parse(response.body)
 
@@ -194,7 +192,7 @@ const getUpdate = async (req, res) => {
 
 // DELETE PRODUCT
 const deleteOne = async (req, res) => {
-    try {const prodId = req.params.id
+try {const prodId = req.params.id
   console.log(prodId)
  await Products.findByIdAndDelete(prodId)
  res.redirect('/admin/preview')
