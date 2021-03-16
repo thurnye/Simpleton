@@ -70,17 +70,20 @@
             </div>
 
 
-             <!-- Add to Cart -->
-             <div class="product-cart">
-             <form action="/shop/product/add-to-cart/<%= product._id %>  " method="POST">
+            <!-- Add to Cart -->
+            <div class="product-cart">
+                <!-- add to cart -->
+                <form action="/shop/cart" method="POST">
+                    <input type="hidden" name="prodId" value="<%= product._id %> ">
+                    <button class="btn btn-danger" type="submit"> Add to Cart </button>
+                </form>
 
-                <button class="btn btn-danger" type="submit"> Add to Cart </button>
-            </form>
-             <form action="/shop/product/add-to-wish-list/<%= product._id %>  " method="POST">
-
-                <button class="btn btn-danger" type="submit"> Add to wishlist </button>
-            </form>
-        </div>
+                <!-- add to wish list -->
+                <form action="/shop/wish-list" method="POST">
+                    <input type="hidden" name="prodId" value="<%= product._id %> ">
+                    <button class="btn btn-danger" type="submit"> Add to wishlist </button>
+                </form>
+            </div>
 
             <hr>
             <div class="product-category">

@@ -1,6 +1,7 @@
 //the shop has to have the product model 
 const User = require('../model/userModel')
 const Products = require('../model/prodModel')
+const Order= require('../model/orderModel')
 
 
 
@@ -37,20 +38,37 @@ const getOneProduct = async (req, res) => {
 }
 
 
-// ADD TO CART
-const postAddToCart = async (req, res) => {
+// GET CART
+const getCart = async (req, res, next) => {
+    
     try{
-        const prodId = req.params.id
-        console.log(prodId)
-        const product = await Products.findById(prodId)  
-        return req.user.addToCart(product)
-            
-        
-        
-    }catch (err) {
-        console.log(err)
-    }
+    res.render('shop/cart', { 
+        title: 'Simpleton',
+        user: req.user,
+    });
+} catch (err) {
+    console.log(err)
+   }
+
 }
+
+
+
+
+
+// ADD TO CART
+// const postAddToCart = async (req, res) => {
+//     try{
+//         console.log(req.body)
+            
+
+//         res.redirect
+        
+        
+//     }catch (err) {
+//         console.log(err)
+//     }
+// }
 
 
 
@@ -60,5 +78,6 @@ const postAddToCart = async (req, res) => {
 module.exports = {
     getHome,
     getOneProduct,
-    postAddToCart,
+    // postAddToCart,
+    getCart,
 }

@@ -18,12 +18,48 @@ router.get('/shop', shopCtrl.getHome);
 //Get Product Details
  router.get('/shop/product/:id', shopCtrl.getOneProduct)
 
+
+//Get Cart
+router.get('/shop/cart', shopCtrl.getCart)
+
+
 // Add to Cart
-router.post('/shop/product/add-to-cart/:id', shopCtrl.postAddToCart)
+router.post('/shop/cart',(req, res) => {
+  console.log(req)
+  res.send('hello dear')
+})
 
 
-// Add to WishList
-// router.post('/shop/product/add-to-wish-list')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
