@@ -1,7 +1,8 @@
-<%- include('../includes/admin/head.ejs')  %> 
+<%- include('./includes/head.ejs')  %> 
 
 
-<%- include('../includes/admin/navigation.ejs')  %> 
+<%- include('./includes/navigation.ejs')  %> 
+
     <% if(products.length > 0){ %> 
       <div class=" row">
         <% for(let item of products){ %> 
@@ -33,5 +34,4 @@
    
 
 
-Preview items here
-<%- include('../includes/admin/footer.ejs')  %> 
+<%- include('./includes/footer.ejs')  %> 

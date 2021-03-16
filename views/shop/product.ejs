@@ -1,10 +1,14 @@
+
+
 <%- include('./includes/head.ejs')  %> 
+<%- include('./includes/nav.ejs')  %> 
+   
 
 
-<%- include('./includes/navigation.ejs')  %> 
 
-<%#  %> 
- <div class="container">
+
+
+<div class="container">
     <div class="row">
 
         <%# product image %> 
@@ -19,12 +23,9 @@
             <div class="product-price-rating">
                 <h2 class="price">$<%= product.price %> </h2>
                 <div class="star">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fas fa-star-half-alt checked"></span>
-                    <span>(<%= product.ratings %>)</span>
+                    <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
+                    <span class="fas fa-star-half-alt checked"></span><span>(<%= product.ratings %>)</span>
                 </div>
 
             </div>
@@ -56,6 +57,7 @@
             </div>
             <div class="product-quantity-cart-wishlist"></div>
             
+            
 
             <%# sizes from the data base %> 
             <div class="product-size"> 
@@ -67,19 +69,18 @@
                     <span>xl</span>
             </div>
 
-            <!-- Add to Cart -->
-            <div class="product-cart">
-                <form action="/shop/cart">
-                   <input type="hidden" name="prodId" value="<%= product._id %> ">
-                   <button class="btn btn-danger" type="submit"> Add to Cart </button>
-               </form>
-                <form action="/shop/wish-list">
-                   <input type="hidden" name="prodId" value="<%= product._id %> ">
-                   <button class="btn btn-danger" type="submit"> Add to wishlist </button>
-               </form>
-           </div>
-   
 
+             <!-- Add to Cart -->
+             <div class="product-cart">
+             <form action="/shop/product/add-to-cart/<%= product._id %>  " method="POST">
+
+                <button class="btn btn-danger" type="submit"> Add to Cart </button>
+            </form>
+             <form action="/shop/product/add-to-wish-list/<%= product._id %>  " method="POST">
+
+                <button class="btn btn-danger" type="submit"> Add to wishlist </button>
+            </form>
+        </div>
 
             <hr>
             <div class="product-category">
@@ -112,14 +113,10 @@
         </div>
     </div>
  </div>   
-   
 
 
 
-<%- include('./includes/AddInfo.ejs')  %> 
+ 
 
-<h1>Related Products</h1>
-<%# Add Related Product %> 
 
-<%- include('./includes/footer.ejs')  %> 
-
+ <%- include('./includes/footer.ejs')  %> 

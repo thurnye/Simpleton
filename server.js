@@ -5,11 +5,15 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const multer = require('multer')
 var bb = require('express-busboy');
-// require('@fortawesome/fontawesome-free')
+var passport = require('passport')
+var session = require('express-session')
 
-require('./config/db');
+
 require('dotenv').config();
 
+require('./config/db');
+
+require('./config/passport')
 
 
 
@@ -22,35 +26,6 @@ bb.extend(app, {
   upload: true
 });
 
-// //multer for storing images
-// const fileStorage = multer.diskStorage (
-//   {
-//     destination:  (req, file, cb) => {
-//       cb(null, 'images');
-//     },
-//     filename: (req, res) =>{
-//       cb ( null, file.originalname + '-' + Date.now().toISOString()) 
-//     }
-//   }
-// )
-
-// //accept any type of these image files
-//  const fileFilter = (req, file, cb) => {
-//    if (
-//      file.mimetype === 'image/png' ||
-//      file.mimetype === 'image/jpg' ||
-//      file.mimetype === 'image/jpeg'
-//    ){
-//      cb(null, true)
-//    }else{
-//      cb(null,false)
-//    }
-// }
-
-// //store the image
-// app.use(
-//   multer({storage: fileStorage, fileFilter: fileFilter}).single('image')
-// );
 
 
 // view engine setup
@@ -62,6 +37,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(passport.initialize())
+app.use(session ({
+  secret: 'SEIRocks!',
+  resave: false,
+  saveUninitialized: true
+}))
+app.use(passport.initialize());
+app.use(passport.session())
 
 app.use('/', shopRouter);
 app.use('/admin', adminRouter);
