@@ -144,11 +144,12 @@ const getCart = async (req, res, next) => {
                    subtotal += parseInt(el.totalPrice)
                 })
                 // console.log(subtotal)
-
+                console.log(user.cart.length)
                 res.render('shop/cart', { 
                     title: 'Simpleton',
                     user: req.user,
                     cart: user.cart,
+                    length: user.cart.length,
                     subtotal: subtotal
                  })
             });
