@@ -39,6 +39,13 @@ const getOneProduct = async (req, res) => {
 }
 
 
+
+
+
+
+
+
+
 // ADD TO CART
 const postAddToCart = async (req, res) => {
     // console.log( req.user)
@@ -51,30 +58,68 @@ const postAddToCart = async (req, res) => {
 
             //check to see if product exist and increase the quantity
             User.findById(userId, (err, user) => {
-                console.log(user.cart)
+                // console.log(user.cart)
+                if (user.cart.length === 0){
+                    // total price for the product
+                    const total = parseInt(quantity) * parseInt(price)
+                    const newItem = {
+                        product : prodId,
+                        quantity: parseInt(quantity),
+                        totalPrice: parseInt(total)
+                    }
+                    user.cart.push(newItem)
+                    user.save((err)=>{
+                        if(err) { 
+                            console.log(err)  
+                        }else{  res.redirect('/shop/cart')
+                        }
+                    })
+                }else{
+               
+                for (let i=0; i < user.cart.length; i++) {
+                    console.log(console.log(i))
+
+                    // check to see if product exist
+                    if (user.cart[i].product._id.toString() === prodId.toString()) {
+                        
+                        let cartQuantity = user.cart[i].quantity
+                        // console.log(req.body.quantity, cartQuantity)
+                        updatedQuantity = parseInt(req.body.quantity) + parseInt(cartQuantity)
+                        user.cart[i].quantity = updatedQuantity
+
+                         //  // total price for the product
+                         const total = parseInt(updatedQuantity) * parseInt(price)
+                         user.cart[i].totalPrice = total
+                        console.log(user.cart[i].quantity, user.cart[i].totalPrice)
+
+                        user.save((err)=>{
+                           err ? err : res.redirect('/shop/cart')
+                            
+                        })
+
+
+                    }else{ //if it does not, create new one
+                        console.log('not yet')
+                        // total price for the product
+                        const total = parseInt(quantity) * parseInt(price)
+                        const newItem = {
+                            product : prodId,
+                            quantity: parseInt(quantity),
+                            totalPrice: parseInt(total)
+                        }
+                        user.cart.push(newItem)
+                        user.save((err)=>{
+                            err ? err : res.redirect('/shop/cart')
+                        })
+                    }
+                } 
+            }
+                
             })
-
-
-
-            // total price for the product
-            const total = parseInt(quantity) * parseInt(price)
-
+            
             
 
-            const newItem = {
-                productId : prodId,
-                quantity: parseInt(quantity),
-                totalPrice: parseInt(total)
-            }
 
-            User.findById( userId, (err, user) => {
-            //   console.log(newItem)
-            user.cart.push(newItem)
-            user.save((err)=>{
-                console.log(err)
-                res.redirect('/shop/cart')
-            })
-         }) 
         }else{
             //if no user redirect to login
             res.redirect('/auth/google')
@@ -84,20 +129,21 @@ const postAddToCart = async (req, res) => {
     }
 }
 
+
 // GET CART
 const getCart = async (req, res, next) => {
     
     try{
         // console.log(req.user)
         if (req.user){
-            await User.findById(req.user._id).populate('cart.productId').exec( (err, user) => {
+            await User.findById(req.user._id).populate('cart.product').exec( (err, user) => {
+                
                 // subTotal price
                 let subtotal = 0;
                 user.cart.forEach(el => {
                    subtotal += parseInt(el.totalPrice)
                 })
                 // console.log(subtotal)
-
 
                 res.render('shop/cart', { 
                     title: 'Simpleton',
@@ -117,9 +163,6 @@ const getCart = async (req, res, next) => {
    }
 
 }
-
-
-
 
 
 module.exports = {
