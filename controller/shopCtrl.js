@@ -39,39 +39,37 @@ const getOneProduct = async (req, res) => {
 }
 
 
-// GET CART
-const getCart = async (req, res, next) => {
-    console.log(req.user)
-    try{
-    res.render('shop/cart', { 
-        title: 'Simpleton',
-        user: req.user,
-    });
-} catch (err) {
-    console.log(err)
-   }
-
-}
-
-
-
-
-
 // ADD TO CART
 const postAddToCart = async (req, res) => {
     // console.log( req.user)
     try{
         if (req.user) {
-            const user = req.user._id   
+            const userId = req.user._id   
             const prodId = req.body.prodId
             const quantity = req.body.quantity
+            const price = req.body.price
 
-          User.findById({ _id: user }, (err, user) => {
-              console.log(user)
-            user.cart.push({
-                    product: prodId,
-                    quantity: quantity,
-                })
+            //check to see if product exist and increase the quantity
+            User.findById(userId, (err, user) => {
+                console.log(user.cart)
+            })
+
+
+
+            // total price for the product
+            const total = parseInt(quantity) * parseInt(price)
+
+            
+
+            const newItem = {
+                productId : prodId,
+                quantity: parseInt(quantity),
+                totalPrice: parseInt(total)
+            }
+
+            User.findById( userId, (err, user) => {
+            //   console.log(newItem)
+            user.cart.push(newItem)
             user.save((err)=>{
                 console.log(err)
                 res.redirect('/shop/cart')
@@ -86,6 +84,39 @@ const postAddToCart = async (req, res) => {
     }
 }
 
+// GET CART
+const getCart = async (req, res, next) => {
+    
+    try{
+        // console.log(req.user)
+        if (req.user){
+            await User.findById(req.user._id).populate('cart.productId').exec( (err, user) => {
+                // subTotal price
+                let subtotal = 0;
+                user.cart.forEach(el => {
+                   subtotal += parseInt(el.totalPrice)
+                })
+                // console.log(subtotal)
+
+
+                res.render('shop/cart', { 
+                    title: 'Simpleton',
+                    user: req.user,
+                    cart: user.cart,
+                    subtotal: subtotal
+                 })
+            });
+        }else {
+            res.render('shop/cart', { 
+                title: 'Simpleton',
+                user: req.user,
+            })
+    }
+} catch (err) {
+    console.log(err)
+   }
+
+}
 
 
 

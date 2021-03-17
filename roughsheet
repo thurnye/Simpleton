@@ -1,40 +1,41 @@
-<div class="container">
-    <div class="row">
+ User.findById(userId, (err, user) => {
+                console.log(user.cart)
+                for (let i=0; i < user.cart.length; i++) {
+                    if (user.cart[i].productId._id.toString() === prodId.toString()) {
 
-        <%# product image %> 
-        <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 col-xxl-4 ">
-            <img src=<%= product.image %>  class=" mx-auto d-block product-image" alt="...">
-            <div class="product-sub-image ">
-                <img src=<%= product.image %>  class=" card mx-auto d-block prodImage col-md-3" alt="..."> 
-                <img src=<%= product.image %>  class=" card mx-auto d-block prodImage col-md-3" alt="..."> 
-                <img src=<%= product.image %>  class=" card mx-auto d-block prodImage col-md-3" alt="...">    
-            </div>
-        </div>
+                        // item in cart update quantity
 
+                        let cartQuantity = user.cart[i].quantity
+                        quantity += cartQuantity 
+                        console.log('item in cart')
+                        // total price for the product
+                        let total = parseInt(quantity) * parseInt(price)
 
-        <%# Product Info %> 
-        <div class="col-12	col-sm-12 col-md-12 col-lg-8 col-xl-8	col-xxl-8">
-            <div class="product-name"><h1><%= product.name %> </h1></div>
-            <div class="product-price-rating">
-                <h2 class="price"><%= product.price %> </h2>
-                <span><%= product.ratings %> </span>
-            </div>
-            <div class="product-description">
-                <p><%= product.description %> </p>
-            </div>
-            <div class="product-warranty"></div>
-            <div class="return-policy"></div>
-            <div class="delivery-method"></div>
-            <div class="product-color">
-                <p>Delivery: <%= product.delivery %> </p>
-            </div>
-            <div class="product-quantity-cart-wishlist"></div>
-            <div class="product-category">
-                <p>Delivery: <%= product.category %> </p>
-            </div>
-            <div class="product-tags"></div>
-            <div class="share"></div>
-        </div>
-    </div>
- </div>   
-   
+                        User.findById( userId, (err, user) => {
+                            //   console.log(newItem)
+                            user.cart.push({totalPrice: total})
+                            user.save((err)=>{
+                                console.log(err)
+                                // res.redirect('/shop/cart')
+                            })
+                        })
+                    }else{ // Item not in cart create new product
+
+                        // total price for the product
+                        let total = parseInt(quantity) * parseInt(price)
+                        const newItem = {
+                            productId : prodId,
+                            quantity: parseInt(quantity),
+                            totalPrice: parseInt(total)
+                        }
+                        User.findById( userId, (err, user) => {
+                            //   console.log(newItem)
+                            user.cart.push(newItem)
+                            user.save((err)=>{
+                                console.log(err)
+                            })
+                        })
+                    }
+                    res.redirect('/shop/cart')
+                }
+            })

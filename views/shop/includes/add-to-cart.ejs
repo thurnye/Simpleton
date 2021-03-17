@@ -1,0 +1,14 @@
+
+
+
+<form action="/shop/cart" enctype="multipart/form-data" method="POST" class="cart-form">
+    <div class="product-quantity">
+        <input type="button" class="minus" value="-">
+        <input class=" form-control quantity" name= "quantity" value="1" >
+        <input type="button" class="plus" value="+"> 
+    </div>
+    
+    <input type="hidden" name="prodId" value="<%= product._id %>">
+    <input type="hidden" name="price" value="<%= product.price %>">
+    <button class="btn btn-danger" type="submit"> Add to Cart </button>
+</form>
