@@ -9,7 +9,7 @@ const userSchema = new Schema({
   googleId: String,
   cart: [
     {
-      productId: {
+      product: {
         type: Schema.Types.ObjectId,
         ref: 'Products',
       },

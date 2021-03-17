@@ -496,3 +496,21 @@ footer .col-md-6 {
   justify-content: space-between;
   align-items: center;
 }
+.cart{
+  display: flex;
+    /* justify-content: center; */
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+.cart .container {
+}
+.subtotal {
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.subtotal h3 {
+  font-size: 25px;
+  margin-right: 10px;
+}
