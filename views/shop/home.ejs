@@ -73,16 +73,16 @@
             <div class="container"> 
             <% if(products.length > 0){ %> 
                 <div class="row ">
-                  <% for(let item of products){ %> 
+                  <% for(let product of products){ %> 
                       <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-xl-2 col-xxl-2 spacebttm">
                           <div class="item">
-                                <a href="/shop/product/<%= item._id %>" class="btn ">
-                                <img src=<%= item.image %> class="card-img-top" alt="..." style="height: 190px;">
-                                <a href="#" class=""><%= item.name %></a>
-                                <p><%= item.price %></p>
+                                <a href="/shop/product/<%= product._id %>" class="btn ">
+                                <img src=<%= product.image %> class="card-img-top" alt="..." style="height: 190px;">
+                                <a href="#" class=""><%= product.name %></a>
+                                <p><%= product.price %></p>
                                 <p><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
                                     <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
-                                    <span class="fas fa-star-half-alt checked"></span><span>(<%= item.ratings %>)</span>
+                                    <span class="fas fa-star-half-alt checked"></span><span>(<%= product.ratings %>)</span>
                                 </p>
                             </a>
                             </div>
