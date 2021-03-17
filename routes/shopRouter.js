@@ -24,10 +24,7 @@ router.get('/shop/cart', shopCtrl.getCart)
 
 
 // Add to Cart
-router.post('/shop/cart',(req, res) => {
-  console.log(req)
-  res.send('hello dear')
-})
+router.post('/shop/cart', shopCtrl.postAddToCart)
 
 
 

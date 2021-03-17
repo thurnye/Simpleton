@@ -1,7 +1,8 @@
 //the shop has to have the product model 
 const User = require('../model/userModel')
 const Products = require('../model/prodModel')
-const Order= require('../model/orderModel')
+const Order= require('../model/orderModel');
+const { response } = require('express');
 
 
 
@@ -40,7 +41,7 @@ const getOneProduct = async (req, res) => {
 
 // GET CART
 const getCart = async (req, res, next) => {
-    
+    console.log(req.user)
     try{
     res.render('shop/cart', { 
         title: 'Simpleton',
@@ -57,18 +58,33 @@ const getCart = async (req, res, next) => {
 
 
 // ADD TO CART
-// const postAddToCart = async (req, res) => {
-//     try{
-//         console.log(req.body)
-            
+const postAddToCart = async (req, res) => {
+    // console.log( req.user)
+    try{
+        if (req.user) {
+            const user = req.user._id   
+            const prodId = req.body.prodId
+            const quantity = req.body.quantity
 
-//         res.redirect
-        
-        
-//     }catch (err) {
-//         console.log(err)
-//     }
-// }
+          User.findById({ _id: user }, (err, user) => {
+              console.log(user)
+            user.cart.push({
+                    product: prodId,
+                    quantity: quantity,
+                })
+            user.save((err)=>{
+                console.log(err)
+                res.redirect('/shop/cart')
+            })
+         }) 
+        }else{
+            //if no user redirect to login
+            res.redirect('/auth/google')
+        } 
+    }catch (err) {
+        console.log(err)
+    }
+}
 
 
 
@@ -78,6 +94,6 @@ const getCart = async (req, res, next) => {
 module.exports = {
     getHome,
     getOneProduct,
-    // postAddToCart,
+    postAddToCart,
     getCart,
 }
