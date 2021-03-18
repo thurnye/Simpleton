@@ -199,7 +199,7 @@ const removeCartItem = async (req, res) => {
 
 //   Get Checkout
 const getCheckout =  (req, res) => {
-    try {
+
 
         if (req.user){
             let subtotal = 0;
@@ -252,9 +252,7 @@ const getCheckout =  (req, res) => {
 
 
 
-    }catch(err) {
-        console.log(err)
-    }
+    
 }
 
 
