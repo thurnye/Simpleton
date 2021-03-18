@@ -31,6 +31,10 @@ router.post('/shop/cart', shopCtrl.postAddToCart)
 router.post('/shop/cart/remove', shopCtrl.removeCartItem)
 
 
+//checkout
+router.get('/shop/cart/checkout', shopCtrl.getCheckout)
+
+
 
 
 

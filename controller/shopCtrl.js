@@ -3,7 +3,7 @@ const User = require('../model/userModel')
 const Products = require('../model/prodModel')
 const Order= require('../model/orderModel');
 const { response } = require('express');
-
+const stripe = require('stripe')('sk_test_nWJlQsKsiGouZmCC7nS92WbZ00QQCw355D');
 
 
 const getHome = async (req, res, next) => {
@@ -157,10 +157,10 @@ const getCart = async (req, res, next) => {
                 title: 'Simpleton',
                 user: req.user,
             })
+        }
+    } catch (err) {
+        console.log(err)
     }
-} catch (err) {
-    console.log(err)
-   }
 
 }
 
@@ -192,20 +192,73 @@ const removeCartItem = async (req, res) => {
     }catch(err) {
         console.log(err)
     }
-
-    // const id = req.body.delArrival
-    // const parent = req.body.parent
-    // Flight.findById(parent)
-    // .then(flight => {
-    //   flight.destinations.id(id).remove()
-    //   flight.save()
-    //   res.redirect(`/single-flight/${flight._id}`)
-    // })
-    // .catch(err => {
-    //   console.log(err)
-    // })
   
   }
+
+
+
+//   Get Checkout
+const getCheckout =  (req, res) => {
+    try {
+
+        if (req.user){
+            let subtotal = 0;
+            let products;
+             User.findById(req.user._id)
+             .populate('cart.product')
+             .exec() 
+            .then(user => {
+                // subTotal price
+                products = user.cart
+                subtotal = 0
+                products.forEach(el => {
+                   subtotal += parseInt(el.totalPrice)
+                })
+                // console.log(user)
+
+                // implementing Stripe
+                // here we want to return the session key
+                return  stripe.checkout.sessions.create({
+                    payment_method_types: ['card'],
+                    line_items: products.map(el => {
+                        return{
+                        name: el.product.name,
+                        quantity: el.quantity,
+                        amount: parseInt(el.product.price) * 100,
+                        images: [el.product.image],
+                        currency: 'cad'
+                    };
+                    }),
+
+                    mode: 'payment',
+                    success_url: `${req.protocol}://${req.get('host')}/shop/cart/checkout/success`,
+                    cancel_url: `${req.protocol}://${req.get('host')}/shop/cart/checkout/cancel`,
+                })
+            })
+            .then(session => {
+                // console.log("session : ", session.id) 
+                res.render('shop/checkout', {
+                    title: 'Simpleton',
+                    user: req.user,
+                    products: products, //cart items
+                    length: products.length,
+                    subtotal: subtotal,
+                    sessionId: session.id
+                })
+            })
+        }else {
+            res.redirect('/auth/google')
+        }
+
+
+
+    }catch(err) {
+        console.log(err)
+    }
+}
+
+
+
 
 
 module.exports = {
@@ -214,4 +267,5 @@ module.exports = {
     postAddToCart,
     getCart,
     removeCartItem,
+    getCheckout,
 }

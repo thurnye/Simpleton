@@ -1,0 +1,58 @@
+<%- include('./includes/head.ejs')  %> 
+<%- include('./includes/nav.ejs')  %> 
+
+
+<h1>This is the checkout page</h1>
+<section class="payment">
+    <div class="pay">
+        <% products.forEach(el =>{ %>
+            <div class="card mb-3" style="width: 18rem; height: 4.5rem;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img src= <%= el.product.image %>  alt="" style="width: 60px; height: 70px;">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                        <div class="name-price">
+                            <h5 class="card-title"> <%=  el.product.name %></h5>
+                            <p class="card-text">$<%=  el.totalPrice %></p>
+                        </div>
+                        <div class="cart-quantity">
+                            <h4> Quantity: <span><%=  el.quantity %></span></h4>
+                          </div>
+                      <p class="card-text"></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        <% }) %>
+    </div>
+    <div class="sum-total">
+        <p>$<%=  subtotal %></p>
+    </div>
+    <div class="centered">
+        <button id="order-btn" class="btn">Pay Now</button>
+        <script src="https://js.stripe.com/v3/"></script>
+        <script>
+            var stripe = Stripe('pk_test_q4eIy0cMrSv5QydGMSOGHw8p00HOHFuCq6');
+            var orderBtn = document.getElementById('order-btn');
+            orderBtn.addEventListener('click', function (){
+                //we will use the stripe obj to redirect to checkout
+                stripe.redirectToCheckout({
+                    //this will redirect the user to a stripe page where the user enters some credit card details and make payment, when the user id done, then will the user be redirected to us.
+                    sessionId: '<%= sessionId %>'
+            
+                });
+            })
+        
+        </script>
+    </div>
+
+
+</section>
+
+    
+
+
+<%- include('./includes/footer.ejs')  %> 
+ 
