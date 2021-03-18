@@ -1,41 +1,83 @@
- User.findById(userId, (err, user) => {
-                console.log(user.cart)
+
+// ADD TO CART
+const postAddToCart = async (req, res) => {
+    // console.log( req.user)
+    try{
+        if (req.user) {
+            const userId = req.user._id   
+            const prodId = req.body.prodId
+            const quantity = req.body.quantity
+            const price = req.body.price
+
+            //check to see if product exist and increase the quantity
+            User.findById(userId, (err, user) => {
+                // console.log(user.cart)
+                if (user.cart.length === 0){
+                    // total price for the product
+                    const total = parseInt(quantity) * parseInt(price)
+                    const newItem = {
+                        product : prodId,
+                        quantity: parseInt(quantity),
+                        totalPrice: parseInt(total)
+                    }
+                    user.cart.push(newItem)
+                    user.save((err)=>{
+                        if(err) { 
+                            console.log(err)  
+                        }else{  res.redirect('/shop/cart')
+                        }
+                    })
+                }else{
+               
                 for (let i=0; i < user.cart.length; i++) {
-                    if (user.cart[i].productId._id.toString() === prodId.toString()) {
+                    console.log(console.log(i))
 
-                        // item in cart update quantity
-
+                    // check to see if product exist
+                    if (user.cart[i].product._id.toString() === prodId.toString()) {
+                        
                         let cartQuantity = user.cart[i].quantity
-                        quantity += cartQuantity 
-                        console.log('item in cart')
-                        // total price for the product
-                        let total = parseInt(quantity) * parseInt(price)
+                        // console.log(req.body.quantity, cartQuantity)
+                        updatedQuantity = parseInt(req.body.quantity) + parseInt(cartQuantity)
+                        user.cart[i].quantity = updatedQuantity
 
-                        User.findById( userId, (err, user) => {
-                            //   console.log(newItem)
-                            user.cart.push({totalPrice: total})
-                            user.save((err)=>{
-                                console.log(err)
-                                // res.redirect('/shop/cart')
-                            })
+                         //  // total price for the product
+                         const total = parseInt(updatedQuantity) * parseInt(price)
+                         user.cart[i].totalPrice = total
+                        console.log(user.cart[i].quantity, user.cart[i].totalPrice)
+
+                        user.save((err)=>{
+                           err ? err : res.redirect('/shop/cart')
+                            
                         })
-                    }else{ // Item not in cart create new product
 
+
+                    }else{ //if it does not, create new one
+                        console.log('not yet')
                         // total price for the product
-                        let total = parseInt(quantity) * parseInt(price)
+                        const total = parseInt(quantity) * parseInt(price)
                         const newItem = {
-                            productId : prodId,
+                            product : prodId,
                             quantity: parseInt(quantity),
                             totalPrice: parseInt(total)
                         }
-                        User.findById( userId, (err, user) => {
-                            //   console.log(newItem)
-                            user.cart.push(newItem)
-                            user.save((err)=>{
-                                console.log(err)
-                            })
+                        user.cart.push(newItem)
+                        user.save((err)=>{
+                            err ? err : res.redirect('/shop/cart')
                         })
                     }
-                    res.redirect('/shop/cart')
-                }
+                } 
+            }
+                
             })
+            
+            
+
+
+        }else{
+            //if no user redirect to login
+            res.redirect('/auth/google')
+        } 
+    }catch (err) {
+        console.log(err)
+    }
+}

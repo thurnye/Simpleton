@@ -259,6 +259,7 @@ const getCheckout =  (req, res) => {
 }
 
 
+
 // successful payment
 const getCheckoutSuccess = async (req, res) => {
     try{
@@ -301,7 +302,6 @@ const getCheckoutSuccess = async (req, res) => {
         console.log(err)
     }
 }
-
 
 
 module.exports = {
