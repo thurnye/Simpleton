@@ -508,7 +508,7 @@ footer .col-md-6 {
   align-items: center;
   justify-content: center;
 }
-.subtotal {
+.subtotal, .length-total {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
@@ -523,9 +523,7 @@ footer .col-md-6 {
 .subtotal h4 {
   font-size: 18px;
 }
-.sbt2{
-  justify-content: flex-start;
-}
+
 .cart-quantity h4{
   font-size: 15px;
   color: #687188;
@@ -548,9 +546,26 @@ footer .col-md-6 {
   height: 18px;
   margin-right: 15px;
 }
-
-
 .total2{
   margin-left: 60px;
   width: fit-content;
+}
+
+.sbt2{
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.length-total{
+  width: 200px;
+  justify-content: space-evenly;
+}
+.length-total{
+  width: 200px;
+  justify-content: space-evenly;
+}
+.checkout{
+  margin-right: -10px;
 }
