@@ -18,7 +18,7 @@
                 <div class="col-md-8">
                   <div class="card-body">
                     <div class="name-price">
-                      <h5 class="card-title"><%=  el.product.name %> </h5>
+                      <h5 class="card-title"><a href="/shop/product/<%= el.product._id %>" class=""><%= el.product.name %></a> </h5>
                       <p class="card-text">$<%=  el.totalPrice %> </p>
                     </div>
                     <div class="cart-quantity">

@@ -246,6 +246,9 @@ const getCheckout =  (req, res) => {
                     sessionId: session.id
                 })
             })
+            .catch(err => {
+                console.log(err)
+            })
         }else {
             res.redirect('/auth/google')
         }
@@ -256,6 +259,48 @@ const getCheckout =  (req, res) => {
 }
 
 
+// successful payment
+const getCheckoutSuccess = async (req, res) => {
+    try{
+        if (req.user){
+            await User.findById(req.user._id).populate('cart.product').exec( (err, user) => {
+                const products = user.cart.map(el => {
+                    return {  product: { ...el.product._doc }, quantity: el.quantity, totalPrice: el.totalPrice };
+                  });
+                  const order = new Order({
+                    user: {
+                      email: req.user.email,
+                      userId: req.user
+                    },
+                    products: products
+                  });
+                  order.save((err)=>{
+                      if(err) { 
+                          console.log(err)  
+                        }else{  
+                            req.user.cart = [];
+                            req.user.save((err) =>{
+                                if(err){
+                                    return err
+                                }else{
+
+                                    res.redirect('/shop/cart')
+                                }
+                            })
+                    }
+                });
+                
+
+            })
+        }else{
+            res.redirect('/auth/google') 
+        }
+
+
+    }catch(err){
+        console.log(err)
+    }
+}
 
 
 
@@ -266,4 +311,5 @@ module.exports = {
     getCart,
     removeCartItem,
     getCheckout,
+    getCheckoutSuccess,
 }

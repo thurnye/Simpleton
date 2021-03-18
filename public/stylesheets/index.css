@@ -569,3 +569,7 @@ footer .col-md-6 {
 .checkout{
   margin-right: -10px;
 }
+
+a{
+  text-decoration: none;
+}
