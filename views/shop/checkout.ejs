@@ -27,11 +27,16 @@
               </div>
         <% }) %>
     </div>
-    <div class="sum-total">
-        <p>$<%=  subtotal %></p>
-    </div>
+    <div class="container">
+        <div class="row col-md-9">
+          <div class=" subtotal mb-3" style="width: 18rem; height: 4.5rem;">
+            <h3>Total (<%=  length %>) : </h3>
+            <h4> $<%=  subtotal %></h4>
+          </div>
+        </div>
+  </div>
     <div class="centered">
-        <button id="order-btn" class="btn">Pay Now</button>
+        <button id="order-btn" class="btn btn-primary centered">Pay Now</button>
         <script src="https://js.stripe.com/v3/"></script>
         <script>
             var stripe = Stripe('pk_test_q4eIy0cMrSv5QydGMSOGHw8p00HOHFuCq6');
@@ -41,14 +46,10 @@
                 stripe.redirectToCheckout({
                     //this will redirect the user to a stripe page where the user enters some credit card details and make payment, when the user id done, then will the user be redirected to us.
                     sessionId: '<%= sessionId %>'
-            
                 });
             })
-        
         </script>
     </div>
-
-
 </section>
 
     
