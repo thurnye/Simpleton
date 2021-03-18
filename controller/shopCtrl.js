@@ -144,11 +144,11 @@ const getCart = async (req, res, next) => {
                    subtotal += parseInt(el.totalPrice)
                 })
                 // console.log(subtotal)
-
                 res.render('shop/cart', { 
                     title: 'Simpleton',
                     user: req.user,
                     cart: user.cart,
+                    length: user.cart.length,
                     subtotal: subtotal
                  })
             });
@@ -165,9 +165,53 @@ const getCart = async (req, res, next) => {
 }
 
 
+
+//remove product from the array
+const removeCartItem = async (req, res) => {
+    try {
+        const prodId = req.body.prodId
+        User.findById(req.user._id, (err, user) => {
+            console.log(user.cart)
+            for (let i=0; i < user.cart.length; i++) {
+                if (user.cart[i].product._id.toString() === prodId.toString()) {
+                    
+                    user.cart[i].remove()
+                    user.save((err)=>{
+                        if(err) { 
+                            console.log(err)  
+                        }else{  res.redirect('/shop/cart')
+                        }
+                         
+                     })
+                }
+            }
+        })
+
+
+
+    }catch(err) {
+        console.log(err)
+    }
+
+    // const id = req.body.delArrival
+    // const parent = req.body.parent
+    // Flight.findById(parent)
+    // .then(flight => {
+    //   flight.destinations.id(id).remove()
+    //   flight.save()
+    //   res.redirect(`/single-flight/${flight._id}`)
+    // })
+    // .catch(err => {
+    //   console.log(err)
+    // })
+  
+  }
+
+
 module.exports = {
     getHome,
     getOneProduct,
     postAddToCart,
     getCart,
+    removeCartItem,
 }

@@ -5,43 +5,90 @@
 
 <section class="cart">
   
-      <%if (user) { %>
-          
-        <% if (cart.length > 0 ){ %> 
-          
-            <div class="container">
-              
-            
-              <% cart.forEach(el => { %>
-                <div class="row">
-                  <div class="card mb-3" style="max-width: 540px; max-height: 100px;">
-                      <div class="row g-0">
-
-                          <div class="col-md-4">
-                              <img src= <%= el.product.image %>  alt="" style="max-width: 200px; max-height: 100px;">
-                          </div>
-                          <div class="col-md-8">
-                              <div class="card-body">
-                                  <div class="name-price">
-                                      <h5 class="card-title"><%=  el.product.name %> </h5>
-                                      <p class="card-text">$<%=  el.totalPrice %> </p>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
+  <%if (user) { %>
+    <% if (cart.length > 0 ){ %> 
+      <div class="container">
+        <% cart.forEach(el => { %>
+          <div class="row col-md-9">
+            <div class="card mb-3" style="max-width: 540px; max-height: 100px;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src= <%= el.product.image %>  alt="" style="width: 100px; height: 100px;">
                 </div>
-              <% }) %>
-            
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <div class="name-price">
+                      <h5 class="card-title"><%=  el.product.name %> </h5>
+                      <p class="card-text">$<%=  el.totalPrice %> </p>
+                    </div>
+                    <div class="cart-quantity">
+                      <h4> Quantity: <span><%=  el.quantity %></span></h4>
+                    </div>
+                    <div class="actions">
+                      
+                      <form action="/shop/cart/remove" enctype="multipart/form-data" method="POST" class="cart-form">
+                        <input type="hidden" name="prodId" value="<%= el.product._id %>">
+                        <button class="btn remove" type="submit"> remove </button>
+                      </form>
+
+                      <span></span>
+
+                      <form action="" enctype="multipart/form-data" method="POST" class="cart-form">
+                        <input type="hidden" name="prodId" value="<%= el.product._id %>">
+                        <button class="btn" type="submit"> save for later </button>
+                      </form>
+
+                    </div>
+                  </div>   
+                </div>
+              </div>
+            </div>
           </div>
-        <% } %> 
+        <% }) %>
 
-        <div class="subtotal">
-            <h3>SubTotal: </h3>
-            <h4>$<%=  subtotal %></h4>
+        <div class="container">
+              <div class="row col-md-9">
+                <div class=" subtotal mb-3" style="max-width: 540px; max-height: 100px;">
+                  <h3>SubTotal (<%=  length %>) : </h3>
+                  <h4> $<%=  subtotal %></h4>
+                </div>
+              </div>
         </div>
+      </div>
 
-      <% } else { %>
+
+      <div class="subtotal card sbt2 col-md-3" style="height: 120px;">
+        <div class="length-total">
+          <h3>SubTotal (<%=  length %>) : </h3>
+          <h4> $<%=  subtotal %></h4>
+        </div>
+          
+          <div class="checkout">
+            <h3><a href="#" class="btn btn-warning" >Proceed to Checkout</a></h3>
+          </div>
+      </div>
+
+    <% }else { %> 
+      <%# User logged in but no item in cart %> 
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="..." alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title"> Your Simpleton Cart is empty</h5>
+              <p class="card-text"> Please go to  <a href="/shop" class="" > shop </a> to add items.</p>
+              <p class="card-text"><small class="text-muted">..somethings goes in here</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% } %> 
+
+
+  <% } else { %>
+     <%# User not logged in  %> 
           <div class="card mb-3" style="max-width: 540px;">
               <div class="row g-0">
                 <div class="col-md-4">
@@ -56,7 +103,7 @@
                 </div>
               </div>
             </div>
-      <% } %>
+  <% } %>
 
 
         

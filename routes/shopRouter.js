@@ -27,6 +27,10 @@ router.get('/shop/cart', shopCtrl.getCart)
 router.post('/shop/cart', shopCtrl.postAddToCart)
 
 
+//remove from cart
+router.post('/shop/cart/remove', shopCtrl.removeCartItem)
+
+
 
 
 
