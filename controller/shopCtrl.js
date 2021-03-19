@@ -17,7 +17,6 @@ const getHome = async (req, res, next) => {
 } catch (err) {
     console.log(err)
    }
-
 }
 
 const getOneProduct = async (req, res) => {
@@ -37,12 +36,6 @@ const getOneProduct = async (req, res) => {
     }
 
 }
-
-
-
-
-
-
 
 
 
@@ -96,8 +89,6 @@ const postAddToCart = async (req, res) => {
                            err ? err : res.redirect('/shop/cart')
                             
                         })
-
-
                     }else{ //if it does not, create new one
                         console.log('not yet')
                         // total price for the product
@@ -116,10 +107,6 @@ const postAddToCart = async (req, res) => {
             }
                 
             })
-            
-            
-
-
         }else{
             //if no user redirect to login
             res.redirect('/auth/google')
@@ -186,14 +173,10 @@ const removeCartItem = async (req, res) => {
                 }
             }
         })
-
-
-
     }catch(err) {
         console.log(err)
     }
-  
-  }
+}
 
 
 
@@ -214,7 +197,6 @@ const getCheckout =  (req, res) => {
                 products.forEach(el => {
                    subtotal += parseInt(el.totalPrice)
                 })
-                // console.log(user)
 
                 // implementing Stripe
                 // here we want to return the session key
@@ -236,7 +218,6 @@ const getCheckout =  (req, res) => {
                 })
             })
             .then(session => {
-                // console.log("session : ", session.id) 
                 res.render('shop/checkout', {
                     title: 'Simpleton',
                     user: req.user,
@@ -252,10 +233,6 @@ const getCheckout =  (req, res) => {
         }else {
             res.redirect('/auth/google')
         }
-
-
-
-    
 }
 
 
@@ -290,18 +267,19 @@ const getCheckoutSuccess = async (req, res) => {
                             })
                     }
                 });
-                
-
             })
         }else{
             res.redirect('/auth/google') 
         }
-
-
     }catch(err){
         console.log(err)
     }
 }
+
+
+
+
+
 
 
 module.exports = {

@@ -43,37 +43,6 @@ router.get('/shop/cart/checkout/success',  shopCtrl.getCheckoutSuccess)
 router.get('/shop/cart/checkout/cancel',  shopCtrl.getCheckout)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Google OAuth login route --login shld point to this adddress
 router.get('/auth/google', passport.authenticate(
   'google',
