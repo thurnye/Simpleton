@@ -490,6 +490,9 @@ footer .col-md-6 {
   footer ul {
     display: block;
   }
+  .payment{
+    height: 79vh;
+  }
   .payments img {
     height: 50px;
     width: 50px;
