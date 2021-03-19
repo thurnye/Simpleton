@@ -17,6 +17,7 @@ const getHome = async (req, res, next) => {
 } catch (err) {
     console.log(err)
    }
+
 }
 
 const getOneProduct = async (req, res) => {
@@ -36,6 +37,12 @@ const getOneProduct = async (req, res) => {
     }
 
 }
+
+
+
+
+
+
 
 
 
@@ -89,6 +96,7 @@ const postAddToCart = async (req, res) => {
                            err ? err : res.redirect('/shop/cart')
                             
                         })
+
                     }else{ //if it does not, create new one
                         console.log('not yet')
                         // total price for the product

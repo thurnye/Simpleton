@@ -1,6 +1,8 @@
 <link rel="stylesheet" href="owlcarousel/owl.carousel.min.css">
 <link rel="stylesheet" href="owlcarousel/owl.theme.default.min.css">
 <%- include('./includes/head.ejs')  %> 
+
+<%- include('./includes/loader.ejs')  %>
 <%- include('./includes/nav.ejs')  %> 
    
 
@@ -321,7 +323,17 @@
 
 
 
+<script>
+    window.addEventListener('load', ()=>{
+      const loader = document.querySelector('.loader');
+      setTimeout(()=>{
+        loader.className += 'hidden'
+        window.location.redirect('/shop')
+      }, 5000)
+    })
 
+    
+  </script>
  
 <%- include('./includes/footer.ejs')  %> 
  

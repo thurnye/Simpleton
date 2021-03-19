@@ -8,7 +8,7 @@ const passport = require('passport');
 
 /* GET loader page. */
 router.get('/', function(req, res, next) {
-  res.render('shop/index', { title: 'Simpleton', user: req.user });
+  res.redirect('/shop');
 });
 
 //Get Shop Page
