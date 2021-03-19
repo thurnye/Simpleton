@@ -4,7 +4,7 @@ $('.owl-carousel').owlCarousel({
     loop:true,
     margin:50,
     responsiveClass:true,
-    nav: false,
+    pagination: false,
     responsive:{
         0:{
             items:1,
@@ -71,3 +71,4 @@ const add = (e) => {
 
 minus.addEventListener('click', remove)
 plus.addEventListener('click', add)
+
