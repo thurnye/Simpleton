@@ -50,11 +50,11 @@
             </div>
             <div class="col-lg-2 footer-item">
                 <h1>My Account</h1>
-                <p><a href="#">My Account</a></p>
+                <p><a href="/shop/account">My Account</a></p>
                 <p><a href="#">Discount</a></p>
                 <p><a href="#">Returns</a></p>
-                <p><a href="#">Order History</a></p>
-                <p><a href="#">Order Tracking</a></p>
+                <p><a href="/shop/account/order">Order History</a></p>
+                <p><a href="/shop/account/order">Order Tracking</a></p>
             </div>
             <div class="col-lg-2 footer-item">
                 <h1>Contact Info</h1>
@@ -116,5 +116,28 @@
 
 
 <script src="/javascript/helper.js"></script>
+
+<script>
+    $('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:50,
+    responsiveClass:true,
+    pagination: false,
+    responsive:{
+        0:{
+            items:1,
+            nav:true
+        },
+        600:{
+            items:3,
+            nav:false
+        },
+        1000:{
+            items:5,
+            nav:true,
+        }
+    }
+})
+</script>
 </body>
 </html>

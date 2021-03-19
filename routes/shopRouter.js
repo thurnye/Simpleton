@@ -35,6 +35,22 @@ router.post('/shop/cart/remove', shopCtrl.removeCartItem)
 router.get('/shop/cart/checkout', shopCtrl.getCheckout)
 
 
+//order
+router.get('/shop/account/order', shopCtrl.getOrders)
+
+
+
+//user data
+router.get('/shop/account', shopCtrl.getAccount)
+
+
+
+
+
+
+
+
+
 //checkout success
 router.get('/shop/cart/checkout/success',  shopCtrl.getCheckoutSuccess)
 

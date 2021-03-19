@@ -39,13 +39,6 @@ const getOneProduct = async (req, res) => {
 }
 
 
-
-
-
-
-
-
-
 // ADD TO CART
 const postAddToCart = async (req, res) => {
     // console.log( req.user)
@@ -59,7 +52,38 @@ const postAddToCart = async (req, res) => {
             //check to see if product exist and increase the quantity
             User.findById(userId, (err, user) => {
                 // console.log(user.cart)
+                let foundProd;
                 if (user.cart.length === 0){
+                    // total price for the product
+                    console.log(quantity)
+                    const total = parseInt(quantity) * parseInt(price)
+                    const newItem = {
+                        product : prodId,
+                        quantity: parseInt(quantity),
+                        totalPrice: parseInt(total)
+                    }
+                    user.cart.push(newItem)
+                    return user.save((err)=>{
+                        if(err) { 
+                            console.log(err)  
+                        }else{  res.redirect('/shop/cart')
+                        }
+                    })
+                }
+
+                for (let i=0; i < user.cart.length; i++) {
+                    // console.log(console.log(i))
+                    
+                    // check to see if product exist
+                    if (user.cart[i].product._id.toString() === prodId.toString()) {
+                        // console.log('found at position',user.cart[i])
+                        foundProd = user.cart[i];
+                    }
+                } 
+
+                //if it does not, create new one
+                if(!foundProd){ 
+                    console.log('create a new product')
                     // total price for the product
                     const total = parseInt(quantity) * parseInt(price)
                     const newItem = {
@@ -69,51 +93,31 @@ const postAddToCart = async (req, res) => {
                     }
                     user.cart.push(newItem)
                     user.save((err)=>{
+                        err ? err : res.redirect('/shop/cart')
+                    })
+                }
+
+                if(foundProd){
+                    // console.log(foundProd)
+                    let cartQuantity = foundProd.quantity
+                    // // console.log(req.body.quantity, cartQuantity)
+                    updatedQuantity = parseInt(req.body.quantity) + parseInt(cartQuantity)
+                    foundProd.quantity = updatedQuantity
+                    
+                    // // console.log(user.cart[i].quantity)
+
+                    // //  // total price for the product
+                    const total = parseInt(updatedQuantity) * parseInt(price)
+                    foundProd.totalPrice = total
+
+                    user.save((err)=>{
                         if(err) { 
                             console.log(err)  
-                        }else{  res.redirect('/shop/cart')
+                        }else{  
+                            res.redirect('/shop/cart')
                         }
                     })
-                }else{
-               
-                for (let i=0; i < user.cart.length; i++) {
-                    console.log(console.log(i))
-
-                    // check to see if product exist
-                    if (user.cart[i].product._id.toString() === prodId.toString()) {
-                        
-                        let cartQuantity = user.cart[i].quantity
-                        // console.log(req.body.quantity, cartQuantity)
-                        updatedQuantity = parseInt(req.body.quantity) + parseInt(cartQuantity)
-                        user.cart[i].quantity = updatedQuantity
-
-                         //  // total price for the product
-                         const total = parseInt(updatedQuantity) * parseInt(price)
-                         user.cart[i].totalPrice = total
-                        console.log(user.cart[i].quantity, user.cart[i].totalPrice)
-
-                        user.save((err)=>{
-                           err ? err : res.redirect('/shop/cart')
-                            
-                        })
-
-                    }else{ //if it does not, create new one
-                        console.log('not yet')
-                        // total price for the product
-                        const total = parseInt(quantity) * parseInt(price)
-                        const newItem = {
-                            product : prodId,
-                            quantity: parseInt(quantity),
-                            totalPrice: parseInt(total)
-                        }
-                        user.cart.push(newItem)
-                        user.save((err)=>{
-                            err ? err : res.redirect('/shop/cart')
-                        })
-                    }
-                } 
-            }
-                
+                }  
             })
         }else{
             //if no user redirect to login
@@ -251,6 +255,7 @@ const getCheckoutSuccess = async (req, res) => {
         if (req.user){
             await User.findById(req.user._id).populate('cart.product').exec( (err, user) => {
                 const products = user.cart.map(el => {
+                    
                     return {  product: { ...el.product._doc }, quantity: el.quantity, totalPrice: el.totalPrice };
                   });
                   const order = new Order({
@@ -287,7 +292,60 @@ const getCheckoutSuccess = async (req, res) => {
 
 
 
+// Get Orders
 
+const getOrders = async (req, res, next) => {
+   try{
+    if(req.user){
+        userEmail = req.user.email;
+     const userOrder = await Order.find({'user.email': userEmail})
+        // subTotal price
+        // subtotal = 0
+        // products.forEach(el => {
+        //    subtotal += parseInt(el.totalPrice)
+        // })
+        // console.log(subtotal)
+    //    const prod =  userOrder.map(prod => {
+    //         return el
+    //     })
+
+    //     console.log(prod)
+
+        res.render('shop/orders',{
+            title: 'Simpleton',
+            user: req.user,
+            orders: userOrder
+        })
+    }else{
+        res.redirect('/auth/google')
+    }
+    
+   }catch(err){
+       console.log(err)
+   }
+}
+
+
+
+
+
+
+const getAccount = (req, res) => {
+
+    try{
+        if(req.user){
+            res.render('shop/account',{
+                title: 'Simpleton',
+                user: req.user,
+            })
+        }else{
+            res.redirect('/auth/google')
+        }
+    }catch(err){
+        console.log(err)
+    }
+    
+}
 
 
 module.exports = {
@@ -298,4 +356,7 @@ module.exports = {
     removeCartItem,
     getCheckout,
     getCheckoutSuccess,
+    getOrders,
+    getAccount, 
+
 }
