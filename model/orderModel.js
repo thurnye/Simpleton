@@ -7,8 +7,10 @@ const orderSchema = new Schema({
     products: [{
         product: {type: Object, required: true},
         quantity: {type: Object, required: true},
-        totalPrice: {type: Object, required: true}
+        totalPrice: {type: Object, required: true},
+        
     }],
+    paid: {type: Object, required: true},
     user: {
         email: {
             type: String,

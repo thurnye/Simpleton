@@ -103,9 +103,6 @@ const postAddToCart = async (req, res) => {
                     // // console.log(req.body.quantity, cartQuantity)
                     updatedQuantity = parseInt(req.body.quantity) + parseInt(cartQuantity)
                     foundProd.quantity = updatedQuantity
-                    
-                    // // console.log(user.cart[i].quantity)
-
                     // //  // total price for the product
                     const total = parseInt(updatedQuantity) * parseInt(price)
                     foundProd.totalPrice = total
@@ -253,17 +250,22 @@ const getCheckout =  (req, res) => {
 const getCheckoutSuccess = async (req, res) => {
     try{
         if (req.user){
+            let paid = 0;
             await User.findById(req.user._id).populate('cart.product').exec( (err, user) => {
                 const products = user.cart.map(el => {
-                    
-                    return {  product: { ...el.product._doc }, quantity: el.quantity, totalPrice: el.totalPrice };
+                    paid += parseInt(el.totalPrice)
+                    // console.log("paid:" ,paid)
+                    // console.log("item final price:", el.totalPrice)
+                    return {  product: { ...el.product._doc }, quantity: el.quantity, totalPrice: el.totalPrice};
                   });
+                  console.log(paid)
                   const order = new Order({
                     user: {
                       email: req.user.email,
                       userId: req.user
                     },
-                    products: products
+                    products: products,
+                    paid: paid
                   });
                   order.save((err)=>{
                       if(err) { 
@@ -275,7 +277,7 @@ const getCheckoutSuccess = async (req, res) => {
                                     return err
                                 }else{
 
-                                    res.redirect('/shop/cart')
+                                    res.redirect('/shop/account/order')
                                 }
                             })
                     }
@@ -298,23 +300,15 @@ const getOrders = async (req, res, next) => {
    try{
     if(req.user){
         userEmail = req.user.email;
-     const userOrder = await Order.find({'user.email': userEmail})
-        // subTotal price
-        // subtotal = 0
-        // products.forEach(el => {
-        //    subtotal += parseInt(el.totalPrice)
-        // })
-        // console.log(subtotal)
-    //    const prod =  userOrder.map(prod => {
-    //         return el
-    //     })
-
-    //     console.log(prod)
+        const userOrder = await Order.find({'user.email': userEmail})
+       
+        
+        //  console.log(subtotal)
 
         res.render('shop/orders',{
             title: 'Simpleton',
             user: req.user,
-            orders: userOrder
+            orders: userOrder,
         })
     }else{
         res.redirect('/auth/google')

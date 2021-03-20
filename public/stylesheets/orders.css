@@ -1,0 +1,10 @@
+.order-container{
+    /* border: 2px solid red; */
+    margin-bottom: 20px;
+}
+.orderNo-paid{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
