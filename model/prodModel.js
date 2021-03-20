@@ -30,6 +30,16 @@ const productsSchema = new Schema({
     category: {
         type: String,
         required: true
+    },
+    season: {
+        type: String,
+        enum: ['Winter', 'Spring', 'Summer', 'Fall'],
+        required: true
+    },
+    feature: {
+        type: String,
+        enum: ['New Arrival', 'Best Seller', 'Featuring', 'Special Offer'],
+        required: true
     }
 })
 

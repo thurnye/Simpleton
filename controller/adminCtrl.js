@@ -54,8 +54,10 @@ const createProducts = async (req, res, next) => {
             image:          body.data.link,
             delivery :      req.body.delivery,
             category :      req.body.category,
+            season :        req.body.season,
+            feature :       req.body.feature,
         })
-        // console.log(newProduct)
+        console.log(newProduct)
        newProduct.save()
        res.redirect('/admin/preview')
     //  res.render('admin/new',{data:body.data.link})
@@ -70,6 +72,7 @@ const getPreview = async (req, res) => {
 
    try{
    let result = await Products.find();
+   
     // console.log(result)
     res.render('admin/preview', { 
         title: 'Simpleton',

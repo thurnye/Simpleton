@@ -36,6 +36,7 @@ a {
   align-items: center;
   margin: auto;
 }
+
  /* Product Details */
 .price{
   color: red
@@ -96,6 +97,26 @@ a {
 
 .product-size, .product-category, .product-cart{
   display: flex;
+}
+
+.exlusive{
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.nav-pills {
+  margin-top: 10px;
+  justify-content: space-around;
+}
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  color: #FF324D;
+  background-color: inherit;
+}
+.item-row{
+  /* border: 2px solid black; */
+  width: -webkit-fill-available;
 }
 
 .cart-form{
@@ -210,3 +231,5 @@ div.form-check{
   padding-left: 40px;
   align-self: flex-start;
 }
+
+
