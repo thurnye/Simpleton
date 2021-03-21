@@ -8,11 +8,21 @@ const stripe = require('stripe')('sk_test_nWJlQsKsiGouZmCC7nS92WbZ00QQCw355D');
 
 const getHome = async (req, res, next) => {
     try{
-        let result = await Products.find();
+        const result = await Products.find();
+        const newArrival = await Products.find({feature: 'New Arrival'})
+        const bestSeller = await Products.find({feature: 'Best Seller'})
+        const featuring = await Products.find({feature: 'Featuring'})
+        const specialOffer = await Products.find({feature: 'Special Offer'})
+
+
     res.render('shop/home', { 
         title: 'Simpleton',
         user: req.user,
-        products: result 
+        products: result,
+        newArrival: newArrival,
+        bestSeller: bestSeller,
+        featuring : featuring,
+        specialOffer: specialOffer  
     });
 } catch (err) {
     console.log(err)
@@ -20,6 +30,7 @@ const getHome = async (req, res, next) => {
 
 }
 
+// Single Product
 const getOneProduct = async (req, res) => {
 
     try{
@@ -100,10 +111,10 @@ const postAddToCart = async (req, res) => {
                 if(foundProd){
                     // console.log(foundProd)
                     let cartQuantity = foundProd.quantity
-                    // // console.log(req.body.quantity, cartQuantity)
+                   // console.log(req.body.quantity, cartQuantity)
                     updatedQuantity = parseInt(req.body.quantity) + parseInt(cartQuantity)
                     foundProd.quantity = updatedQuantity
-                    // //  // total price for the product
+                     // total price for the product
                     const total = parseInt(updatedQuantity) * parseInt(price)
                     foundProd.totalPrice = total
 
@@ -126,12 +137,16 @@ const postAddToCart = async (req, res) => {
 }
 
 
+
+
 // GET CART
 const getCart = async (req, res, next) => {
     
     try{
         // console.log(req.user)
+        const result = await Products.find();
         if (req.user){
+            console.log(result)
             await User.findById(req.user._id).populate('cart.product').exec( (err, user) => {
                 
                 // subTotal price
@@ -145,13 +160,15 @@ const getCart = async (req, res, next) => {
                     user: req.user,
                     cart: user.cart,
                     length: user.cart.length,
-                    subtotal: subtotal
+                    subtotal: subtotal,
+                    products: result
                  })
             });
         }else {
             res.render('shop/cart', { 
                 title: 'Simpleton',
                 user: req.user,
+                products: result
             })
         }
     } catch (err) {
@@ -249,6 +266,7 @@ const getCheckout =  (req, res) => {
 // successful payment
 const getCheckoutSuccess = async (req, res) => {
     try{
+       
         if (req.user){
             let paid = 0;
             await User.findById(req.user._id).populate('cart.product').exec( (err, user) => {
@@ -297,23 +315,24 @@ const getCheckoutSuccess = async (req, res) => {
 // Get Orders
 
 const getOrders = async (req, res, next) => {
-   try{
-    if(req.user){
-        userEmail = req.user.email;
-        const userOrder = await Order.find({'user.email': userEmail})
-       
+    try{
+        const result = await Products.find();
+        if(req.user){
+            userEmail = req.user.email;
+            const userOrder = await Order.find({'user.email': userEmail})
         
-        //  console.log(subtotal)
+            
+            //  console.log(subtotal)
 
-        res.render('shop/orders',{
-            title: 'Simpleton',
-            user: req.user,
-            orders: userOrder,
-        })
-    }else{
-        res.redirect('/auth/google')
-    }
-    
+            res.render('shop/orders',{
+                title: 'Simpleton',
+                user: req.user,
+                orders: userOrder,
+                products: result
+            })
+        }else{
+            res.redirect('/auth/google')
+        } 
    }catch(err){
        console.log(err)
    }

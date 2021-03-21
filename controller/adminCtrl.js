@@ -72,12 +72,23 @@ const getPreview = async (req, res) => {
 
    try{
    let result = await Products.find();
-   
+   const newArrival = await Products.find({feature: 'New Arrival'})
+   const bestSeller = await Products.find({feature: 'Best Seller'})
+   const featuring = await Products.find({feature: 'Featuring'})
+   const specialOffer = await Products.find({feature: 'Special Offer'})
+
+
+
+   console.log('Special Offer :', specialOffer )
+
     // console.log(result)
     res.render('admin/preview', { 
         title: 'Simpleton',
-        products: result
-    
+        products: result,
+        newArrival: newArrival,
+        bestSeller: bestSeller,
+        featuring : featuring,
+        specialOffer: specialOffer 
     });
    } catch (err) {
     console.log(err)

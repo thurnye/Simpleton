@@ -20,89 +20,152 @@
       <li class="nav-item" role="presentation">
           <button class="nav-link" id="pills-special-offers-tab" data-bs-toggle="pill" data-bs-target="#pills-special-offers" type="button" role="tab" aria-controls="pills-special-offers" aria-selected="false">Special Offers</button>
       </li>
-      </ul>
+  </ul>
 
-          <!-- New Arrival -->
+  <!-- New Arrival -->
 
-      <div class="tab-content item-row" id="pills-tabContent">
-      <div class="tab-pane fade show active" id="pills-new-arrivals" role="tabpanel" aria-labelledby="pills-new-arrivals-tab">
+  <div class="tab-content item-row" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-new-arrivals" role="tabpanel" aria-labelledby="pills-new-arrivals-tab">
         
-        This is the new arrivals
+      This is the new arrivals
+      <% if(newArrival.length > 0){ %> 
+        <div class=" row">
+          <% for(let item of newArrival){ %> 
+              <div class="col-12	col-sm-6 col-md-4 col-lg-2 col-xl-2	col-xxl-2 spacebttm">
+                  <div class="card" >
+                    <a href="/admin/preview/product/<%= item._id %>" class="btn ">
+                      <img src=<%= item.image %>  class="card-img-top" style="height: 190px;" alt="...">
+                      <div class="card-body">
+                          <p class="card-text"><%= item.name %></p>
+                          <p class="card-text price">$<%= item.price %></p>
+                      </div>
+                    </a>
+                      <div class="triplet">
+                          
+                          <a href="/admin/preview/edit/<%= item._id %>" class="btn  btn-secondary">Edit</a>
+                          <div>
+                            <form action="/admin/preview/product/delete/<%= item._id %>" method="POST">
+                              <button type="submit" class=" btn btn-danger">Delete</button>
+                            </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          <% } %> 
+        </div>
+      <% }else{ %> 
+        <h1>Shop not Set up yet</h1>
+      <% } %> 
+    </div>
 
-      </div>
-
-      <div class="tab-pane fade" id="pills-best-sellers" role="tabpanel" aria-labelledby="pills-best-sellers-tab"> 
-        
-        these are the best sellers
+    <div class="tab-pane fade" id="pills-best-sellers" role="tabpanel" aria-labelledby="pills-best-sellers-tab"> 
       
-      </div>
+      these are the best sellers
+      <% if(bestSeller.length > 0){ %> 
+        <div class=" row">
+          <% for(let item of bestSeller){ %> 
+              <div class="col-12	col-sm-6 col-md-4 col-lg-2 col-xl-2	col-xxl-2 spacebttm">
+                  <div class="card" >
+                    <a href="/admin/preview/product/<%= item._id %>" class="btn ">
+                      <img src=<%= item.image %>  class="card-img-top" style="height: 190px;" alt="...">
+                      <div class="card-body">
+                          <p class="card-text"><%= item.name %></p>
+                          <p class="card-text price">$<%= item.price %></p>
+                      </div>
+                    </a>
+                      <div class="triplet">
+                          
+                          <a href="/admin/preview/edit/<%= item._id %>" class="btn  btn-secondary">Edit</a>
+                          <div>
+                            <form action="/admin/preview/product/delete/<%= item._id %>" method="POST">
+                              <button type="submit" class=" btn btn-danger">Delete</button>
+                            </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          <% } %> 
+        </div>
+      <% }else{ %> 
+        <h1>Shop not Set up yet</h1>
+      <% } %> 
+          
+    </div>
 
-      <div class="tab-pane fade" id="pills-features" role="tabpanel" aria-labelledby="pills-features-tab"> 
-        
-        these are the feeatures
-
-      </div>
-
-      <div class="tab-pane fade" id="pills-special-offers" role="tabpanel" aria-labelledby="pills-special-offers-tab"> 
-        
-        these are the special offers
+    <div class="tab-pane fade" id="pills-features" role="tabpanel" aria-labelledby="pills-features-tab"> 
       
-      </div>
-      </div>
+      these are the features
+      <% if(featuring.length > 0){ %> 
+        <div class=" row">
+          <% for(let item of featuring){ %> 
+              <div class="col-12	col-sm-6 col-md-4 col-lg-2 col-xl-2	col-xxl-2 spacebttm">
+                  <div class="card" >
+                    <a href="/admin/preview/product/<%= item._id %>" class="btn ">
+                      <img src=<%= item.image %>  class="card-img-top" style="height: 190px;" alt="...">
+                      <div class="card-body">
+                          <p class="card-text"><%= item.name %></p>
+                          <p class="card-text price">$<%= item.price %></p>
+                      </div>
+                    </a>
+                      <div class="triplet">
+                          
+                          <a href="/admin/preview/edit/<%= item._id %>" class="btn  btn-secondary">Edit</a>
+                          <div>
+                            <form action="/admin/preview/product/delete/<%= item._id %>" method="POST">
+                              <button type="submit" class=" btn btn-danger">Delete</button>
+                            </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          <% } %> 
+        </div>
+      <% }else{ %> 
+        <h1>Shop not Set up yet</h1>
+      <% } %> 
+        
+    </div>
+
+    <div class="tab-pane fade" id="pills-special-offers" role="tabpanel" aria-labelledby="pills-special-offers-tab"> 
+      
+      these are the special offers
+      <% if(specialOffer.length > 0){ %> 
+        <div class=" row">
+          <% for(let item of specialOffer){ %> 
+              <div class="col-12	col-sm-6 col-md-4 col-lg-2 col-xl-2	col-xxl-2 spacebttm">
+                  <div class="card" >
+                    <a href="/admin/preview/product/<%= item._id %>" class="btn ">
+                      <img src=<%= item.image %>  class="card-img-top" style="height: 190px;" alt="...">
+                      <div class="card-body">
+                          <p class="card-text"><%= item.name %></p>
+                          <p class="card-text price">$<%= item.price %></p>
+                      </div>
+                    </a>
+                      <div class="triplet">
+                          
+                          <a href="/admin/preview/edit/<%= item._id %>" class="btn  btn-secondary">Edit</a>
+                          <div>
+                            <form action="/admin/preview/product/delete/<%= item._id %>" method="POST">
+                              <button type="submit" class=" btn btn-danger">Delete</button>
+                            </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          <% } %> 
+        </div>
+      <% }else{ %> 
+        <h1>Shop not Set up yet</h1>
+      <% } %> 
+          
+    </div>
+
+
+  </div>
 </section>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <% if(products.length > 0){ %> 
-      <div class=" row">
-        <% for(let item of products){ %> 
-            <div class="col-12	col-sm-6 col-md-4 col-lg-2 col-xl-2	col-xxl-2 spacebttm">
-                <div class="card" >
-                  <a href="/admin/preview/product/<%= item._id %>" class="btn ">
-                    <img src=<%= item.image %>  class="card-img-top" style="height: 190px;" alt="...">
-                    <div class="card-body">
-                        <p class="card-text"><%= item.name %></p>
-                        <p class="card-text price">$<%= item.price %></p>
-                    </div>
-                  </a>
-                    <div class="triplet">
-                        
-                        <a href="/admin/preview/edit/<%= item._id %>" class="btn  btn-secondary">Edit</a>
-                        <div>
-                          <form action="/admin/preview/product/delete/<%= item._id %>" method="POST">
-                            <button type="submit" class=" btn btn-danger">Delete</button>
-                          </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <% } %> 
-      </div>
-    <% }else{ %> 
-      <h1>Shop not Set up yet</h1>
-    <% } %> 
-   
 
 
 <%- include('./includes/footer.ejs')  %> 

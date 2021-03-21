@@ -2,7 +2,8 @@
 <link rel="stylesheet" href="owlcarousel/owl.theme.default.min.css">
 <%- include('./includes/head.ejs')  %> 
 
-<%- include('./includes/loader.ejs')  %>
+<!-- upload the loader -->
+<!---->
 <%- include('./includes/nav.ejs')  %> 
    
 
@@ -20,9 +21,9 @@
                 <div class="rowCarousel">
                     <img class="d-block" src="/images/images/carousel2.png" alt="First slide" style="height: 480px" >
                     <div class="ban1">
-                        <h3>Get up to 50% off today </h3>
-                        <h1>Women Fashion</h1>
-                        <a href="#" class="nav-link">Shop Now</a>
+                        <h3 data-aos="fade-down" data-aos-delay="600" data-aos-once="false">Get up to 50% off today </h3>
+                        <h1 data-aos-once="false" data-aos="fade-up" data-aos-delay="1200">Women Fashion</h1>
+                        <a href="#" class="nav-link btn btn-danger" data-aos="zoom-out-down" data-aos-once="false" data-aos-delay="2000">Shop Now</a>
                     </div>
                 </div>
         
@@ -30,9 +31,9 @@
             <div class="carousel-item ">
                 <div class="rowCarousel">
                     <div class="ban1">
-                        <h3>Experience of the next level</h3>
-                        <h1>Summer Sales</h1>
-                        <a href="#" class="nav-link">Shop Now</a>
+                        <h3 data-aos="fade-down" data-aos-delay="600" data-aos-once="false">Experience of the next level</h3>
+                        <h1 data-aos-once="false" data-aos="fade-right" data-aos-delay="1200">Summer Sales</h1>
+                        <a href="#" class="nav-link btn btn-danger"data-aos="fade-up" data-aos-once="false" data-aos-delay="2000">Shop Now</a>
                     </div>
                     <img class="d-block" src="/images/images/carousel1.png" alt="First slide" style="height: 480px" >
                 </div>
@@ -41,9 +42,9 @@
             <div class="carousel-item ">
                 <div class="rowCarousel">
                     <div class="ban1">
-                        <h3>That feeling of self-worth</h3>
-                        <h1>New Collection</h1>
-                        <a href="#" class="nav-link">Shop Now</a>
+                        <h3 data-aos="fade-down" data-aos-delay="600" data-aos-once="false">That feeling of self-worth</h3>
+                        <h1 data-aos-once="false" data-aos="fade-right" data-aos-delay="1200">New Collection</h1>
+                        <a href="#" class="nav-link btn btn-danger" data-aos="fade-up" data-aos-once="false" data-aos-delay="2000">Shop Now</a>
                     </div>
                     <img class="d-block" src="/images/images/carousel4.png" alt="First slide" style="height: 480px" >
                 </div>
@@ -53,9 +54,9 @@
                 <div class="rowCarousel">
                     <img class="d-block" src="/images/images/carousel3.png" alt="First slide" style="height: 480px" >
                     <div class="ban1">
-                        <h3>50% off in all products</h3>
-                        <h1>Men fashion</h1>
-                        <a href="#" class="nav-link">Shop Now</a>
+                        <h3 data-aos="fade-down" data-aos-delay="600" data-aos-once="false">50% off in all products</h3>
+                        <h1 data-aos-once="false" data-aos="fade-up" data-aos-delay="1200">Men fashion</h1>
+                        <a href="#" class="nav-link btn btn-danger" data-aos="zoom-out-down" data-aos-once="false" data-aos-delay="2000">Shop Now</a>
                     </div>
                 </div>
         
@@ -115,38 +116,118 @@
         <div class="tab-pane fade show active" id="pills-new-arrivals" role="tabpanel" aria-labelledby="pills-new-arrivals-tab">
 
             <div class="container"> 
-            <% if(products.length > 0){ %> 
-                <div class="row ">
-                  <% for(let product of products){ %> 
-                      <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-xl-2 col-xxl-2 spacebttm">
-                          <div class="item">
-                                <a href="/shop/product/<%= product._id %>" class="btn ">
-                                <img src=<%= product.image %> class="card-img-top" alt="..." style="height: 190px;">
-                                <a href="/shop/product/<%= product._id %>" class=""><%= product.name %></a>
-                                <p class="price">$<%= product.price %></p>
-                                <p><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
-                                    <span class="fas fa-star-half-alt checked"></span><span>(<%= product.ratings %>)</span>
-                                </p>
-                            </a>
-                            </div>
-                      </div>
-                  <% } %> 
-                </div>
-              <% }else{ %> 
-                <h1>Shop not Set up yet</h1>
-              <% } %> 
-
-
+                <% if(newArrival.length > 0){ %> 
+                    <div class="row ">
+                    <% for(let product of newArrival){ %> 
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-xl-2 col-xxl-2 spacebttm">
+                            <div class="item">
+                                    <a href="/shop/product/<%= product._id %>" class="btn ">
+                                    <img src=<%= product.image %> class="card-img-top" alt="..." style="height: 190px;">
+                                    <a href="/shop/product/<%= product._id %>" class=""><%= product.name %></a>
+                                    <p class="price">$<%= product.price %></p>
+                                    <p><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
+                                        <span class="fas fa-star-half-alt checked"></span><span>(<%= product.ratings %>)</span>
+                                    </p>
+                                </a>
+                                </div>
+                        </div>
+                    <% } %> 
+                    </div>
+                <% }else{ %> 
+                    <h1>Shop not Set up yet</h1>
+                <% } %> 
             </div>
 
         </div>
 
-        <div class="tab-pane fade" id="pills-best-sellers" role="tabpanel" aria-labelledby="pills-best-sellers-tab"> these are the best sellers</div>
 
-        <div class="tab-pane fade" id="pills-features" role="tabpanel" aria-labelledby="pills-features-tab"> these are the feeatures</div>
+        <!-- Best Seller -->
 
-        <div class="tab-pane fade" id="pills-special-offers" role="tabpanel" aria-labelledby="pills-special-offers-tab"> these are the special offers</div>
+        <div class="tab-pane fade" id="pills-best-sellers" role="tabpanel" aria-labelledby="pills-best-sellers-tab">
+            <div class="container"> 
+                <% if(bestSeller.length > 0){ %> 
+                    <div class="row ">
+                    <% for(let product of bestSeller){ %> 
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-xl-2 col-xxl-2 spacebttm">
+                            <div class="item">
+                                    <a href="/shop/product/<%= product._id %>" class="btn ">
+                                    <img src=<%= product.image %> class="card-img-top" alt="..." style="height: 190px;">
+                                    <a href="/shop/product/<%= product._id %>" class=""><%= product.name %></a>
+                                    <p class="price">$<%= product.price %></p>
+                                    <p><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
+                                        <span class="fas fa-star-half-alt checked"></span><span>(<%= product.ratings %>)</span>
+                                    </p>
+                                </a>
+                                </div>
+                        </div>
+                    <% } %> 
+                    </div>
+                <% }else{ %> 
+                    <h1>Shop not Set up yet</h1>
+                <% } %> 
+            </div>
+        </div>
+
+
+        <!-- Features -->
+
+        <div class="tab-pane fade" id="pills-features" role="tabpanel" aria-labelledby="pills-features-tab">
+            <div class="container"> 
+                <% if(featuring.length > 0){ %> 
+                    <div class="row ">
+                    <% for(let product of featuring){ %> 
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-xl-2 col-xxl-2 spacebttm">
+                            <div class="item">
+                                    <a href="/shop/product/<%= product._id %>" class="btn ">
+                                    <img src=<%= product.image %> class="card-img-top" alt="..." style="height: 190px;">
+                                    <a href="/shop/product/<%= product._id %>" class=""><%= product.name %></a>
+                                    <p class="price">$<%= product.price %></p>
+                                    <p><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
+                                        <span class="fas fa-star-half-alt checked"></span><span>(<%= product.ratings %>)</span>
+                                    </p>
+                                </a>
+                                </div>
+                        </div>
+                    <% } %> 
+                    </div>
+                <% }else{ %> 
+                    <h1>Shop not Set up yet</h1>
+                <% } %> 
+            </div>
+
+        </div>
+
+        <!-- Special Offer -->
+
+        <div class="tab-pane fade" id="pills-special-offers" role="tabpanel" aria-labelledby="pills-special-offers-tab"> 
+            <div class="container"> 
+                <% if(specialOffer.length > 0){ %> 
+                    <div class="row ">
+                    <% for(let product of specialOffer){ %> 
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-xl-2 col-xxl-2 spacebttm">
+                            <div class="item">
+                                    <a href="/shop/product/<%= product._id %>" class="btn ">
+                                    <img src=<%= product.image %> class="card-img-top" alt="..." style="height: 190px;">
+                                    <a href="/shop/product/<%= product._id %>" class=""><%= product.name %></a>
+                                    <p class="price">$<%= product.price %></p>
+                                    <p><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
+                                        <span class="fas fa-star-half-alt checked"></span><span>(<%= product.ratings %>)</span>
+                                    </p>
+                                </a>
+                                </div>
+                        </div>
+                    <% } %> 
+                    </div>
+                <% }else{ %> 
+                    <h1>Shop not Set up yet</h1>
+                <% } %> 
+            </div>
+
+        </div>
         </div>
 </section>
 
@@ -166,127 +247,9 @@
 
 
 <%# Featured Products Carousel %> 
-<section class="owl-container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="owl-carousel owl-theme">
-                <div class="item">
-                    <img src="images/carousel/product_img1.jpg" class="card-img-top" alt="cloth">
-                    <a href="#" class=""> Clothes </a>
-                    <p class="price">$250 <span>discount</span></p>
-                    <p><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
-                    <span class="fas fa-star-half-alt checked"></span>
-                     </p>
-                </div>
-                <div class="item">
-                    <img src="images/carousel/product_img2.jpg" class="card-img-top" alt="cloth">
-                    <a href="#" class=""> Clothes </a>
-                    <p class="price">$250 <span>discount</span></p>
-                    <p><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
-                    <span class="fas fa-star-half-alt checked"></span>
-                     </p>
-                </div>
-                <div class="item">
-                    <img src="images/carousel/product_img3.jpg" class="card-img-top" alt="cloth">
-                    <a href="#" class=""> Clothes </a>
-                    <p class="price">$250 <span>discount</span></p>
-                    <p><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
-                    <span class="fas fa-star-half-alt checked"></span>
-                     </p>
-                </div>
-                <div class="item">
-                    <img src="images/carousel/product_img4.jpg" class="card-img-top" alt="cloth">
-                    <a href="#" class=""> Clothes </a>
-                    <p class="price">$250 <span>discount</span></p>
-                    <p><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
-                    <span class="fas fa-star-half-alt checked"></span>
-                     </p>
-                </div>
-                <div class="item">
-                    <img src="images/carousel/product_img5.jpg" class="card-img-top" alt="cloth">
-                    <a href="#" class=""> Clothes </a>
-                    <p class="price">$250 <span>discount</span></p>
-                    <p><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
-                    <span class="fas fa-star-half-alt checked"></span>
-                     </p>
-                </div>
-                <div class="item">
-                    <img src="images/carousel/product_img6.jpg" class="card-img-top" alt="cloth">
-                    <a href="#" class=""> Clothes </a>
-                    <p class="price">$250 <span>discount</span></p>
-                    <p><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
-                    <span class="fas fa-star-half-alt checked"></span>
-                     </p>
-                </div>
-                <div class="item">
-                    <img src="images/carousel/product_img7.jpg" class="card-img-top" alt="cloth">
-                    <a href="#" class=""> Clothes </a>
-                    <p class="price">$250 <span>discount</span></p>
-                    <p><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
-                    <span class="fas fa-star-half-alt checked"></span>
-                     </p>
-                </div>
-                <div class="item">
-                    <img src="images/carousel/product_img8.jpg" class="card-img-top" alt="cloth">
-                    <a href="#" class=""> Clothes </a>
-                    <p class="price">$250 <span>discount</span></p>
-                    <p><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
-                    <span class="fas fa-star-half-alt checked"></span>
-                     </p>
-                </div>
-                <div class="item">
-                    <img src="images/carousel/product_img9.jpg" class="card-img-top" alt="cloth">
-                    <a href="#" class=""> Clothes </a>
-                    <p class="price">$250 <span>discount</span></p>
-                    <p><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
-                    <span class="fas fa-star-half-alt checked"></span>
-                     </p>
-                </div>
-                <div class="item">
-                    <img src="images/carousel/product_img10.jpg" class="card-img-top" alt="cloth">
-                    <a href="#" class=""> Clothes </a>
-                    <p class="price">$250 <span>discount</span></p>
-                    <p><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
-                    <span class="fas fa-star-half-alt checked"></span>
-                     </p>
-                </div>
-                <div class="item">
-                    <img src="images/carousel/product_img11.jpg" class="card-img-top" alt="cloth">
-                    <a href="#" class=""> Clothes </a>
-                    <p class="price">$250 <span>discount</span></p>
-                    <p><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
-                    <span class="fas fa-star-half-alt checked"></span>
-                     </p>
-                </div>
-                <div class="item">
-                    <img src="images/carousel/product_img12.jpg" class="card-img-top" alt="cloth">
-                    <a href="#" class=""> Clothes </a>
-                    <p class="price">$250 <span>discount</span></p>
-                    <p><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
-                    <span class="fas fa-star-half-alt checked"></span>
-                     </p>
-                </div>
-                
-            </div>
-        </div>
-    </div>
-</section>
+<%- include('./includes/featured')  %> 
 
 
-<!-- Comments -->
-<section class="comments"> </section>
 
 <!-- Other Info -->
 
@@ -323,7 +286,7 @@
 
 
 
-<script>
+<!-- <script>
     window.addEventListener('load', ()=>{
       const loader = document.querySelector('.loader');
       setTimeout(()=>{
@@ -331,7 +294,7 @@
         window.location.redirect('/shop')
       }, 5000)
     })
-  </script>
+  </script> -->
  
 <%- include('./includes/footer.ejs')  %> 
  

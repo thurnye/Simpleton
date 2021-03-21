@@ -44,13 +44,6 @@ router.get('/shop/account/order', shopCtrl.getOrders)
 router.get('/shop/account', shopCtrl.getAccount)
 
 
-
-
-
-
-
-
-
 //checkout success
 router.get('/shop/cart/checkout/success',  shopCtrl.getCheckoutSuccess)
 
@@ -64,6 +57,7 @@ router.get('/auth/google', passport.authenticate(
   'google',
   { scope: ['profile', 'email'] }
 ));
+
 
 // Google OAuth callback route
 //after the login, send them back to
