@@ -305,7 +305,7 @@ const getCheckoutSuccess = async (req, res) => {
                                     const orderedResult = result
                                     //create the pdf
                                     // let receipt = new PDFDocument({ size: "A4", margin: 50 });
-                                    function createInvoice( path) {
+                                    const createInvoice = () => {
                                         let receipt = new PDFDocument({ size: "A4", margin: 50 });
                                       
                                         generateHeader(receipt);
@@ -313,12 +313,38 @@ const getCheckoutSuccess = async (req, res) => {
                                         generateInvoiceTable(receipt, orderedResult);
                                         generateFooter(receipt);
                                       
+                                        //convert the pdf to buffer
+
+                                        let buffers = [];
+                                        receipt.on('data', buffers.push.bind(buffers));
+                                        receipt.on('end', () => {
+
+                                            const invoice = Buffer.concat(buffers);
+
+                                            //send an email of the invoice
+                                            transporter.sendMail({ 
+                                                to: req.user.email, 
+                                                from: process.env.MY_EMAIL,   
+                                                subject: 'Your Simpleton Order',   
+                                                text: `thank you for your order`,
+                                                html:"<p>Thank you for shopping with us. We’ll send a confirmation once your item has shipped. Your order details are indicated below. If you would like to view the status of your order please visit Your Orders on Simpleton.com</p>"
+                                                ,
+                                                attachments : [{
+                                                    filename: 'invoice.pdf',
+                                                    content: invoice
+                                                }]
+                                                
+                                              }).then(res => {
+                                                  console.log('email sent')
+                                                  console.log(res)
+                                              })
+
+                                        })
                                         receipt.end();
-                                        receipt.pipe(fs.createWriteStream('invoice.pdf'));
                                       }
 
                                      // generateHeader
-                                    function generateHeader(receipt) {
+                                    const generateHeader = (receipt) => {
                                         receipt
                                             // .text("Simpleton", 50, 45, { width: 50 }) // replace with logo
                                             .fillColor("#444444")
@@ -331,7 +357,7 @@ const getCheckoutSuccess = async (req, res) => {
 
                                      }
 
-                                    function generateCustomerInformation(receipt, orderedResult) {
+                                    const generateCustomerInformation = (receipt, orderedResult) => {
 
                                         receipt
                                             .fillColor("#444444")
@@ -339,7 +365,9 @@ const getCheckoutSuccess = async (req, res) => {
                                             .text("Invoice", 50, 160);
 
                                         generateHr(receipt, 185);
+
                                         const customerInformationTop = 200;
+                                        
                                         receipt
                                             .fontSize(10)
                                             .text("Order Number:", 50, customerInformationTop)
@@ -350,7 +378,6 @@ const getCheckoutSuccess = async (req, res) => {
                                             .text(formatDate(new Date()), 150, customerInformationTop + 15)
                                             .text("Amount Paid:", 50, customerInformationTop + 30)
                                             .text(`$${orderedResult.paid}`,150,customerInformationTop + 30)
-
                                             .font("Helvetica-Bold")
                                             .text(`${orderedResult.user.userId.name}`, 300, customerInformationTop)
                                             .font("Helvetica")
@@ -359,20 +386,7 @@ const getCheckoutSuccess = async (req, res) => {
 
                                         generateHr(receipt, 252);
                                     }
-
-                                    // function generateTableRow(receipt, y, c1, c2, c3, c4, c5) {
-                                    //     receipt
-                                    //         .fontSize(10)
-                                    //         .text(c1, 50, y)
-                                    //         .text(c2, 150, y)
-                                    //         .text(c3, 280, y, { width: 90, align: "right" })
-                                    //         .text(c4, 370, y, { width: 90, align: "right" })
-                                    //         .text(c5, 0, y, { align: "right" });
-
-                                    // }
-
-
-                                    function generateInvoiceTable(receipt, orderedResult) {
+                                    const generateInvoiceTable = (receipt, orderedResult) => {
                                         let i;
                                         const invoiceTableTop = 330;
                                        receipt.font("Helvetica-Bold");
@@ -427,7 +441,7 @@ const getCheckoutSuccess = async (req, res) => {
                                         );
                                     }
 
-                                    function generateTableRow(
+                                    const generateTableRow = (
                                         receipt,
                                         y,
                                         Item,
@@ -435,7 +449,7 @@ const getCheckoutSuccess = async (req, res) => {
                                         UnitCost,
                                         Quantity,
                                         Total
-                                      ) {
+                                      ) => {
                                         receipt
                                           .fontSize(10)
                                           .text(Item, 50, y)
@@ -444,8 +458,9 @@ const getCheckoutSuccess = async (req, res) => {
                                           .text(Quantity, 370, y, { width: 90, align: "right" })
                                           .text(Total, 0, y, { align: "right" });
                                       }
+
                                     // generateFooter
-                                    function generateFooter(receipt) {
+                                    const generateFooter = (receipt) => {
                                         generateHr(receipt, 252);
                                         receipt
                                             .fontSize(10)
@@ -458,47 +473,25 @@ const getCheckoutSuccess = async (req, res) => {
                                     }
 
                                     // generateHr
-                                    function generateHr(receipt, y) {
+                                    const generateHr = (receipt, y) => {
                                         receipt
                                           .strokeColor("#aaaaaa")
                                           .lineWidth(1)
                                           .moveTo(50, y)
                                           .lineTo(550, y)
                                           .stroke();
-                                      }
-                                      function formatDate(date) {
+                                    }
+                                    const formatDate = (date) => {
                                         const day = date.getDate();
                                         const month = date.getMonth() + 1;
                                         const year = date.getFullYear();
-                                      
+                                        
                                         return year + "/" + month + "/" + day;
-                                      }
+                                    }
                                     createInvoice()
-                                    // receipt.end();
-                                    // receipt.pipe(fs.createWriteStream(path));
-
-                                    // receipt.pipe(fs.createWriteStream('invoice.pdf'));
 
 
-                                    //send the email to the user.
-                                    // transporter.sendMail({ 
-                                    //     to: req.user.email, 
-                                    //     from: process.env.MY_EMAIL,   
-                                    //     subject: 'Your Simpleton Order',   
-                                    //     text: `thank you for your order`,
-                                    //     html:"<p>Thank you for shopping with us. We’ll send a confirmation once your item has shipped. Your order details are indicated below. If you would like to view the status of your order please visit Your Orders on Simpleton.com</p><h1><p>this is where the order will go</p></h1>"
-                                        
-                                    //     ,
-                                        
-                                    //   })
-                                    
-
-
-
-
-
-
-                                    // res.redirect('/shop/account/order')
+                                    res.redirect('/shop/account/order')
                                 }
                             })
                     }
