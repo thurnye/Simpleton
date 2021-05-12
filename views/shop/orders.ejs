@@ -22,41 +22,71 @@
             </div>
           </div>
     <% } else { %>
+        <div class=" mb-3" >
+            <div class="row g-0">
+              <div class="col-md-7">
+
+
         <% orders.forEach(order => { %>
             <div class="order-container container">
-                <div class="orderNo-paid">
-                    <small class="text-muted">Order - # <%= order._id %></small> 
-                    
-                </div>
-                <% order.products.forEach(el =>{ %>
-                    <div class="container "> 
-                        <div class="row"> 
-                            <div class="card mb-3" style="width: 25rem; height: 4.5rem;">
-                            <div class="row g-0">
-                                <div class="col-md-4">
-                                <img src= <%= el.product.image %>  alt="" style="width: 80px; height: 70px;">
-                                </div>
-                                <div class="col-md-8">
-                                <div class="card-body">
-                                    <div class="name-price">
-                                        <h5 class="card-title text-muted"> <%=  el.product.name %></h5>
-                                        <p class="card-text text-muted">$<%=  el.totalPrice %></p>
+                <div class="card"> 
+                    <div class="orderNo-paid">
+                        <small class="text-muted">Order - #<%= order._id %></small> 
+                        <!-- this is where you remove the order from -->
+                        <form action="/shop/order/remove" enctype="multipart/form-data" method="POST" class="cart-form">
+                            <input type="hidden" name="prodId" value="<%= order._id %>">
+                            <button class="btn remove" type="submit"> remove </button>
+                          </form>
+                    </div>
+                    <% order.products.forEach(el =>{ %>
+                        
+                        <div class="container"> 
+                            <div class="row justify-content-center"> 
+                                <div class="card mb-3" style="width: 25rem; height: 4.5rem;  box-shadow: 2px 2px #a39999;">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                    <img src= <%= el.product.image %>  alt="" style="width: 80px; height: 70px;">
                                     </div>
-                                    <div class="cart-quantity">
-                                        <h4> Quantity: <span><%=  el.quantity %></span></h4>
+                                    <div class="col-md-8">
+                                    <div class="card-body">
+                                        <div class="name-price">
+                                            <h5 class="card-title text-muted"> <%=  el.product.name %></h5>
+                                            <p class="card-text text-muted">$<%=  el.totalPrice %></p>
                                         </div>
-                                    <p class="card-text"></p>
+                                        <div class="cart-quantity">
+                                            <h4> Quantity: <span><%=  el.quantity %></span></h4>
+                                            </div>
+                                        <p class="card-text"></p>
+                                    </div>
+                                    </div>
                                 </div>
                                 </div>
                             </div>
-                            </div>
-                        </div>
-                    </div>  
-                <% }) %>
-                <h5 class="text-muted" style="align-self: flex-end;">Total Amount - $<%= order.paid %></h5> 
+                        </div>  
+                    <% }) %>
+                    <h5 class="text-muted" style="align-self: flex-end;">Total Amount : $<%= order.paid %></h5> 
+                </div>
             </div>
-            <hr>
+            <!-- <hr> -->
         <% }); %>
+
+
+
+
+
+              </div>
+              <div class="col-md-5">
+                <div class="card-body">
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
     <% } %>
 
 

@@ -38,7 +38,8 @@ router.get('/shop/cart/checkout', shopCtrl.getCheckout)
 //order
 router.get('/shop/account/order', shopCtrl.getOrders)
 
-
+//remove from orderlist
+router.post('/shop/order/remove', shopCtrl.removeOrderItem)
 
 //user data
 router.get('/shop/account', shopCtrl.getAccount)

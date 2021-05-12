@@ -519,7 +519,6 @@ const getOrders = async (req, res, next) => {
         
             
             //  console.log(subtotal)
-
             res.render('shop/orders',{
                 title: 'Simpleton',
                 user: req.user,
@@ -535,6 +534,20 @@ const getOrders = async (req, res, next) => {
 }
 
 
+//remove product from the array
+const removeOrderItem = async (req, res) => {
+    try {
+        const orderId = req.body.prodId
+        console.log(orderId)
+        await Order.findById(orderId, (err, order) => {
+            console.log(order)
+            order.remove()
+            res.redirect('/shop/account/order')
+        })
+    }catch(err) {
+        console.log(err)
+    }
+}
 
 
 
@@ -566,6 +579,7 @@ module.exports = {
     getCheckout,
     getCheckoutSuccess,
     getOrders,
+    removeOrderItem,
     getAccount, 
 
 }
