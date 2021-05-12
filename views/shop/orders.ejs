@@ -33,7 +33,7 @@
                     <div class="orderNo-paid">
                         <small class="text-muted">Order - #<%= order._id %></small> 
                         <!-- this is where you remove the order from -->
-                        <form action="/shop/order/remove" enctype="multipart/form-data" method="POST" class="cart-form">
+                        <form action="/shop/order/remove" enctype="multipart/form-data" method="POST" class="order-form">
                             <input type="hidden" name="prodId" value="<%= order._id %>">
                             <button class="btn remove" type="submit"> remove </button>
                           </form>

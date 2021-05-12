@@ -5,6 +5,9 @@
 .orderNo-paid{
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: baseline;
     
+}
+.order-form .btn:hover{
+    color: salmon
 }
