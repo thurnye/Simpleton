@@ -9,10 +9,10 @@
     <h2>Use our credit Card</h2>
     <div class="credit-card d-flex">
       <div class="front">
-        <img src="/images/images/credit-card-front.png" alt="front" style="height: 135px; border-radius: 5px; width: 250px;" >
+        <img src="/images/images/credit-card-front.png" alt="front" style="height: 135px; border-radius: 5px; width: 250px;     transform: none;" >
       </div>
       <div class="back">
-        <img src="/images/images/credit-card-back.png" alt="back" style="height: 135px; border-radius: 5px; width: 250px;" >
+        <img src="/images/images/credit-card-back.png" alt="back" style="height: 135px; border-radius: 5px; width: 250px;     transform: none;" >
       </div>
     </div>
     <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
@@ -20,19 +20,19 @@
     <div class=" container pay m-10">
         <% products.forEach(el =>{ %>
           <div class="row"> 
-            <div class="card mb-3" style="width: 25rem; height: 4.5rem; box-shadow: 2px 2px #a39999;">
+            <div class="card mb-3" style="width: 25rem; height: 6rem; box-shadow: 2px 2px #a39999;">
               <div class="row g-0">
                 <div class="col-md-4">
-                  <img src= <%= el.product.image %>  alt="" style="width: 80px; height: 70px;">
+                  <img src= <%= el.product.media.imageUrl %>  alt="" style="width: 100px; height: 70px;">
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
-                      <div class="name-price">
-                          <h5 class="card-title"> <%=  el.product.name %></h5>
-                          <p class="card-text">$<%=  el.totalPrice %></p>
-                      </div>
-                      <div class="cart-quantity">
-                          <h4> Quantity: <span><%=  el.quantity %></span></h4>
+                      <div>
+                          <h6 class="card-title" style="font-size: 14px;"> <%=  el.product.title %></h6>
+                        </div>
+                        <div class="quantity-price d-flex" style="justify-content: space-between; align-items: baseline;">
+                          <p> Quantity: <span><%=  el.quantity %></span></p>
+                          <p class="card-text" style="margin-right: -22px;">$<%=  el.totalPrice %></p>
                         </div>
                     <p class="card-text"></p>
                   </div>

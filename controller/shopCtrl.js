@@ -278,10 +278,10 @@ const getCheckout =  (req, res) => {
                     payment_method_types: ['card'],
                     line_items: products.map(el => {
                         return{
-                        name: el.product.name,
+                        name: el.product.title,
                         quantity: el.quantity,
-                        amount: parseInt(el.product.price) * 100,
-                        images: [el.product.image],
+                        amount: parseInt(el.product.retailPrice) * 100,
+                        images: [el.product.media.imageUrl],
                         currency: 'cad'
                     };
                     }),
@@ -292,6 +292,7 @@ const getCheckout =  (req, res) => {
                 })
             })
             .then(session => {
+                console.log(products)
                 res.render('shop/checkout', {
                     title: 'Simpleton',
                     user: req.user,
