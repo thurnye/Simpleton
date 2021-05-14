@@ -9,11 +9,10 @@
  .catalog .shoe-img{
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
-    /* height: 16vh; */
     background-color: #ffc4e7;
 }
 .catalog img {
-    /* transform: rotate(26deg); */
+    /* style="background-color: #<%= Math.floor(Math.random()*16777215).toString(16).padStart(8, '0')%>" */
     box-shadow: -7px -7px 13px 3px #1a3e80b3;
 }
 .catalog .price {
@@ -59,3 +58,57 @@
 .catalog .pagination .active{
     box-shadow: 0px 5px;
 }
+.catalog .col-md-3.filter{
+    display: none;
+}
+
+
+
+@media (min-width: 360.98px) and (max-width: 767.98px){ 
+   .catalog .col-md-3.filter{
+       display: none;
+   }
+   .catalog-items{
+    width: fit-content;
+   }
+ }
+
+ /* // X-Small devices (portrait phones, less than 576px) */
+/* // No media query for `xs` since this is the default in Bootstrap */
+
+/* // Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+    .catalog .col-md-3.filter{
+        display: none;
+    }
+    .catalog-items{
+        width: fit-content;
+    }
+ }
+
+/* // Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+    .catalog .col-md-3.filter{
+        display: none;
+    }
+    .catalog-items{
+        width: fit-content;
+    }
+ }
+
+/* // Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+    .catalog .col-md-3.filter{
+        display: block;
+    }
+    .catalog-items{
+        width: 75%;
+    }
+    
+ }
+/* 
+// X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { ... }
+
+/* // XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {  }

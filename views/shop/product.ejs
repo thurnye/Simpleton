@@ -2,119 +2,67 @@
 
 <%- include('./includes/head.ejs')  %> 
 <%- include('./includes/nav.ejs')  %> 
-   
-
-
-
-
+<link rel='stylesheet' href='/stylesheets/singleProduct.css' />
+<section class="product-platform">
 
 <div class="container">
-    <div class="row">
+    <div class="row ">
 
         <%# product image %> 
-        <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 col-xxl-4 ">
-            <img src=<%= product.image %>  class=" mx-auto d-block product-image" alt="...">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7 col-xxl-7 ">
+            <img src=<%= product.media.imageUrl %>  class=" mx-auto d-block product-image" alt="...">
+            <div class="platform">
+                <div class=" platform1">
+                  <div class=" platform2"></div>
+                </div>
+            </div>
         </div>
 
 
         <%# Product Info %> 
-        <div class="col-12	col-sm-12 col-md-12 col-lg-8 col-xl-8	col-xxl-8">
-            <div class="product-name"><h1><%= product.name %> </h1></div>
-            <div class="product-price-rating">
-                <h2 class="price">$<%= product.price %> </h2>
-                <div class="star">
-                    <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
-                    <span class="fas fa-star-half-alt checked"></span><span>(<%= product.ratings %>)</span>
+        <div class="col-12	col-sm-12 col-md-12 col-lg-4 col-xl-4	col-xxl-4">
+
+
+            <div class="card" style="">
+                <div class="card-body">
+                    <div class="product-info1">
+
+                    </div>
+
+                    <div class="product-info2">
+
+                    </div>
+
+                    <div class="product-info3">
+
+                    </div>
+
+                    <div class="product-info4">
+                         <!-- Add to Cart -->
+                        <div class="product-cart">
+                            <!-- add to cart -->
+                            <%- include('./includes/add-to-cart.ejs')  %> 
+
+                            <!-- add to wish list -->
+                            <form action="/shop/wish-list" method="POST" class="cart-form" enctype="multipart/form-data">
+                                <input type="hidden" name="prodId" value="<%= product._id %> ">
+                                <button class="btn btn-danger" type="submit"> Add to wishlist </button>
+                            </form>
+                        </div>
+                    </div>
+                  
                 </div>
-
-            </div>
-            <div class="product-description dimtext">
-                <p><%= product.description %> </p>
-            </div>
-
-            <%# warranty number from the database %> 
-            <div class="product-warranty">
-                <p><span class="fas fa-shield-alt shield"></span>  1 year Simpleton Brand Warranty</p>
-            </div>
-
-            <%# return policy number from db %> 
-            <div class="return-policy">
-                <p> <span class="fas fa-sync sync"></span>  30 days return policy</p>
-            </div>
-
-            <div class="delivery-method">
-                <p><span class="fas fa-hand-holding-usd cash"></span> Cash on delivery available</p>
-                <p><span class="fas fa-truck truck"></span> Delivery: <%= product.delivery %> </p>
-            </div>
-
-            <%# colors from the data base %> 
-            <div class="product-color">
-               <p class="dimtext">Color :</p>
-               <span class="color1" style="background-color: rgb(135, 85, 75)"></span>
-               <span class="color2" style="background-color: rgb(51, 51, 51)"></span>
-               <span class="color3" style="background-color: rgb(218, 50, 63)" ></span>
-            </div>
-            <div class="product-quantity-cart-wishlist"></div>
-            
-            
-
-            <%# sizes from the data base %> 
-            <div class="product-size"> 
-                <p class="dimtext">Size:</p>             
-                    <span>xs</span>
-                    <span>s</span>
-                    <span>m</span>
-                    <span>l</span>
-                    <span>xl</span>
-            </div>
+              </div>
 
 
-            <!-- Add to Cart -->
-            <div class="product-cart">
-                <!-- add to cart -->
-                <%- include('./includes/add-to-cart.ejs')  %> 
-
-                <!-- add to wish list -->
-                <form action="/shop/wish-list" method="POST" class="cart-form" enctype="multipart/form-data">
-                    <input type="hidden" name="prodId" value="<%= product._id %> ">
-                    <button class="btn btn-danger" type="submit"> Add to wishlist </button>
-                </form>
-            </div>
-
-            <hr>
-            <div class="product-category">
-                <p class="dimtext">Category:</p>
-                <span><%= product.category %></span>
-            </div>
-
-            <%# tags from the data base %> 
-            <div class="product-tags">
-                <p class="dimtext">Tags:</p>
-                <ul>
-                    <li>
-                        <%= product.category %>
-                    </li>
-                    <li>
-                        <%= product.category %>
-                    </li>
-                    <li>
-                        <%= product.category %>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="share">
-                <p class="dimtext">Share:</p>
-                <span>facebook</span>
-                <span>twitter</span>
-                <span>instagram</span>
-            </div>
+           
         </div>
     </div>
  </div>   
 
 
+
+</section>
 
  
 

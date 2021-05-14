@@ -37,7 +37,11 @@ a {
   margin: auto;
 }
 
- /* Product Details */
+/* ================================================================================ */
+/* Product Details */
+ 
+
+
 .price{
   color: red
 }
@@ -195,6 +199,8 @@ a {
 .share span {
   margin-left: 10px;
 }
+
+
 
 
 

@@ -85,7 +85,7 @@ const getOneProduct = async (req, res) => {
         const prodId = req.params.id
         // console.log(prodId)
         const product = await Products.findById(prodId)
-        // console.log(product)
+        console.log(product)
         res.render('shop/product', {
             title: 'Simpleton',
             product: product,
@@ -107,7 +107,10 @@ const postAddToCart = async (req, res) => {
             const prodId = req.body.prodId
             const quantity = req.body.quantity
             const price = req.body.price
-
+            // console.log(userId)
+            // console.log(prodId)
+            // console.log(quantity)
+            // console.log(price)
             //check to see if product exist and increase the quantity
             User.findById(userId, (err, user) => {
                 // console.log(user.cart)
@@ -192,12 +195,10 @@ const postAddToCart = async (req, res) => {
 const getCart = async (req, res, next) => {
     
     try{
-        // console.log(req.user)
-        const result = await Products.find();
         if (req.user){
             // console.log(result)
-            await User.findById(req.user._id).populate('cart.product').exec( (err, user) => {
-                
+              await User.findById(req.user._id).populate('cart.product').exec( (err, user) => {
+                console.log(user)
                 // subTotal price
                 let subtotal = 0;
                 user.cart.forEach(el => {
@@ -210,14 +211,14 @@ const getCart = async (req, res, next) => {
                     cart: user.cart,
                     length: user.cart.length,
                     subtotal: subtotal,
-                    products: result
                  })
             });
-        }else {
+        }
+        else {
             res.render('shop/cart', { 
                 title: 'Simpleton',
                 user: req.user,
-                products: result
+                products: []
             })
         }
     } catch (err) {

@@ -11,16 +11,16 @@ this is the catalog page
     
     <div class="card" style="max-width: 90vw;">
         <div class="row g-0">
-          <div class="col-md-3">
+          <div class="col-md-3 filter">
             <!-- <img src="..." alt="..."> -->
           </div>
-          <div class="col-md-9">
+          <div class="col-md-9 catalog-items">
             <div class="card-body">
                 <% if(products.length > 0){ %> 
                     <div class="row">
                         <% for(let item of products){ %> 
-                            <div class="col-12	col-sm-6 col-md-6 col-lg-3 col-xl-3	col-xxl-3 shoe">
-                                <div class="card shoe-img" >
+                            <div class="col-12	col-sm-6 col-md-6 col-lg-4 col-xl-3	col-xxl-3 shoe">
+                                <div class="card shoe-img"     style="background-color: #<%= Math.floor(Math.random()*16777215).toString(16).padStart(8, '0')%>">
                                     <a href="/shop/product/<%= item._id %>" class="btn ">
                                         <img src=<%= item.media.thumbUrl %>  class="card-img-top"  alt="...">
 
