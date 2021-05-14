@@ -1,0 +1,42 @@
+.catalog{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.catalog .shoe{
+    margin-bottom: 2vh;
+} 
+ .catalog .shoe-img{
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    /* height: 16vh; */
+    background-color: #ffc4e7;
+}
+.catalog img {
+    /* transform: rotate(26deg); */
+    box-shadow: -7px -7px 13px 3px #1a3e80b3;
+}
+.catalog .price {
+    color: red;
+    font-size: 22px;
+}
+.catalog .icon-form {
+    margin-top: -20px;
+    z-index: 10;
+}
+.catalog .item-to-cart {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+.catalog .cart-icon {
+    border: 3px solid #ff00008f;
+    border-radius: 50%;
+    width: max-content;
+}
+.catalog .cart-icon button{
+    background-color: inherit;
+    font-size: 20px;
+    border: 2px solid #ea7a7ac2;
+    border-radius: 50%;
+}

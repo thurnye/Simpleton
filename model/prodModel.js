@@ -7,40 +7,78 @@ const productsSchema = new Schema({
         type: String,
         require: true
     },
-    description: {
+    // description: {
+    //     type: String,
+    //     require: true
+    // },
+    // price: {
+    //     type: Number,
+    //     require: true
+    // },
+    // ratings: {
+    //     type: String,
+    //     require: true
+    // },
+    // image: {
+    //     type: String,
+    // },
+    // delivery: {
+    //     type: String,,
+    // },
+    // category: {
+    //     type: String,
+    // },
+    // season: {
+    //     type: String,
+    //     // enum: ['Winter', 'Spring', 'Summer', 'Fall'],
+    // },
+    // feature: {
+    //     type: String,
+    //     // enum: ['New Arrival', 'Best Seller', 'Featuring', 'Special Offer'],
+    // },
+    brand: {
         type: String,
-        require: true
     },
-    price: {
+    colorway: {
+        type: String,
+    },
+    gender: {
+        type: String,
+    },
+    
+    releaseDate: {
+        type: String,
+    },
+    retailPrice:{
         type: Number,
-        require: true
+        default: 0
     },
-    ratings: {
+    
+    styleId: {
         type: String,
-        require: true
     },
-    image: {
+    
+    title: {
         type: String,
-        required: true
     },
-    delivery: {
-        type: String,
-        required: true,
+    year: {
+        type: Number,
     },
-    category: {
-        type: String,
-        required: true
+    media: {
+        imageUrl: {
+            type: String,
+
+        },
+        smallImageUrl: {
+            type: String,
+
+        },
+        thumbUrl: {
+            type: String,
+
+        }
     },
-    season: {
-        type: String,
-        enum: ['Winter', 'Spring', 'Summer', 'Fall'],
-        required: true
-    },
-    feature: {
-        type: String,
-        enum: ['New Arrival', 'Best Seller', 'Featuring', 'Special Offer'],
-        required: true
-    }
+
 })
 
 module.exports = mongoose.model('Products', productsSchema);

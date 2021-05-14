@@ -2,6 +2,19 @@ const Products = require('../model/prodModel');
 // const util = require('../util/util')
 const request = require('request');
 const fs = require('fs');
+const axios = require("axios").default;
+const { Console } = require('console');
+
+var options = {
+    method: 'GET',
+    url: 'https://v1-sneakers.p.rapidapi.com/v1/sneakers',
+    params: {limit: '100', brand: 'adidas'},
+    headers: {
+      'x-rapidapi-key': process.env.RAPID_API_KEY,
+      'x-rapidapi-host': process.env.RAPID_HOST
+    }
+  };
+
 
 
 //GET ADMIN MAIN PAGE
@@ -12,9 +25,40 @@ const getAdminIndex = (req, res, next) => {
      });
 };
 
+// API Populate DB
+const apiPopulateDb = async (req, res, next) => {
+    axios.request(options).then(function (response) {
+        let data = response.data.results
+            console.log(data)
+       
+        for(let i = 0; i < data.length; i++){
+            const newProduct = new Products ({
+                name :          data[i].name,
+                brand:          data[i].brand,
+                colorway :      data[i].colorway,
+                gender :        data[i].gender,
+                releaseDate:    data[i].releaseDate,
+                retailPrice :   data[i].retailPrice,
+                shoe :          data[i].shoe,
+                styleId:        data[i].styleId,
+                title:          data[i].title,
+                year:           data[i].year,
+                media: {
+                    imageUrl: data[i].media.imageUrl,
+                    smallImageUrl: data[i].media.smallImageUrl,
+                    thumbUrl: data[i].media.thumbUrl,
+                },
+            })
+            newProduct.save()
+        }
+        res.redirect('/admin/preview')
+    }).catch(function (error) {
+        console.error(error);
+    });
+}
 
 
-//CREATE
+//CREATE   MANUALLY FORM FORM
 const createProducts = async (req, res, next) => {
 
     function base64_encode(image) {
@@ -26,9 +70,6 @@ const createProducts = async (req, res, next) => {
 
     const imageUrl = base64_encode(req.files.image.file)
 
-    
-
-    // console.log(base64_encode(req.files.image.file))
     const options = {
         method: 'POST',
         url: 'https://api.imgur.com/3/image',
@@ -44,26 +85,26 @@ const createProducts = async (req, res, next) => {
   await  request(options, function(err, response){
         if(err) return console.log(err);
         let body = JSON.parse(response.body)
-        // console.log(body)
-        // console.log(body.data.link)
         const newProduct = new Products ({
-            name :          req.body.itemName,
-            description :   req.body.description,
-            price :         req.body.price,
-            ratings :       req.body.ratings,
-            image:          body.data.link,
-            delivery :      req.body.delivery,
-            category :      req.body.category,
-            season :        req.body.season,
-            feature :       req.body.feature,
+            name :          req.body.name,
+            brand:          req.body.brand,
+            colorway :      req.body.colorway,
+            gender :        req.body.gender,
+            releaseDate:    req.body.releaseDate,
+            retailPrice :   req.body.retailPrice,
+            shoe :          req.body.shoe,
+            styleId:        req.body.styleId,
+            title:          req.body.title,
+            year:           req.body.year,
+            media: {
+                imageUrl: body.data.link,
+                smallImageUrl: body.data.link,
+                thumbUrl: body.data.link,
+            },
         })
-        console.log(newProduct)
        newProduct.save()
        res.redirect('/admin/preview')
-    //  res.render('admin/new',{data:body.data.link})
-    })
-
-  
+    })  
 }
 
 
@@ -72,23 +113,24 @@ const getPreview = async (req, res) => {
 
    try{
    let result = await Products.find();
-   const newArrival = await Products.find({feature: 'New Arrival'})
-   const bestSeller = await Products.find({feature: 'Best Seller'})
-   const featuring = await Products.find({feature: 'Featuring'})
-   const specialOffer = await Products.find({feature: 'Special Offer'})
+//    console.log(result)
+//    const newArrival = await Products.find({feature: 'New Arrival'})
+//    const bestSeller = await Products.find({feature: 'Best Seller'})
+//    const featuring = await Products.find({feature: 'Featuring'})
+//    const specialOffer = await Products.find({feature: 'Special Offer'})
 
 
 
-   console.log('Special Offer :', specialOffer )
+//    console.log('Special Offer :', specialOffer )
 
     // console.log(result)
     res.render('admin/preview', { 
         title: 'Simpleton',
         products: result,
-        newArrival: newArrival,
-        bestSeller: bestSeller,
-        featuring : featuring,
-        specialOffer: specialOffer 
+        // newArrival: newArrival,
+        // bestSeller: bestSeller,
+        // featuring : featuring,
+        // specialOffer: specialOffer 
     });
    } catch (err) {
     console.log(err)
@@ -229,4 +271,5 @@ module.exports = {
     getEdit,
     getUpdate,
     deleteOne,
+    apiPopulateDb
 }

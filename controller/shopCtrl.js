@@ -19,6 +19,8 @@ const getHome = async (req, res, next) => {
         const specialOffer = await Products.find({feature: 'Special Offer'})
 
 
+        
+
     res.render('shop/home', { 
         title: 'Simpleton',
         user: req.user,
@@ -27,6 +29,21 @@ const getHome = async (req, res, next) => {
         bestSeller: bestSeller,
         featuring : featuring,
         specialOffer: specialOffer  
+    });
+} catch (err) {
+    console.log(err)
+   }
+
+}
+
+// Get Catalog
+const getCatalog = async (req, res, next) => {
+    try{
+        let result = await Products.find();
+    res.render('shop/catalog', { 
+        title: 'Simpleton',
+        user: req.user,
+        products: result
     });
 } catch (err) {
     console.log(err)
@@ -572,6 +589,7 @@ const getAccount = (req, res) => {
 
 module.exports = {
     getHome,
+    getCatalog,
     getOneProduct,
     postAddToCart,
     getCart,

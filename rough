@@ -1,0 +1,46 @@
+
+<%- include('./includes/head.ejs')  %> 
+
+<%- include('./includes/nav.ejs')  %> 
+<link rel='stylesheet' href='/stylesheets/catalog.css' />
+   
+
+this is the catalog page
+<section class="catalog">
+
+    
+    <div class="card" style="max-width: 90vw;">
+        <div class="row g-0">
+          <div class="col-md-3">
+            <img src="..." alt="...">
+          </div>
+          <div class="col-md-9">
+            <div class="card-body">
+                <% if(products.length > 0){ %> 
+                    <div class="row">
+                        <% for(let item of products){ %> 
+                            <div class="col-12	col-sm-6 col-md-6 col-lg-3 col-xl-3	col-xxl-3 shoe">
+                                <div class="card shoe-img" >
+                                <a href="/admin/preview/product/<%= item._id %>" class="btn ">
+                                    <img src=<%= item.media.imageUrl %>  class="card-img-top"  alt="...">
+                                    <!-- <div class="card-body">
+                                        <p class="card-text"><%= item.title %></p>
+                                        <p class="card-text price">$<%= item.retailPrice %></p>
+                                    </div> -->
+                                </a>
+                                    
+                                </div>
+                            </div>
+                        <% } %> 
+                    </div>
+                <% }else{ %> 
+                  <h1>Shop not Set up yet</h1>
+                <% } %> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</section>
+ 
+<%- include('./includes/footer.ejs')  %> 

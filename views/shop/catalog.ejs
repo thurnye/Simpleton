@@ -1,0 +1,77 @@
+
+<%- include('./includes/head.ejs')  %> 
+
+<%- include('./includes/nav.ejs')  %> 
+<link rel='stylesheet' href='/stylesheets/catalog.css' />
+   
+
+this is the catalog page
+<section class="catalog">
+
+    
+    <div class="card" style="max-width: 90vw;">
+        <div class="row g-0">
+          <div class="col-md-3">
+            <!-- <img src="..." alt="..."> -->
+          </div>
+          <div class="col-md-9">
+            <div class="card-body">
+                <% if(products.length > 0){ %> 
+                    <div class="row">
+                        <% for(let item of products){ %> 
+                            <div class="col-12	col-sm-6 col-md-6 col-lg-3 col-xl-3	col-xxl-3 shoe">
+                                <div class="card shoe-img" >
+                                    <a href="/shop/product/<%= item._id %>" class="btn ">
+                                        <img src=<%= item.media.thumbUrl %>  class="card-img-top"  alt="...">
+
+                                    </a>
+                                 </div>
+                                 <div class="d-flex catalog-info">
+                                    
+
+                                    <div class="card-body" style="padding-left: 0;">
+                                        <p class="card-text"><%= item.title %></p>
+                                        <div class="item-to-cart">
+                                            <p class="card-text price">$<%= item.retailPrice %></p>
+                                            <!-- <form action="/shop/cart" enctype="multipart/form-data" method="POST" class="cart-icon">
+                                                <div class="product-quantity" style="display: none;">
+                                                    <input class=" form-control quantity" name= "quantity" value="1" >
+                                                </div>
+                                                
+                                                <input type="hidden" name="prodId" value="<%= item._id %>">
+                                                <input type="hidden" name="price" value="<%= item.retailPrice %>">
+                                                <button type="submit"><i class="fas fa-shopping-bag"></i></button>
+                                            </form> -->
+
+                                        </div>
+                                    </div>
+                                    <div class="icon-form">
+                                        <form action="/shop/cart" enctype="multipart/form-data" method="POST" class="cart-icon">
+                                            <div class="product-quantity" style="display: none;">
+                                                <input class=" form-control quantity" name= "quantity" value="1" >
+                                            </div>
+                                            
+                                            <input type="hidden" name="prodId" value="<%= item._id %>">
+                                            <input type="hidden" name="price" value="<%= item.retailPrice %>">
+                                            <button type="submit"><i class="fas fa-shopping-bag"></i></button>
+                                        </form>
+                                    </div>
+                                    
+                                 </div>
+                                
+                                
+                            </div>
+                        <% } %> 
+                    </div>
+                <% }else{ %> 
+                  <h1>Shop not Set up yet</h1>
+                <% } %> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</section>
+ 
+<%- include('./includes/footer.ejs')  %> 
+ 

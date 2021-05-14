@@ -8,6 +8,8 @@ router.get('/', adminCtrl.getAdminIndex);
 
 router.post('/', adminCtrl.createProducts)
 
+router.post('/createfromdb', adminCtrl.apiPopulateDb)
+
 router.get('/preview', adminCtrl.getPreview);
 
 router.get('/preview/product/:id', adminCtrl.getOne)
