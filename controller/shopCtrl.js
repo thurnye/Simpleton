@@ -39,12 +39,39 @@ const getHome = async (req, res, next) => {
 // Get Catalog
 const getCatalog = async (req, res, next) => {
     try{
-        let result = await Products.find();
-    res.render('shop/catalog', { 
-        title: 'Simpleton',
-        user: req.user,
-        products: result
-    });
+        // pagination
+        const page = req.params.page || 1
+        const perPage = 20;
+        // const startIndex = (page - 1) * limit
+        // const endIndex = page * limit
+
+
+        await Products.find()
+        .find({})
+        .skip((perPage * page) - perPage)
+        .limit(perPage)
+        .exec((err, products) => {
+            Products.count().exec((err, count) => {
+                if (err) return next(err)
+                // console.log(products)
+                res.render('shop/catalog', {
+                    title: 'Simpleton',
+                    user: req.user,
+                    products: products,
+                    current: page,
+                    pages: Math.ceil(count / perPage)
+                })
+            })
+        })
+        
+        // const inventory = result.slice(startIndex, endIndex)
+        // console.log(result)
+
+    // res.render('shop/catalog', { 
+    //     title: 'Simpleton',
+    //     user: req.user,
+    //     products: result
+    // });
 } catch (err) {
     console.log(err)
    }

@@ -13,8 +13,10 @@ router.get('/', function(req, res, next) {
 
 //Get Shop Page
 router.get('/shop', shopCtrl.getHome);
-//Get Shop Page
-router.get('/shop/catalog', shopCtrl.getCatalog);
+
+
+//Get Catalog Page
+router.get('/shop/catalog/:page', shopCtrl.getCatalog);
 
 
 //Get Product Details

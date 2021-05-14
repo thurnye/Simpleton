@@ -31,20 +31,8 @@ this is the catalog page
 
                                     <div class="card-body" style="padding-left: 0;">
                                         <p class="card-text"><%= item.title %></p>
-                                        <div class="item-to-cart">
-                                            <p class="card-text price">$<%= item.retailPrice %></p>
-                                            <!-- <form action="/shop/cart" enctype="multipart/form-data" method="POST" class="cart-icon">
-                                                <div class="product-quantity" style="display: none;">
-                                                    <input class=" form-control quantity" name= "quantity" value="1" >
-                                                </div>
-                                                
-                                                <input type="hidden" name="prodId" value="<%= item._id %>">
-                                                <input type="hidden" name="price" value="<%= item.retailPrice %>">
-                                                <button type="submit"><i class="fas fa-shopping-bag"></i></button>
-                                            </form> -->
-
-                                        </div>
                                     </div>
+                                    
                                     <div class="icon-form">
                                         <form action="/shop/cart" enctype="multipart/form-data" method="POST" class="cart-icon">
                                             <div class="product-quantity" style="display: none;">
@@ -55,6 +43,10 @@ this is the catalog page
                                             <input type="hidden" name="price" value="<%= item.retailPrice %>">
                                             <button type="submit"><i class="fas fa-shopping-bag"></i></button>
                                         </form>
+                                        <div class="item-to-cart">
+                                            <p class="card-text price">$<%= item.retailPrice %></p>
+    
+                                        </div>
                                     </div>
                                     
                                  </div>
@@ -67,6 +59,36 @@ this is the catalog page
                   <h1>Shop not Set up yet</h1>
                 <% } %> 
               </div>
+
+              <!-- This is the Pagination -->
+              <% if (pages > 0) { %>
+                <ul class="pagination text-center">
+                    <% if (current == 1) { %>
+                        <li class="disabled"><a>First</a></li>
+                    <% } else { %>
+                        <li><a href="/shop/catalog/1">First</a></li>
+                    <% } %>
+                    <% let i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+                    <% if (i !== 1) { %>
+                        <li class="disabled"><a>...</a></li>
+                    <% } %>
+                    <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                        <% if (i == current) { %>
+                            <li class="active"><a><%= i %></a></li>
+                        <% } else { %>
+                            <li><a href="/shop/catalog/<%= i %>"><%= i %></a></li>
+                        <% } %>
+                        <% if (i == Number(current) + 4 && i < pages) { %>
+                            <li class="disabled"><a>...</a></li>
+                        <% } %>
+                    <% } %>
+                    <% if (current == pages) { %>
+                        <li class="disabled"><a>Last</a></li>
+                    <% } else { %>
+                        <li><a href="/shop/catalog/<%= pages %>">Last</a></li>
+                    <% } %>
+                </ul>
+            <% } %>
             </div>
           </div>
         </div>
