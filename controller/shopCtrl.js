@@ -12,24 +12,9 @@ const PDFDocument = require("pdfkit");
 
 const getHome = async (req, res, next) => {
     try{
-        // const result = await Products.find();
-        // const newArrival = await Products.find({feature: 'New Arrival'})
-        // const bestSeller = await Products.find({feature: 'Best Seller'})
-        // const featuring = await Products.find({feature: 'Featuring'})
-        // const specialOffer = await Products.find({feature: 'Special Offer'})
-
-
-        
-        // render random 5 products from the db
-
     res.render('shop/home', { 
         title: 'Simpleton',
-        user: req.user,
-        // products: result,
-        // newArrival: newArrival,
-        // bestSeller: bestSeller,
-        // featuring : featuring,
-        // specialOffer: specialOffer  
+        user: req.user, 
     });
 } catch (err) {
     console.log(err)
