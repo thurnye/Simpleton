@@ -238,4 +238,20 @@ div.form-check{
   align-self: flex-start;
 }
 
+/* Pagination */
+/* ====================================== */
 
+.pagination{
+  width: -webkit-fill-available;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.pagination  li{
+  color: #ef513f;
+  padding: 5px;
+  font-size: 15px;
+}
+.pagination .active{
+  box-shadow: 0px 5px;
+}

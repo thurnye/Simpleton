@@ -10,7 +10,7 @@ router.post('/', adminCtrl.createProducts)
 
 router.post('/createfromdb', adminCtrl.apiPopulateDb)
 
-router.get('/preview', adminCtrl.getPreview);
+router.get('/preview/:id', adminCtrl.getPreview);
 
 router.get('/preview/product/:id', adminCtrl.getOne)
 

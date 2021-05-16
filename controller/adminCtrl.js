@@ -110,28 +110,37 @@ const createProducts = async (req, res, next) => {
 
 //RETRIEVE ALL THE PREVIEW
 const getPreview = async (req, res) => {
-
    try{
-   let result = await Products.find();
-//    console.log(result)
-//    const newArrival = await Products.find({feature: 'New Arrival'})
-//    const bestSeller = await Products.find({feature: 'Best Seller'})
-//    const featuring = await Products.find({feature: 'Featuring'})
-//    const specialOffer = await Products.find({feature: 'Special Offer'})
+//    let result = await Products.find();
+//     res.render('admin/preview', { 
+//         title: 'Simpleton',
+//         products: result,
+//     });
+
+    // pagination
+    const page = req.params.page || 1
+    const perPage = 20;
+    // const startIndex = (page - 1) * limit
+    // const endIndex = page * limit
 
 
-
-//    console.log('Special Offer :', specialOffer )
-
-    // console.log(result)
-    res.render('admin/preview', { 
-        title: 'Simpleton',
-        products: result,
-        // newArrival: newArrival,
-        // bestSeller: bestSeller,
-        // featuring : featuring,
-        // specialOffer: specialOffer 
-    });
+    await Products.find()
+    .find({})
+    .skip((perPage * page) - perPage)
+    .limit(perPage)
+    .exec((err, products) => {
+        Products.count().exec((err, count) => {
+            if (err) return next(err)
+            // console.log(products)
+            res.render('admin/preview', {
+                title: 'Simpleton',
+                user: req.user,
+                products: products,
+                current: page,
+                pages: Math.ceil(count / perPage)
+            })
+        })
+    })
    } catch (err) {
     console.log(err)
    }

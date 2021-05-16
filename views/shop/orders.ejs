@@ -7,6 +7,7 @@
 
 
     <% if (orders.length <= 0) { %>
+      <div class="container">
         <div class="card mb-3" style="max-width: 540px;">
             <div class="row g-0">
               <div class="col-md-4">
@@ -21,13 +22,14 @@
               </div>
             </div>
           </div>
+        </div>
     <% } else { %>
         <div class=" mb-3" >
             <div class="row g-0">
               <div class="col-md-7">
 
 
-        <% orders.forEach(order => { %>
+            <% orders.forEach(order => { %>
             <div class="order-container container">
                 <div class="card"> 
                     <div class="orderNo-paid">
@@ -42,22 +44,24 @@
                         
                         <div class="container"> 
                             <div class="row justify-content-center"> 
-                                <div class="card mb-3" style="width: 25rem; height: 4.5rem;  box-shadow: 2px 2px #a39999;">
+                                <div class="card mb-3" style="width: 25rem; height: 6rem;  box-shadow: 2px 2px #a39999;">
                                 <div class="row g-0">
                                     <div class="col-md-4">
-                                    <img src= <%= el.product.image %>  alt="" style="width: 80px; height: 70px;">
+                                    <img src= <%= el.product.media.imageUrl %>  alt="" style="width: 110px; height: 70px;">
                                     </div>
                                     <div class="col-md-8">
-                                    <div class="card-body">
-                                        <div class="name-price">
-                                            <h5 class="card-title text-muted"> <%=  el.product.name %></h5>
-                                            <p class="card-text text-muted">$<%=  el.totalPrice %></p>
-                                        </div>
-                                        <div class="cart-quantity">
-                                            <h4> Quantity: <span><%=  el.quantity %></span></h4>
-                                            </div>
-                                        <p class="card-text"></p>
+                                      <div class="card-body text-muted">
+                                        <div>
+                                            <h6 class="card-title" style="font-size: 14px;"> <%=  el.product.title %></h6>
+                                          </div>
+                                          <div class="quantity-price d-flex" style="justify-content: space-between; align-items: baseline;">
+                                            <p> Quantity: <span><%=  el.quantity %></span></p>
+                                            <p class="card-text" style="margin-right: -22px;">$<%=  el.totalPrice %></p>
+                                          </div>
+                                      <p class="card-text"></p>
                                     </div>
+
+                                   
                                     </div>
                                 </div>
                                 </div>
@@ -92,6 +96,6 @@
 
 </section>
 
-<%- include('./includes/featured')  %> 
+
 
 <%- include('./includes/footer.ejs')  %> 

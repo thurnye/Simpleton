@@ -373,7 +373,7 @@ footer .col-md-6 {
 }
 
 
-img{
+.checkout img{
   /* width: 150px; */
   transform: rotateY(150deg);
 }

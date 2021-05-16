@@ -12,23 +12,24 @@ const PDFDocument = require("pdfkit");
 
 const getHome = async (req, res, next) => {
     try{
-        const result = await Products.find();
-        const newArrival = await Products.find({feature: 'New Arrival'})
-        const bestSeller = await Products.find({feature: 'Best Seller'})
-        const featuring = await Products.find({feature: 'Featuring'})
-        const specialOffer = await Products.find({feature: 'Special Offer'})
+        // const result = await Products.find();
+        // const newArrival = await Products.find({feature: 'New Arrival'})
+        // const bestSeller = await Products.find({feature: 'Best Seller'})
+        // const featuring = await Products.find({feature: 'Featuring'})
+        // const specialOffer = await Products.find({feature: 'Special Offer'})
 
 
         
+        // render random 5 products from the db
 
     res.render('shop/home', { 
         title: 'Simpleton',
         user: req.user,
-        products: result,
-        newArrival: newArrival,
-        bestSeller: bestSeller,
-        featuring : featuring,
-        specialOffer: specialOffer  
+        // products: result,
+        // newArrival: newArrival,
+        // bestSeller: bestSeller,
+        // featuring : featuring,
+        // specialOffer: specialOffer  
     });
 } catch (err) {
     console.log(err)
@@ -63,15 +64,6 @@ const getCatalog = async (req, res, next) => {
                 })
             })
         })
-        
-        // const inventory = result.slice(startIndex, endIndex)
-        // console.log(result)
-
-    // res.render('shop/catalog', { 
-    //     title: 'Simpleton',
-    //     user: req.user,
-    //     products: result
-    // });
 } catch (err) {
     console.log(err)
    }
@@ -455,9 +447,9 @@ const getCheckoutSuccess = async (req, res) => {
                                             generateTableRow(
                                             receipt,
                                             position,
+                                            item.product.title,
                                             item.product.name,
-                                            item.product.description,
-                                            `$${item.product.price}`,
+                                            `$${item.product.retailPrice}`,
                                             item.quantity,
                                             `$${item.totalPrice}`
                                             );
@@ -558,18 +550,19 @@ const getCheckoutSuccess = async (req, res) => {
 
 const getOrders = async (req, res, next) => {
     try{
-        const result = await Products.find();
+        // const result = await Products.find();
         if(req.user){
             userEmail = req.user.email;
             const userOrder = await Order.find({'user.email': userEmail})
-        
+            
+            console.log(userOrder)
             
             //  console.log(subtotal)
             res.render('shop/orders',{
                 title: 'Simpleton',
                 user: req.user,
                 orders: userOrder,
-                products: result
+                // products: result
             })
         }else{
             res.redirect('/auth/google')
