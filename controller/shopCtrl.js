@@ -13,7 +13,7 @@ const PDFDocument = require("pdfkit");
 const getHome = async (req, res, next) => {
     try{
         const randomProd = await Products.aggregate([{ $sample: { size: 7 } }])
-        console.log(typeof randomProd)
+        // console.log(typeof randomProd)
         for(prod in randomProd){
             console.log(randomProd[prod].media.imageUrl)
         }
@@ -32,13 +32,25 @@ const getHome = async (req, res, next) => {
 // Get Catalog
 const getCatalog = async (req, res, next) => {
     try{
+            const catalog = await Products.find();
+            const allBrands = []
+            const allGenders = []
+            const allColors = []
+            for(prod in catalog){
+                allBrands.push(catalog[prod].brand)
+                allGenders.push(catalog[prod].gender)
+                allColors.push(catalog[prod].colorway)
+            }
+            const brands = [...new Set(allBrands)];
+            const genders = [...new Set(allGenders)];
+            // const  colors = [...new Set(allColors)];
+            // console.log('Gender=',genders)
+            // console.log('Colors=',colors)
+            const colors = ['Red', 'Orange','Black', 'Yellow', 'Green', 'Blue', 'Purple', 'White', 'Brown', 'Pink', 'Multicolor', 'Turquoise', 'Lemon', 'Beige','Cream', 'Silver', 'Gold', 'Grey', 'Off-white']
+
         // pagination
         const page = req.params.page || 1
         const perPage = 20;
-        // const startIndex = (page - 1) * limit
-        // const endIndex = page * limit
-
-
         await Products.find()
         .find({})
         .skip((perPage * page) - perPage)
@@ -52,7 +64,10 @@ const getCatalog = async (req, res, next) => {
                     user: req.user,
                     products: products,
                     current: page,
-                    pages: Math.ceil(count / perPage)
+                    pages: Math.ceil(count / perPage),
+                    brands: brands,
+                    genders: genders,
+                    colors: colors,
                 })
             })
         })
@@ -61,6 +76,17 @@ const getCatalog = async (req, res, next) => {
    }
 
 }
+
+const getFilter = async (req, res) => {
+    try {
+        
+    } catch (error) {
+        
+    }
+}
+
+
+
 
 // Single Product
 const getOneProduct = async (req, res) => {
@@ -604,6 +630,7 @@ const getAccount = (req, res) => {
 module.exports = {
     getHome,
     getCatalog,
+    getFilter,
     getOneProduct,
     postAddToCart,
     getCart,
