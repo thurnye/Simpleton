@@ -17,36 +17,6 @@
   /* width: 150px; */
   transform: rotateY(150deg);
 }
-.platform{
-  position: absolute;
-  border: 8px solid #b5a8a8;
-  width: 23.5vw;
-  height: 50px;
-  border-radius: 50%;
-      border-top: none;
-  top: 102px;
-  transform: skewY(
-188deg
-);
-  
-}
-.platform1{
-  border: 8px solid red;
-  width: 96%;
-  height: 40px;
-  margin-left: 4px;
-  border-radius: 50%;
-  border-top: none;
-}
-.platform2{
-  border: 3px solid gold;
-  width: 94%;
-  height: 30px;
-  margin-left: 4px;
-  border-radius: 50%;
-  border-top: none;
-
-}
 
 
 

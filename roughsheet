@@ -1,0 +1,85 @@
+    
+    <div class="card" style="max-width: 90vw;">
+        <div class="row g-0">
+          <div class="col-md-3 filter">
+            <!-- <img src="..." alt="..."> -->
+          </div>
+          <div class="col-md-9 catalog-items">
+            <div class="card-body">
+                <% if(products.length > 0){ %> 
+                    <div class="row">
+                        <% for(let item of products){ %> 
+                            <div class="col-12	col-sm-6 col-md-6 col-lg-4 col-xl-3	col-xxl-3 shoe">
+                                <div class="card shoe-img"     style="background-color: #<%= Math.floor(Math.random()*16777215).toString(16).padStart(8, '0')%>">
+                                    <a href="/shop/product/<%= item._id %>" class="btn ">
+                                        <img src=<%= item.media.thumbUrl %>  class="card-img-top"  alt="...">
+
+                                    </a>
+                                 </div>
+                                 <div class="d-flex catalog-info">
+                                    
+
+                                    <div class="card-body" style="padding-left: 0;">
+                                        <p class="card-text"><%= item.title %></p>
+                                    </div>
+                                    
+                                    <div class="icon-form">
+                                        <form action="/shop/cart" enctype="multipart/form-data" method="POST" class="cart-icon">
+                                            <div class="product-quantity" style="display: none;">
+                                                <input class=" form-control quantity" name= "quantity" value="1" >
+                                            </div>
+                                            
+                                            <input type="hidden" name="prodId" value="<%= item._id %>">
+                                            <input type="hidden" name="price" value="<%= item.retailPrice %>">
+                                            <button type="submit"><i class="fas fa-shopping-bag"></i></button>
+                                        </form>
+                                        <div class="item-to-cart">
+                                            <p class="card-text price">$<%= item.retailPrice %></p>
+    
+                                        </div>
+                                    </div>
+                                    
+                                 </div>
+                                
+                                
+                            </div>
+                        <% } %> 
+                    </div>
+                <% }else{ %> 
+                  <h1>Shop not Set up yet</h1>
+                <% } %> 
+              </div>
+
+              <!-- This is the Pagination -->
+              <% if (pages > 0) { %>
+                <ul class="pagination text-center">
+                    <% if (current == 1) { %>
+                        <li class="disabled"><a>First</a></li>
+                    <% } else { %>
+                        <li><a href="/shop/catalog/1">First</a></li>
+                    <% } %>
+                    <% let i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+                    <% if (i !== 1) { %>
+                        <li class="disabled"><a>...</a></li>
+                    <% } %>
+                    <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                        <% if (i == current) { %>
+                            <li class="active"><a><%= i %></a></li>
+                        <% } else { %>
+                            <li><a href="/shop/catalog/<%= i %>"><%= i %></a></li>
+                        <% } %>
+                        <% if (i == Number(current) + 4 && i < pages) { %>
+                            <li class="disabled"><a>...</a></li>
+                        <% } %>
+                    <% } %>
+                    <% if (current == pages) { %>
+                        <li class="disabled"><a>Last</a></li>
+                    <% } else { %>
+                        <li><a href="/shop/catalog/<%= pages %>">Last</a></li>
+                    <% } %>
+                </ul>
+            <% } %>
+            </div>
+          </div>
+        </div>
+      </div>

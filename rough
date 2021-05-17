@@ -1,46 +1,94 @@
 
-<%- include('./includes/head.ejs')  %> 
+ </head>
+ <body>
 
-<%- include('./includes/nav.ejs')  %> 
-<link rel='stylesheet' href='/stylesheets/catalog.css' />
-   
 
-this is the catalog page
-<section class="catalog">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+    <a class="navbar-brand" href="/shop">
+      SimpleTon
+      <!-- <img src="/images/carousel/logo.png" alt="" width="30" height="24"> -->
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/shop">HOME<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/shop/catalog/1">Catalog</a>
+        </li>
+        <li class="nav-item">
+          <% if (user) { %>
+            <a href="/shop/account" class="nav-link" >Account</a>
+          <% } else { %>
+            <a href="/auth/google" class="nav-link"> My Account</a>
+          <% } %>
+        </li>
+      </ul>
+      <div class="btn-group">
+        <div type="button" class="btn account dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-user-circle"></i>
+        </div>
+        <div class="dropdown-menu dropdown-menu-right bg-dark">
 
-    
-    <div class="card" style="max-width: 90vw;">
-        <div class="row g-0">
-          <div class="col-md-3">
-            <img src="..." alt="...">
+          <div class="dropdown-item" type="button">
+            <% if (user) { %>
+              <a href="/shop/account" class="nav-link" >Account</a>
+            <% } else { %>
+              <a href="/auth/google" class="nav-link"> My Account</a>
+            <% } %>
           </div>
-          <div class="col-md-9">
-            <div class="card-body">
-                <% if(products.length > 0){ %> 
-                    <div class="row">
-                        <% for(let item of products){ %> 
-                            <div class="col-12	col-sm-6 col-md-6 col-lg-3 col-xl-3	col-xxl-3 shoe">
-                                <div class="card shoe-img" >
-                                <a href="/admin/preview/product/<%= item._id %>" class="btn ">
-                                    <img src=<%= item.media.imageUrl %>  class="card-img-top"  alt="...">
-                                    <!-- <div class="card-body">
-                                        <p class="card-text"><%= item.title %></p>
-                                        <p class="card-text price">$<%= item.retailPrice %></p>
-                                    </div> -->
-                                </a>
-                                    
-                                </div>
-                            </div>
-                        <% } %> 
-                    </div>
-                <% }else{ %> 
-                  <h1>Shop not Set up yet</h1>
-                <% } %> 
-              </div>
-            </div>
+          
+          <div class="dropdown-item" type="button">
+            <% if (user) { %>
+              <a href="/shop/account/order" class="nav-link" > My Orders</a>
+            <% } else { %>
+              <a href="/auth/google" class="nav-link">My Orders</a>
+            <% } %>
           </div>
+
+          <div class="dropdown-item" type="button">
+            <% if (user) { %>
+              <a href="/shop/account/order" class="nav-link" > My Returns</a>
+            <% } else { %>
+              <a href="/auth/google" class="nav-link">My Returns</a>
+            <% } %>
+          </div>
+
+          <div class="dropdown-item" type="button">
+            <% if (user) { %>
+              <a href="/logout" class="nav-link" >Log Out</a>
+            <% } else { %>
+              <a href="/auth/google" class="nav-link" >Login</a>
+            <% } %>
+          </div>
+          
         </div>
       </div>
-</section>
- 
-<%- include('./includes/footer.ejs')  %> 
+      <div class="nav-icon">
+        <div class="shopping-cart">
+          <% if (user) { %>
+            
+            <a href="#" class="nav-link"><i class="far fa-heart"></i></a>
+          <% } else { %>
+            <a href="/auth/google" class="nav-link"><i class="far fa-heart"></i></a>
+          <% } %>
+        </div>
+
+        <div class="wish-list">
+          <% if (user) { %>
+            <a href="/shop/cart" class="nav-link"><i class="fas fa-shopping-bag"></i></a>
+          <% } else { %>
+            <a href="/shop/cart" class="nav-link"><i class="fas fa-shopping-bag"></i></a>
+          <% } %>
+        </div>
+      </div>
+
+
+    </div>
+  </nav>
+
+  

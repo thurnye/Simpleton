@@ -1,0 +1,149 @@
+body{
+    background-color: #1b3465;
+    color: rgb(216, 216, 216);
+
+}
+.home-display{
+    height: 87vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.home-display .container{
+    box-shadow: 1px -8px 20px 9px #021e48;
+}
+.home-display .container .display-item{
+    /* background-color: white; */
+    height: 50vh;
+    
+}
+
+.brand-image{
+    height: 80px;
+    width: 100px;
+}
+.brand-image img{
+    width: inherit;
+    height: inherit;
+}
+.brand-slogan{
+    margin-top: 20px;
+    height: 30vh;
+}
+.brand-slogan .slogan h1 {
+    font-size: 55px;
+    /* letter-spacing: 6px;      this will inline styling */
+ }
+.home .display-name{
+    height: 35vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+.home .display-shoe{
+    height: 50vh;
+    
+}
+.home .display-shoe .shoe{
+    width: 42vh;
+    height: inherit;
+    margin: auto;
+    margin-top: -60px;
+    transform: rotate(24deg);
+    position: relative;
+    z-index: 10;
+}
+.home .display-shoe .shoe img{
+    width: inherit;
+    height: inherit;
+    /* transform: scaleX(-1); */
+}
+
+.platform{
+    /* position: absolute;
+    border: 8px solid #b5a8a8;
+    width: 23.5vw;
+    height: 50px;
+    border-radius: 50%;
+    border-top: none;
+    top: 102px;
+    transform: skewY(188deg); */
+    position: absolute;
+    border: 8px solid #b5a8a8;
+    width: 27.5vw;
+    height: 50px;
+    border-radius: 50%;
+    /* border-top: none; */
+    top: 50vh;
+    left: 32vw;
+    transform: skewY(24deg);
+    
+  }
+  .platform1{
+    border: 8px solid #9a2e31;
+    width: 96%;
+    height: 40px;
+    margin-left: 4px;
+    border-radius: 50%;
+    /* border-top: none; */
+  }
+  .platform2{
+    border: 3px solid #9c8c33;
+    width: 94%;
+    height: 30px;
+    margin-left: 4px;
+    border-radius: 50%;
+    /* border-top: none; */
+  
+  }
+  
+
+  /* owl-carousel */
+  /* =======================
+   */
+   .home .owl-carousel {
+       height: inherit;
+   }
+   .home .owl-stage-outer{
+       height: 16vh;
+   }
+   .home .owl-stage-outer .owl-stage{
+       height: inherit;
+   }
+   .home .owl-carousel .owl-item{
+       background-color: white;
+       margin-top: 25px;
+       border-radius: 15px;
+   }
+   .owl-carousel .owl-nav{
+       display: none;
+   }
+   .owl-carousel .owl-dots{
+        margin-top: 15px;
+   }
+
+   .owl-carousel .owl-img{
+       display: flex;
+    } 
+    
+   .owl-carousel .randomItem{
+       font-size: 13px;
+       color: #1b3465;
+   }
+   .owl-carousel .randomItem img{
+       border-radius: 15px;
+   }
+   .owl-carousel .randomItem .randomItem-info{
+        width: -webkit-fill-available;
+        justify-content: space-between;
+        align-items: center;
+   }
+   .owl-carousel form button{
+        background-color: inherit;
+        font-size: 20px;
+        border: none;
+        border-radius: 10%;
+        color: #f99c64;
+   }
+   

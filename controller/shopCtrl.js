@@ -12,9 +12,16 @@ const PDFDocument = require("pdfkit");
 
 const getHome = async (req, res, next) => {
     try{
+        const randomProd = await Products.aggregate([{ $sample: { size: 7 } }])
+        console.log(typeof randomProd)
+        for(prod in randomProd){
+            console.log(randomProd[prod].media.imageUrl)
+        }
     res.render('shop/home', { 
         title: 'Simpleton',
-        user: req.user, 
+        user: req.user,
+        randomProd: randomProd
+
     });
 } catch (err) {
     console.log(err)
