@@ -1,7 +1,7 @@
 body{
     background-color: #1b6265;
     color: rgb(216, 216, 216);
-    height: -webkit-fill-available;
+    height:100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -319,6 +319,11 @@ body{
 
 /* // Large devices (desktops, 992px and up) */
 @media (min-width: 992px) { 
+    .catalog{
+        height: 82vh;
+        margin-top: 5vh;
+        display: flex;
+    }
     .catalog .filter{
         display: block;
     }
