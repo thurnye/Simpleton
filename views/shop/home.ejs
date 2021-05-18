@@ -9,7 +9,7 @@
 
 <section class="home">
     <div class="home-display">
-        <div class="container" style="height: 50vh; margin-top: 8vh">
+        <div class="container shoe-info-container"> 
             <div class="row">
               <div class="col-3 display-item brand">
                 <div class="brand-image">
@@ -68,13 +68,15 @@
               </div>
             </div>
         </div>
-        <div class="container" style="height: 20vh; ">
+        <div class="container carousel-container" >
             <div class="owl-carousel owl-theme">
                 <% for(prod in randomProd){ %> 
                     <div class="randomItem">
                         <div class="owl-img"> 
-                            <img src= <%= randomProd[prod].media.imageUrl %>  alt="" style="width: initial; height: 65px; margin-left: 4px;"/>
-                            <p><%= randomProd[prod].name %></p>
+                            <a href="/shop/product/<%= randomProd[prod]._id %>">
+                                <img src= <%= randomProd[prod].media.imageUrl %>  alt="" style="width: initial; height: 65px; margin-left: 4px;"/>
+                            </a>
+                                <p><%= randomProd[prod].name %></p>
                             
                         </div>
                         <div class="randomItem-info d-flex"> 
@@ -99,8 +101,8 @@
     </div>
     
    
-    <%- include('./includes/footer.ejs')  %> 
 </section>
+<%- include('./includes/footer.ejs')  %> 
 
 
 

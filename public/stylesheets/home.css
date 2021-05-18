@@ -1,6 +1,11 @@
 body{
     background-color: #1b3465;
     color: rgb(216, 216, 216);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: inherit;
 
 }
 .home-display{
@@ -11,7 +16,13 @@ body{
 }
 .home-display .container{
     box-shadow: 1px -8px 20px 9px #021e48;
+    
 }
+.home .shoe-info-container{
+    height: auto; 
+    margin-top: 0;
+    width: 90vw;
+ }
 .home-display .container .display-item{
     /* background-color: white; */
     height: 50vh;
@@ -35,7 +46,7 @@ body{
     /* letter-spacing: 6px;      this will inline styling */
  }
 .home .display-name{
-    height: 35vh;
+    height: 48vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -43,50 +54,49 @@ body{
 }
 .home .display-shoe{
     height: 50vh;
+    display: flex;
+    justify-content: center;
     
 }
 .home .display-shoe .shoe{
-    width: 42vh;
-    height: inherit;
-    margin: auto;
-    margin-top: -60px;
+    width: inherit;
+    height: 34vh;
+    margin: -120px;
+    margin-top: 152.1px;
     transform: rotate(24deg);
     position: relative;
     z-index: 10;
+
 }
 .home .display-shoe .shoe img{
     width: inherit;
     height: inherit;
-    /* transform: scaleX(-1); */
 }
 
+
+  
 .platform{
-    /* position: absolute;
-    border: 8px solid #b5a8a8;
-    width: 23.5vw;
-    height: 50px;
-    border-radius: 50%;
-    border-top: none;
-    top: 102px;
-    transform: skewY(188deg); */
+    
     position: absolute;
     border: 8px solid #b5a8a8;
-    width: 27.5vw;
+    width: 49.5vw;
     height: 50px;
     border-radius: 50%;
     /* border-top: none; */
     top: 50vh;
-    left: 32vw;
-    transform: skewY(24deg);
+    left: 14vw;
+    transform: skewY(
+24deg
+);
     
   }
+  
   .platform1{
     border: 8px solid #9a2e31;
     width: 96%;
     height: 40px;
     margin-left: 4px;
     border-radius: 50%;
-    /* border-top: none; */
   }
   .platform2{
     border: 3px solid #9c8c33;
@@ -94,7 +104,6 @@ body{
     height: 30px;
     margin-left: 4px;
     border-radius: 50%;
-    /* border-top: none; */
   
   }
   
@@ -102,11 +111,14 @@ body{
   /* owl-carousel */
   /* =======================
    */
+   .home .carousel-container{
+    height: 12vh; 
+   }
    .home .owl-carousel {
        height: inherit;
    }
    .home .owl-stage-outer{
-       height: 16vh;
+       height: 9vh;
    }
    .home .owl-stage-outer .owl-stage{
        height: inherit;
@@ -128,8 +140,11 @@ body{
     } 
     
    .owl-carousel .randomItem{
-       font-size: 13px;
+       font-size: 18px;
        color: #1b3465;
+       width: inherit;
+       background: inherit;
+       border-radius: 50px;
    }
    .owl-carousel .randomItem img{
        border-radius: 15px;
@@ -147,3 +162,113 @@ body{
         color: #f99c64;
    }
    
+/* 
+   @media (min-width: 320px) and (max-width: 767.98px){ 
+
+    .home .shoe-info-container{
+        width: 90vw;
+    }
+    
+  } */
+ 
+  /* // X-Small devices (portrait phones, less than 576px) */
+ /* // No media query for `xs` since this is the default in Bootstrap */
+ 
+ /* // Small devices (landscape phones, 576px and up) */
+ @media (min-width: 320px) {
+    .home .shoe-info-container{
+        width: 90vw;
+    }
+    .platform{
+        display: none;
+      }
+  }
+
+
+ @media (min-width: 576px) {
+     .platform{
+       display: none;
+     }
+    .home .shoe-info-container{
+        width: 90vw;
+    }
+  }
+ 
+ /* // Medium devices (tablets, 768px and up) */
+
+@media (min-width: 768px){
+      .home .shoe-info-container{
+          width: 90vw;
+      }
+ 
+  .home .container, .container-md, .container-sm {
+      max-width: 90vw;
+  }
+  .platform{
+    display: none;
+  }
+
+}
+
+
+
+
+ /* // Large devices (desktops, 992px and up) */
+ @media (min-width: 992px) { 
+     .home .container{
+         width: inherit;
+     }
+     .home .shoe-info-container{
+        height: auto; 
+        margin-top: 8vh
+     }
+    .home .display-shoe .shoe{
+        width: 42vh;
+        height: inherit;
+        margin: auto;
+        margin-top: -60px;
+        transform: rotate(24deg);
+        position: relative;
+        z-index: 10;
+    }
+    .home .display-name {
+        height: 35vh;
+        justify-content: flex-end;
+        align-items: center;
+    }
+    /* .home .display-shoe{
+        height: 50vh;
+        display: flex;
+        justify-content: center;
+        
+    } */
+    .platform{
+        display: block;
+        position: absolute;
+        border: 8px solid #b5a8a8;
+        width: 27.5vw;
+        height: 50px;
+        border-radius: 50%;
+        top: 50vh;
+        left: 32vw;
+        transform: skewY(24deg);
+        
+    }
+    .home .carousel-container{
+    height: 22vh; 
+    }
+    .home .owl-stage-outer{
+    height: 18vh;
+    }
+    .owl-carousel .randomItem{
+        font-size: 13px;
+        width: 18vw;
+        border-radius: 20px;
+    }
+  }
+ /* 
+ // X-Large devices (large desktops, 1200px and up) */
+ @media (min-width: 1200px) {  }
+ 
+ /* // XX-Large devices (larger desktops, 1400px and up) */
+ @media (min-width: 1400px) {  }
