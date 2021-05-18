@@ -50,7 +50,24 @@
             items:5,
         }
     }
+    
 })
+// check only one
+$('.brand_check').click(function() {
+  $('.brand_check').not(this).prop('checked', false);
+});
+$('.color_check').click(function() {
+  $('.color_check').not(this).prop('checked', false);
+});
+$('.gender_check').click(function() {
+  $('.gender_check').not(this).prop('checked', false);
+});
+// automatically submit the form
+// $(() => {
+//          $('.form-check-input').on('change',function(){
+//             $('#form').submit();
+//             });
+// });
 </script>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>

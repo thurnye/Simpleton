@@ -7,12 +7,14 @@
    
 
 <section class="catalog">
+  <%- include('./includes/hamburgerMenu.ejs')  %> 
     <div class="container">   
         <div class="row">
             <div class="col-sm-2 filter scrollspy-example" data-spy="scroll" data-target="#spy">
                 <div style="margin-top: 5vh;">
                     <h4>Filter</h4>
                 </div>
+                <form action='/shop/filter' method="GET" enctype="multipart/form-data" id="form">
                     <div class="accordion accordion-flush" id="accordionFlushExample" style="margin-top: 2vh;">
                         <div class="accordion-item">
                           <h2 class="accordion-header" id="flush-headingOne">
@@ -25,7 +27,7 @@
                                 <div> 
                                     <% brands.map( item => { %> 
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value=<%= item%> id="flexCheckChecked" name=<%=item%>>
+                                            <input class="form-check-input brand_check" type="checkbox" value=<%= item%> id="flexCheckChecked" name='brand'>
                                             <label class="form-check-label" for="flexCheckDefault"><%= item%></label>
                                           </div>
                                     <% }) %> 
@@ -63,7 +65,7 @@
                                 <div> 
                                     <% colors.map( item => { %> 
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value=<%= item%> id="flexCheckChecked" name=<%=item%> style="background-color:<%= item%> " >
+                                            <input class="form-check-input color_check" type="checkbox" value=<%= item%> id="flexCheckChecked" name='color' style="background-color:<%= item%> " >
                                             <label class="form-check-label" for="flexCheckDefault"><%= item%></label>
                                         </div>
                                     <% }) %> 
@@ -81,7 +83,7 @@
                             <div class="accordion-body"><div> 
                                 <% genders.map( item => { %> 
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value=<%= item%> id="flexCheckChecked" name=<%=item%>>
+                                        <input class="form-check-input gender_check" type="checkbox" value=<%= item%> id="flexCheckChecked" name='gender'>
                                         <label class="form-check-label" for="flexCheckDefault"><%= item%></label>
                                       </div>
                                 <% }) %> 
@@ -89,33 +91,43 @@
                           </div>
                         </div>
                       </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    
-                    
+                      <div class="d-grid gap-2 col-6 mx-auto">
+                        <!-- <button class="btn btn-primary" type="submit" >Filter</button> -->
+                      </div>
+                </form>      
+            
+            
+            
             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <div class="col-sm-1 space"></div>
             <div class="col-sm-9 scrollspy-example catalog-items" data-spy="scroll" data-target="#spy">
                 <div class="card-body">

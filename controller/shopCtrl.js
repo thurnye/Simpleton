@@ -79,7 +79,73 @@ const getCatalog = async (req, res, next) => {
 
 const getFilter = async (req, res) => {
     try {
+        console.log(req.params.data)
+    //     const c = (req.body.color) ? req.body.color : 'white' ;
+    //     const regex = new RegExp(c, 'i')
+    //     const query = {    
+    //         brand: `${req.body.brand || 'nike'}`,
+    //         retailPrice: {  $gte: Number(req.body.minAmount) || 0, $lte: Number(req.body.maxAmount) || 5000},
+    //         colorway: { "$regex": regex },
+    //         gender: `${req.body.gender || 'male'}` 
         
+    //     }
+    //     // console.log(query)
+    //    const products = await Products.find(query)
+    //    console.log(products)
+       res.render('shop/catalog', {
+        title: 'Simpleton',
+        user: req.user,
+        products: products,
+        // current: page,
+        // pages: Math.ceil(count / perPage),
+        // brands: brands,
+        // genders: genders,
+        // colors: colors,
+    })
+        // if(req.body.brand && req.body.maxAmount && req.body.color && req.body.gender){
+        //     await Products.find({
+                
+        //         brand: req.body.brand,
+        //         retailPrice: {  $gte: Number(req.body.minAmount) || 0, $lte: Number(req.body.maxAmount) || 5000},
+        //         colorway: { "$regex": regex },
+        //         gender: req.body.gender 
+    
+        //     }, (err, products)=>{
+        //         if(!err){
+        //             // console.log(products)
+    
+        //         }else{
+        //             console.log(err)
+        //         }
+        //     })}else{
+        // // console.log(req.body)
+        // let filter = []
+        // if(req.body.maxAmount && req.body.minAmount){
+        //     const priceRange = await Products.find({
+        //         retailPrice: {  $gte: Number(req.body.minAmount) || 0, $lte: Number(req.body.maxAmount) || 5000}
+        //     }).exec()
+        //     filter.push(priceRange)
+        // }
+        // if(req.body.brand){
+        //     const brand = await Products.find({
+        //         brand: req.body.brand
+        //     }).exec()
+        //     filter.push(brand)
+        // }
+        // if(req.body.gender){
+        //     const gender = await Products.find({
+        //         gender: req.body.gender
+        //     }).exec()
+        //     filter.push(gender)
+        // }
+        // if(req.body.color){
+        //     const colors = await Products.find( { colorway: { "$regex": regex } } )
+        //     .exec()
+        //     filter.push(colors)
+        // }
+        // console.log(filter)
+    // }
+       
     } catch (error) {
         
     }
@@ -95,7 +161,7 @@ const getOneProduct = async (req, res) => {
         const prodId = req.params.id
         // console.log(prodId)
         const product = await Products.findById(prodId)
-        console.log(product)
+        // console.log(product)
         res.render('shop/product', {
             title: 'Simpleton',
             product: product,
