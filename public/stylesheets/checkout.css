@@ -1,0 +1,40 @@
+
+
+body {
+    background-color: #1b3465;
+    color: rgb(216, 216, 216);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: inherit;
+  }
+
+  
+  .checkout-item{
+    width: 25rem;
+    height: 6rem;
+    box-shadow: 10px 7px 0px 0px #021e48;
+    color: brown;
+  }
+  .checkout-item .quantity-price{
+      display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    color: saddlebrown;
+  }
+  .payment .subtotal{
+    width: 25rem;
+    height: 4.5rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    box-shadow: 5px 3px 0px 0px #021e48;
+  }
+.payment-centered{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+  

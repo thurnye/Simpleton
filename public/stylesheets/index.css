@@ -46,15 +46,6 @@ ul li.nav-item a:hover{
 
 
 
-/* CHECKOUT 
- ==================================== */
-
-/* Payment */
-.centered{
-  display: flex;
-  justify-content: center;
-}
-
 
 /* 
 FOOTER
@@ -85,10 +76,10 @@ FOOTER
 .footer .col-md-6 {
     margin: auto;
 }
-.payment{
-  height: 79vh;
+.footer-payment{
+  margin-bottom: 30px;
 }
-.payments img {
-  height: 30px;
-  width: 30px;
-}  
+.footer-payments img {
+height: 30px;
+width: 30px;
+}

@@ -1,5 +1,6 @@
 <%- include('./includes/head.ejs')  %> 
 <%- include('./includes/nav.ejs')  %> 
+<link rel='stylesheet' href='/stylesheets/checkout.css' />
 <link rel='stylesheet' href='/stylesheets/creditCard.css' />
 
 
@@ -17,10 +18,13 @@
     </div>
     <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
   </div>
+
+
+
     <div class=" container pay m-10">
         <% products.forEach(el =>{ %>
           <div class="row"> 
-            <div class="card mb-3" style="width: 25rem; height: 6rem; box-shadow: 2px 2px #a39999;">
+            <div class="card mb-3 checkout-item">
               <div class="row g-0">
                 <div class="col-md-4">
                   <img src= <%= el.product.media.imageUrl %>  alt="" style="width: 100px; height: 70px;">
@@ -30,8 +34,8 @@
                       <div>
                           <h6 class="card-title" style="font-size: 14px;"> <%=  el.product.title %></h6>
                         </div>
-                        <div class="quantity-price d-flex" style="justify-content: space-between; align-items: baseline;">
-                          <p> Quantity: <span><%=  el.quantity %></span></p>
+                        <div class="quantity-price">
+                          <p> Quantity: <span><%=  el.quantity %>($<%= el.product.retailPrice %>)</span></p>
                           <p class="card-text" style="margin-right: -22px;">$<%=  el.totalPrice %></p>
                         </div>
                     <p class="card-text"></p>
@@ -44,13 +48,13 @@
     </div>
     <div class="container">
         <div class="row col-md-9">
-          <div class=" subtotal mb-3" style="width: 25rem; height: 4.5rem;">
+          <div class=" subtotal mb-3">
             <h3>Total (<%=  length %>) : </h3>
-            <h4> $<%=  subtotal %></h4>
+            <h4> &nbsp; $ <%=  subtotal %></h4>
           </div>
         </div>
   </div>
-    <div class="centered">
+    <div class="payment-centered">
         <button id="order-btn" class="btn btn-warning centered margin-bottom: 10px;" style="width: 500px; ">Pay Now</button>
         <script src="https://js.stripe.com/v3/"></script>
         <script>
@@ -70,17 +74,19 @@
     
 
 <!-- Bootstrap -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
 
 <!-- font-awesome -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js" integrity="sha512-UwcC/iaz5ziHX7V6LjSKaXgCuRRqbTp1QHpbOJ4l1nw2/boCfZ2KlFIqBUA/uRVF0onbREnY9do8rM/uT/ilqw==" crossorigin="anonymous"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js" integrity="sha512-UwcC/iaz5ziHX7V6LjSKaXgCuRRqbTp1QHpbOJ4l1nw2/boCfZ2KlFIqBUA/uRVF0onbREnY9do8rM/uT/ilqw==" crossorigin="anonymous"></script> -->
 
 <!-- Owl Carousel -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous"></script> -->
 
 
-<script src="/javascript/helper.js"></script>
+<!-- <script src="/javascript/helper.js"></script> -->
  
+
+<%- include('./includes/footer.ejs')  %> 
