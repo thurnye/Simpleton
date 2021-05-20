@@ -15,10 +15,10 @@ body {
   }
   .cart{
     display: flex;
-      /* justify-content: center; */
-      justify-content: space-evenly;
-      align-items: flex-start;
-      margin-top: 50px;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    margin-bottom: auto;
+    margin-top: 8vh;
   }
   .cart .cart-items{
 
