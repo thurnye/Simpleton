@@ -1,4 +1,3 @@
-
 body{
   background-color: #e4e4e4;
   color: rgb(216, 216, 216);
@@ -141,11 +140,7 @@ body{
 
 /* // Large devices (desktops, 992px and up) */
 @media (min-width: 810px) { 
-  /* .details{
-    width:  -webkit-fill-available;
-    height: 53vh;
-  } */
-   
+  
 }
 /* 
 // X-Large devices (large desktops, 1200px and up) */
