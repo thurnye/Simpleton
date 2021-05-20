@@ -1,7 +1,7 @@
 
-    <link rel='stylesheet' href='/stylesheets/orders.css' />
 <%- include('./includes/head.ejs')  %> 
 <%- include('./includes/nav.ejs')  %> 
+<link rel='stylesheet' href='/stylesheets/orders.css' />
 
 <section class="orders">
 
@@ -26,12 +26,9 @@
     <% } else { %>
         <div class=" mb-3" >
             <div class="row g-0">
-              <div class="col-md-7">
-
-
             <% orders.forEach(order => { %>
-            <div class="order-container container">
-                <div class="card"> 
+            <div class="order-container container scrollspy-example" data-spy="scroll" data-target="#spy">
+                <div class="card ordered"> 
                     <div class="orderNo-paid">
                         <small class="text-muted">Order - #<%= order._id %></small> 
                         <!-- this is where you remove the order from -->
@@ -40,11 +37,11 @@
                             <button class="btn remove" type="submit"> remove </button>
                           </form>
                     </div>
+                    <div class="container"> 
+                        <div class="row"> 
                     <% order.products.forEach(el =>{ %>
                         
-                        <div class="container"> 
-                            <div class="row justify-content-center"> 
-                                <div class="card mb-3" style="width: 25rem; height: 6rem;  box-shadow: 2px 2px #a39999;">
+                                <div class="card mb-3 ordered-items">
                                 <div class="row g-0">
                                     <div class="col-md-4">
                                     <img src= <%= el.product.media.imageUrl %>  alt="" style="width: 110px; height: 70px;">
@@ -56,7 +53,7 @@
                                           </div>
                                           <div class="quantity-price d-flex" style="justify-content: space-between; align-items: baseline;">
                                             <p> Quantity: <span><%=  el.quantity %></span></p>
-                                            <p class="card-text" style="margin-right: -22px;">$<%=  el.totalPrice %></p>
+                                            <p class="card-text" style="margin-right: -10px;">$<%=  el.totalPrice %></p>
                                           </div>
                                       <p class="card-text"></p>
                                     </div>
@@ -65,25 +62,17 @@
                                     </div>
                                 </div>
                                 </div>
-                            </div>
-                        </div>  
-                    <% }) %>
-                    <h5 class="text-muted" style="align-self: flex-end;">Total Amount : $<%= order.paid %></h5> 
+                                <% }) %>
+                                <div class="ordered-paid">
+                                  <h5 class="text-muted" style="align-self: flex-end;">Total Amount : $<%= order.paid %></h5> 
+                                </div>
+                              </div>
+                          </div>  
                 </div>
             </div>
             <!-- <hr> -->
         <% }); %>
-
-
-
-
-
-              </div>
-              <div class="col-md-5">
-                <div class="card-body">
-                  
-                </div>
-              </div>
+              
             </div>
           </div>
 

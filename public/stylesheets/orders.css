@@ -1,3 +1,25 @@
+body {
+    background-color: #1b3465;
+    color: rgb(216, 216, 216);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: inherit;
+  }
+.orders{
+    margin-bottom: auto;
+    margin-top: 8vh;
+}
+.ordered{
+    background-color: inherit;
+    border-bottom:none;
+    border-left:none;
+    border-right:none;
+    border-top: 2px solid rgb(216, 216, 216);
+    border-radius: 0;
+}
+
 .order-container{
     /* border: 2px solid red; */
     margin-bottom: 20px;
@@ -8,6 +30,24 @@
     align-items: baseline;
     
 }
+.order-form .btn{
+    color: rgb(247, 178, 170)
+}
 .order-form .btn:hover{
-    color: salmon
+    color: salmon;
+}
+.order-form .btn:focus, .btn:active{
+    color: salmon;
+     outline: none;
+     box-shadow: none;
+}
+.orders .ordered-items{
+    width: 25rem; 
+    height: 6rem;  
+    margin-right: 20px;
+    box-shadow: 10px 7px 0px 0px #021e48;
+}
+.orders .ordered-paid{
+    display: flex;
+    justify-content: flex-end;
 }
