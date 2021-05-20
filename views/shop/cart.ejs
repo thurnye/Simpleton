@@ -12,7 +12,7 @@
       <div class="container cart-items scrollspy-example" data-spy="scroll" data-target="#spy">
         <% cart.forEach(el => { %>
           <div class="row col-md-9">
-            <div class="card mb-3" style="max-width: 540px; max-height: 130px; box-shadow: 10px 7px 0px 0px #021e48;">
+            <div class="card mb-3" style="max-width: 540px; max-height: 130px; box-shadow: 10px 7px 0px 0px #021e48; ">
               <div class="row g-0">
                 <div class="col-md-4">
                   <img src= <%= el.product.media.imageUrl %>  alt="" style="width: initial; height: 95px;">
@@ -50,7 +50,7 @@
 
         <div class="container" >
               <div class="row col-md-9">
-                <div class=" subtotal mb-3" style="max-width: 540px; max-height: 100px; box-shadow:3px 4px 0px 0px #021e48;">
+                <div class=" subtotal mb-3" style="max-width: 540px; max-height: 100px; box-shadow:3px 4px 0px 0px #021e48; ">
                   <h3>SubTotal (<%=  length %>) : </h3>
                   <h4> $<%=  subtotal %></h4>
                 </div>
@@ -59,7 +59,7 @@
       </div>
 
 
-      <div class="subtotal card sbt2 col-md-3" style="height: 120px; box-shadow: 10px 7px 0px 0px #021e48;">
+      <div class="subtotal card sbt2 col-md-3" style="height: 120px;  margin-right: 93px; box-shadow: 10px 7px 0px 0px #021e48;">
         <div class="length-total">
           <h3>SubTotal (<%=  length %>) : </h3>
           <h4> $<%=  subtotal %></h4>
