@@ -1,7 +1,16 @@
+
+body{
+  background-color: #e4e4e4;
+  color: rgb(216, 216, 216);
+  height:100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+
 .product-platform .container{
-  border: 2px solid rgba(0,0,0,.125);
-  border-radius: .25rem;
-  box-shadow: 0px 0px 20px 4px red;
+  border: none;
 }
 
 .img-container{
@@ -12,86 +21,39 @@
   
 }
 
-
 .checkout img{
-  /* width: 150px; */
   transform: rotateY(150deg);
 }
-
-
-
-
-
-
-
-
-
-.price{
-  color: red
-}
-.triplet{
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
-.spacebttm{
-  margin-bottom: 20px;
-}
-
 
 
 .product-image{
   max-width: -webkit-fill-available;
   height: 360px;
-}
-.product-sub-image img{
-  width: 60px;
-  height: 60px
-  
-}
-.product-price-rating{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.checked{
-  color: orange;
-}
-.check{
-  background: orange;
-}
-.shield, .sync, .cash, .truck{
-  color:orangered
-}
-.sync{
-  size: 3px;
-}
-.product-color{
-  display: flex;
-  justify-content: initial;
-  align-items: baseline;
-}
-.product-color span{
-  margin-left: 10px;
-  height: 15px;
-  width: 15px;
-  display: inline-block;
-  vertical-align: middle;
-  margin: 5px;
-  position: relative;
-  cursor: pointer;
-  border-radius: 100%;
+  box-shadow: 0px 0px 10px 2px #1b3465;
 }
 
-.product-size, .product-category, .product-cart{
+
+.details{
+  box-shadow: 0px 0px 10px 2px #1b3465;
+  height: 37vh;
+  margin-top: 5vh;
+  color: black;
+  margin-bottom: 15px;
+}
+
+.details .card-body{
+  height: inherit;
   display: flex;
+  flex-direction: column;
+  justify-content:  space-evenly;
 }
-.product-size span {
-  margin-left: 10px;
+
+.details .price{
+  color: #bb3333;
 }
+
 .cart-form{
-display: flex;
-  /* width: 280px; */
+  display: flex;
   justify-content: space-between;
   align-items: flex-end;
 }
@@ -156,3 +118,51 @@ display: flex;
 .share span {
   margin-left: 10px;
 }
+
+
+
+@media (min-width: 360.98px) and (max-width: 767.98px){ 
+  
+  
+}
+
+/* // X-Small devices (portrait phones, less than 576px) */
+/* // No media query for `xs` since this is the default in Bootstrap */
+
+/* // Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  
+}
+
+/* // Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+   
+}
+
+/* // Large devices (desktops, 992px and up) */
+@media (min-width: 810px) { 
+  /* .details{
+    width:  -webkit-fill-available;
+    height: 53vh;
+  } */
+   
+}
+/* 
+// X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 992px) { 
+  .details{
+    width: 40vw;
+    height: 54vh'
+  }
+   
+ }
+@media (min-width: 1200px) { 
+  .details{
+    width: 40vw;
+    height: 54vh'
+  }
+   
+ }
+
+/* // XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {  }

@@ -7,57 +7,48 @@
 
 
 
-<section class="product-platform">
+<section class="product-platform" >
 
-<div class="container">
-    <div class="row ">
+    <div class="container">
+        <div class="row ">
 
-        <%# product image %> 
-        <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7 col-xxl-7 ">
-            <img src=<%= product.media.imageUrl %>  class=" mx-auto d-block product-image" alt="...">
-        </div>
-
-
-        <%# Product Info %> 
-        <div class="col-12	col-sm-12 col-md-12 col-lg-4 col-xl-4	col-xxl-4">
+            <%# product image %> 
+            <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7 col-xxl-7 product-picture">
+                <img src=<%= product.media.imageUrl %>  class=" mx-auto d-block product-image" alt="...">
+            </div>
 
 
-            <div class="card" style="">
-                <div class="card-body">
-                    <div class="product-info1">
+            <%# Product Info %> 
+            <div class="col-12	col-sm-12 col-md-12 col-lg-4 col-xl-4	col-xxl-4">
 
-                    </div>
 
-                    <div class="product-info2">
-
-                    </div>
-
-                    <div class="product-info3">
-
-                    </div>
-
-                    <div class="product-info4">
-                         <!-- Add to Cart -->
-                        <div class="product-cart">
-                            <!-- add to cart -->
-                            <%- include('./includes/add-to-cart.ejs')  %> 
-
-                            <!-- add to wish list -->
-                            <form action="/shop/wish-list" method="POST" class="cart-form" enctype="multipart/form-data">
-                                <input type="hidden" name="prodId" value="<%= product._id %> ">
-                                <button class="btn btn-danger" type="submit"> Add to wishlist </button>
-                            </form>
+                <div class="card details">
+                    <div class="card-body">
+                        <div class="product-info1">
+                                <h5><%= product.title %>  </h5>
+                                <p class="text-muted"><small><%= product.name %>  </small></p>
+                                <h4 class="price">$<%= product.retailPrice %></h4>
                         </div>
+
+                        <div class="product-info2">
+                            <h6 class="colors text-muted">Colorways: <%= product.colorway %></h6>
+                        </div>
+
+                        <div class="product-info3">
+                            <!-- Add to Cart -->
+                            <div class="product-cart">
+                                <%- include('./includes/add-to-cart.ejs')  %> 
+                            </div>
+                        </div>
+                    
                     </div>
-                  
                 </div>
-              </div>
 
 
-           
+            
+            </div>
         </div>
-    </div>
- </div>   
+    </div>   
 
 
 

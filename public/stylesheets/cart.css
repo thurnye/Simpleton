@@ -1,4 +1,13 @@
 /* Cart */
+/* body{
+  background-color: #1b6265;
+  color: rgb(216, 216, 216);
+  height:100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+} */
 .name-price {
     display: flex;
     justify-content: space-between;
