@@ -10,8 +10,7 @@ body{
 }
 .home{
     margin-bottom: auto;
-    /* margin-top: 8vh; */
-        height: -webkit-fill-available;
+    height: -webkit-fill-available;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -28,11 +27,6 @@ body{
     margin-top: 0;
     width: 90vw;
  }
-.home-display .container .display-item{
-    /* background-color: white; */
-    /* height: 50vh; */
-    
-}
 
 .brand-image{
     height: 80px;
@@ -48,8 +42,8 @@ body{
 }
 .brand-slogan .slogan h1 {
     font-size: 55px;
-    /* letter-spacing: 6px;      this will inline styling */
  }
+
 .home .display-name{
     height: 48vh;
     display: flex;
@@ -87,7 +81,6 @@ body{
     width: 49.5vw;
     height: 50px;
     border-radius: 50%;
-    /* border-top: none; */
     top: 50vh;
     left: 14vw;
     transform: skewY(
@@ -320,7 +313,6 @@ body{
     }
     .home .shoe-info-container{
        height: auto; 
-       /* margin-top: 8vh */
     }
     .home .brand-image {
        height: 80px;
