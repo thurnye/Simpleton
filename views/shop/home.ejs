@@ -30,9 +30,9 @@
             </div>
             <div class="col-7 display-item">
                 <div class="display-shoe">
-                    <!-- <div class="shoe">
+                    <!-- <div class="shoe"> -->
                         <img src="/images/images/brands/nike.png" alt="front" style=""/>
-                    </div> -->
+                    <!-- </div> -->
 
                   </div>
                   <div class="platform">
@@ -51,17 +51,6 @@
                 <div class="display-name">
                     <h4>ASICS Gel-Lyte III Limited Edt SBTG Monsoon Patrol 2 Lichen Green</h4>
                     <h5 style="color: #e85e5e;">$400</h5>
-                    <!-- <div class="add">
-                        <form action="/shop/cart" enctype="multipart/form-data" method="POST" class="cart-icon">
-                            <div class="product-quantity" style="display: none;">
-                                <input class=" form-control quantity" name= "quantity" value="1" >
-                            </div>
-                            
-                            <input type="hidden" name="prodId" value="">
-                            <input type="hidden" name="price" value="">
-                            <button type="submit"><span><span></span></span>Get Now!</button>
-                        </form>
-                    </div> -->
                 </div>
 
 
@@ -80,7 +69,6 @@
                                 </a>
                               </div>
                               <div class="col-md-3 form-price">
-                                <!-- <div class="d-flex">  -->
                                     <p style="color: #690609;" >$<%= randomProd[prod].retailPrice %></p>
                                     <form action="/shop/cart" enctype="multipart/form-data" method="POST" class="cart-icon">
                                         <input class=" form-control quantity" name= "quantity" value="1" style="display: none;"  />
@@ -88,29 +76,12 @@
                                         <input type="hidden" name="price" value="<%= randomProd[prod].retailPrice %>" style="display: none;"/>
                                         <button type="submit"><i class="fas fa-shopping-bag" ></i></button>
                                     </form>
-                                <!-- </div> -->
                               </div>
                             </div>
                           </div>
 
 
                           <p style="    font-size: 15px;     margin-top: -10px;"><%= randomProd[prod].name %></p>
-
-
-                        <!-- <div class="d-flex"> 
-                            <a href="/shop/product/<%= randomProd[prod]._id %>">
-                                <img src= <%= randomProd[prod].media.imageUrl %>  alt=""/>
-                            </a>
-                        </div>
-                        <div class="d-flex"> 
-                            <p>$<%= randomProd[prod].retailPrice %></p>
-                            <form action="/shop/cart" enctype="multipart/form-data" method="POST" class="cart-icon">
-                                <input class=" form-control quantity" name= "quantity" value="1" style="display: none;"  />
-                                <input type="hidden" name="prodId" value="<%= randomProd[prod]._id%>" style="display: none;"/>
-                                <input type="hidden" name="price" value="<%= randomProd[prod].retailPrice %>" style="display: none;"/>
-                                <button type="submit"><i class="fas fa-shopping-bag" ></i></button>
-                            </form>
-                        </div> -->
                     </div>
                 <% } %>
               </div>
