@@ -1,19 +1,23 @@
 body{
     background-color: #1b3465;
     color: rgb(216, 216, 216);
-    height: -webkit-fill-available;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: inherit;
 
 }
-.home-display{
+.home{
+    margin-bottom: auto;
+    margin-top: 8vh;
+}
+/* .home-display{
     height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-}
+} */
 .home-display .container{
     box-shadow: 1px -8px 20px 9px #021e48;
     
@@ -186,6 +190,21 @@ body{
 
 
  @media (min-width: 576px) {
+    .brand-image {
+        height: 67px;
+        width: 85px;
+    }
+    .brand-slogan .slogan h1 {
+        font-size: 24px;
+        margin-top: -34px;
+    }
+    .home .display-shoe .shoe {
+        width: inherit;
+        height: 48vh;
+        margin: -120px;
+        margin-top: inherit;
+     
+    }
      .platform{
        display: none;
      }
@@ -197,6 +216,25 @@ body{
  /* // Medium devices (tablets, 768px and up) */
 
 @media (min-width: 768px){
+    .brand-image {
+        height: 67px;
+        width: 85px;
+    }
+    .brand-slogan .slogan h1 {
+        font-size: 19px;
+        margin-top: -34px;
+    }
+    .home .display-name h4{
+        font-size:16px
+    }
+    .home .display-shoe .shoe {
+        width: inherit;
+        height: 40vh;
+        margin: -120px;
+        margin-top: inherit;
+        
+    }
+    
       .home .shoe-info-container{
           width: 90vw;
       }
@@ -222,6 +260,15 @@ body{
         height: auto; 
         margin-top: 8vh
      }
+     .home .brand-image {
+        height: 80px;
+        width: 100px;
+    }
+    .brand-slogan .slogan h1 {
+        font-size: 55px;
+        margin-top: 0px;
+    }
+    
     .home .display-shoe .shoe{
         width: 42vh;
         height: inherit;
@@ -235,6 +282,9 @@ body{
         height: 35vh;
         justify-content: flex-end;
         align-items: center;
+    }
+    .home .display-name h4{
+        font-size: 24px
     }
     /* .home .display-shoe{
         height: 50vh;
