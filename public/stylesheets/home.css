@@ -10,14 +10,15 @@ body{
 }
 .home{
     margin-bottom: auto;
-    margin-top: 8vh;
-}
-/* .home-display{
-    height: 80vh;
+    margin-top: 3vh;
+    height: -webkit-fill-available;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-} */
+    align-items: center;
+    
+}
+
 .home-display .container{
     box-shadow: 1px -8px 20px 9px #021e48;
     
@@ -29,7 +30,7 @@ body{
  }
 .home-display .container .display-item{
     /* background-color: white; */
-    height: 50vh;
+    /* height: 50vh; */
     
 }
 
@@ -95,89 +96,58 @@ body{
     
   }
   
-  .platform1{
+.platform1{
     border: 8px solid #9a2e31;
     width: 96%;
     height: 40px;
     margin-left: 4px;
     border-radius: 50%;
-  }
-  .platform2{
+}
+.platform2{
     border: 3px solid #9c8c33;
     width: 94%;
     height: 30px;
     margin-left: 4px;
     border-radius: 50%;
-  
-  }
-  
+
+}
+
 
   /* owl-carousel */
   /* =======================
    */
-   .home .carousel-container{
-    height: 12vh; 
-   }
-   .home .owl-carousel {
-       height: inherit;
-   }
-   .home .owl-stage-outer{
-       height: 9vh;
-   }
-   .home .owl-stage-outer .owl-stage{
-       height: inherit;
-   }
-   .home .owl-carousel .owl-item{
-       background-color: white;
-       margin-top: 25px;
-       border-radius: 15px;
-   }
-   .owl-carousel .owl-nav{
-       display: none;
-   }
-   .owl-carousel .owl-dots{
-        margin-top: 15px;
-   }
-
-   .owl-carousel .owl-img{
-       display: flex;
-    } 
-    
-   .owl-carousel .randomItem{
-       font-size: 18px;
-       color: #1b3465;
-       width: inherit;
-       background: inherit;
-       border-radius: 50px;
-   }
-   .owl-carousel .randomItem img{
-       border-radius: 15px;
-   }
-   .owl-carousel .randomItem .randomItem-info{
-        width: -webkit-fill-available;
-        justify-content: space-between;
-        align-items: center;
-   }
-   .owl-carousel form button{
-        background-color: inherit;
-        font-size: 20px;
-        border: none;
-        border-radius: 10%;
-        color: #f99c64;
-   }
-   
-/* 
-   @media (min-width: 320px) and (max-width: 767.98px){ 
-
-    .home .shoe-info-container{
-        width: 90vw;
-    }
-    
-  } */
+.owl-carousel{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.owl-stage{
+    height: fit-content;
+    margin-top: 12px;
+}
+.owl-nav{
+    display: none;
+}
+.form-price{
+    /* border: 2px dotted red; */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    font-size: 15px;
+}
+.form-price form{
+    margin-bottom: 0;
+}
+.form-price form button {
+    background-color: inherit;
+    font-size: 27px;
+    border: none;
+    border-radius: 10%;
+    color: #f99c64;
+}
  
-  /* // X-Small devices (portrait phones, less than 576px) */
- /* // No media query for `xs` since this is the default in Bootstrap */
- 
+
+
  /* // Small devices (landscape phones, 576px and up) */
  @media (min-width: 320px) {
     .home .shoe-info-container{
@@ -216,6 +186,9 @@ body{
  /* // Medium devices (tablets, 768px and up) */
 
 @media (min-width: 768px){
+    /* .home{
+        height: auto;
+    } */
     .brand-image {
         height: 67px;
         width: 85px;
@@ -251,14 +224,18 @@ body{
 
 
 
+
  /* // Large devices (desktops, 992px and up) */
  @media (min-width: 992px) { 
+    .home{
+        height: -webkit-fill-available;
+    }
      .home .container{
          width: inherit;
      }
      .home .shoe-info-container{
         height: auto; 
-        margin-top: 8vh
+        margin-top: 3vh
      }
      .home .brand-image {
         height: 80px;
@@ -286,12 +263,6 @@ body{
     .home .display-name h4{
         font-size: 24px
     }
-    /* .home .display-shoe{
-        height: 50vh;
-        display: flex;
-        justify-content: center;
-        
-    } */
     .platform{
         display: block;
         position: absolute;
@@ -304,21 +275,19 @@ body{
         transform: skewY(24deg);
         
     }
-    .home .carousel-container{
-    height: 22vh; 
+    .form-price{
+        border: 2px dotted red;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: space-between;
+        font-size: 20px;
     }
-    .home .owl-stage-outer{
-    height: 18vh;
-    }
-    .owl-carousel .randomItem{
-        font-size: 13px;
-        width: 18vw;
-        border-radius: 20px;
-    }
-  }
+   
+}
  /* 
  // X-Large devices (large desktops, 1200px and up) */
- @media (min-width: 1200px) {
+@media (min-width: 1200px) {
      
    }
  

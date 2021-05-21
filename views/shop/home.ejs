@@ -30,9 +30,9 @@
             </div>
             <div class="col-7 display-item">
                 <div class="display-shoe">
-                    <div class="shoe">
+                    <!-- <div class="shoe">
                         <img src="/images/images/brands/nike.png" alt="front" style=""/>
-                    </div>
+                    </div> -->
 
                   </div>
                   <div class="platform">
@@ -68,36 +68,53 @@
               </div>
             </div>
         </div>
-        <!-- <div class="container carousel-container" >
+        <div class="container" >
             <div class="owl-carousel owl-theme">
                 <% for(prod in randomProd){ %> 
-                    <div class="randomItem">
-                        <div class="owl-img"> 
-                            <a href="/shop/product/<%= randomProd[prod]._id %>">
-                                <img src= <%= randomProd[prod].media.imageUrl %>  alt="" style="width: initial; height: 65px; margin-left: 4px;"/>
-                            </a>
-                                <p><%= randomProd[prod].name %></p>
-                            
-                        </div>
-                        <div class="randomItem-info d-flex"> 
-                            
-                            <div class="getNow">
-                                    <p class="card-text price" style="color: #690609; font-size: 15px;">$<%= randomProd[prod].retailPrice %></p>
+                    <div >
+                        <div class="card mb-3" style="max-width: 540px;">
+                            <div class="row g-0">
+                              <div class="col-md-9">
+                                <a href="/shop/product/<%= randomProd[prod]._id %>">
+                                    <img src= <%= randomProd[prod].media.imageUrl %>  alt=""/>
+                                </a>
+                              </div>
+                              <div class="col-md-3 form-price">
+                                <!-- <div class="d-flex">  -->
+                                    <p style="color: #690609;" >$<%= randomProd[prod].retailPrice %></p>
+                                    <form action="/shop/cart" enctype="multipart/form-data" method="POST" class="cart-icon">
+                                        <input class=" form-control quantity" name= "quantity" value="1" style="display: none;"  />
+                                        <input type="hidden" name="prodId" value="<%= randomProd[prod]._id%>" style="display: none;"/>
+                                        <input type="hidden" name="price" value="<%= randomProd[prod].retailPrice %>" style="display: none;"/>
+                                        <button type="submit"><i class="fas fa-shopping-bag" ></i></button>
+                                    </form>
+                                <!-- </div> -->
+                              </div>
                             </div>
+                          </div>
+
+
+                          <p style="    font-size: 15px;     margin-top: -10px;"><%= randomProd[prod].name %></p>
+
+
+                        <!-- <div class="d-flex"> 
+                            <a href="/shop/product/<%= randomProd[prod]._id %>">
+                                <img src= <%= randomProd[prod].media.imageUrl %>  alt=""/>
+                            </a>
+                        </div>
+                        <div class="d-flex"> 
+                            <p>$<%= randomProd[prod].retailPrice %></p>
                             <form action="/shop/cart" enctype="multipart/form-data" method="POST" class="cart-icon">
-                                <div class="product-quantity" style="display: none;">
-                                    <input class=" form-control quantity" name= "quantity" value="1" >
-                                </div>
-                                
-                                <input type="hidden" name="prodId" value="<%= randomProd[prod]._id%>">
-                                <input type="hidden" name="price" value="<%= randomProd[prod].retailPrice %>">
+                                <input class=" form-control quantity" name= "quantity" value="1" style="display: none;"  />
+                                <input type="hidden" name="prodId" value="<%= randomProd[prod]._id%>" style="display: none;"/>
+                                <input type="hidden" name="price" value="<%= randomProd[prod].retailPrice %>" style="display: none;"/>
                                 <button type="submit"><i class="fas fa-shopping-bag" ></i></button>
                             </form>
-                        </div>
+                        </div> -->
                     </div>
                 <% } %>
               </div>
-        </div> -->
+        </div>
     </div>
     
    
