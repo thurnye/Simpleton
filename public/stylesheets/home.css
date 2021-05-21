@@ -16,6 +16,7 @@ body{
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    margin-bottom: 0;
 }
 
 .home-display .container{
