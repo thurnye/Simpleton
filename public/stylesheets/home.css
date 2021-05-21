@@ -10,13 +10,12 @@ body{
 }
 .home{
     margin-bottom: auto;
-    margin-top: 3vh;
-    height: -webkit-fill-available;
+    /* margin-top: 8vh; */
+        height: -webkit-fill-available;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    
 }
 
 .home-display .container{
@@ -50,10 +49,6 @@ body{
     font-size: 55px;
     /* letter-spacing: 6px;      this will inline styling */
  }
-
-.display-shoe img{
-    width: 90vw;
-}
 .home .display-name{
     height: 48vh;
     display: flex;
@@ -91,6 +86,7 @@ body{
     width: 49.5vw;
     height: 50px;
     border-radius: 50%;
+    /* border-top: none; */
     top: 50vh;
     left: 14vw;
     transform: skewY(
@@ -99,27 +95,33 @@ body{
     
   }
   
-.platform1{
+  .platform1{
     border: 8px solid #9a2e31;
     width: 96%;
     height: 40px;
     margin-left: 4px;
     border-radius: 50%;
-}
-.platform2{
+  }
+  .platform2{
     border: 3px solid #9c8c33;
     width: 94%;
     height: 30px;
     margin-left: 4px;
     border-radius: 50%;
-
-}
-
+  
+  }
+  
 
   /* owl-carousel */
   /* =======================
    */
-.owl-carousel{
+   .owl-carousel{
+       margin-top: 50px;
+   }
+   .owl-stage{
+    height: fit-content;
+   }
+   .owl-carousel{
     margin-top: 30px;
     margin-bottom: 30px;
 }
@@ -154,38 +156,43 @@ body{
     border-radius: 10%;
     color: #f99c64;
 }
- 
 
 
- /* // Small devices (landscape phones, 576px and up) */
- @media (min-width: 320px) {
-    .home .shoe-info-container{
-        width: 90vw;
+@media screen and (min-width: 320px) {
+    .home{
+        height: auto
     }
-    .platform{
-        display: none;
-      }
-  }
-
-
- @media (min-width: 576px) {
     .brand-image {
-        height: 67px;
+        height: 51px;
         width: 85px;
     }
     .brand-slogan .slogan h1 {
         font-size: 24px;
         margin-top: -34px;
     }
-    /* .home .display-shoe .shoe {
+    
+    .home .display-shoe .shoe {
         width: inherit;
         height: 48vh;
         margin: -120px;
         margin-top: inherit;
      
-    } */
-    .display-shoe img{
-        width: 90vw;
+    }
+    .home .display-shoe {
+        height: 44vh;
+        display: flex;
+        justify-content: center;
+    }
+    .home .display-name h4{
+        font-size: 7px;
+        margin-left: 14px;
+    }
+    .brand-slogan .slogan h1 {
+        font-size: 16px;
+    }
+    .brand-slogan .slogan p {
+        font-size: 10px;
+        z-index: 10;
     }
      .platform{
        display: none;
@@ -193,13 +200,69 @@ body{
     .home .shoe-info-container{
         width: 90vw;
     }
+    .home .carousel-container{
+       
+        width: 100vw;
+   }
+   
+    .owl-carousel .owl-item img {
+        display: block;
+        width: 50%;
+    }
+    .form-price{
+        font-size: 20px;
+        position: absolute;
+    }
   }
- 
- /* // Medium devices (tablets, 768px and up) */
-
-@media (min-width: 768px){
+/* X-Small devices (portrait phones, less than 576px) */
+@media screen and (min-width: 565.98px) { 
     .home{
-        height: auto;
+        height: auto
+    }
+    .brand-image {
+        height: 51px;
+        width: 85px;
+    }
+    .brand-slogan .slogan h1 {
+        font-size: 24px;
+        margin-top: -34px;
+    }
+    .home .display-shoe .shoe {
+        width: inherit;
+        height: 48vh;
+        margin: -120px;
+        margin-top: inherit;
+     
+    }
+    .home .display-name h4{
+        font-size: 12px;
+    }
+    .brand-slogan .slogan h1 {
+        font-size: 16px;
+    }
+    .brand-slogan .slogan p {
+        font-size: 10px;
+    }
+     .platform{
+       display: none;
+     }
+    .home .shoe-info-container{
+        width: 90vw;
+    }
+    .form-price{
+        font-size: 15px;
+        position: relative;
+    }
+    .owl-carousel .owl-item img {
+        display: block;
+        width: 100%;
+    }
+}
+
+ /* Small devices (landscape phones, less than 768px) */
+@media screen and (min-width: 767.98px) { 
+    .home{
+        height: auto
     }
     .brand-image {
         height: 67px;
@@ -209,18 +272,18 @@ body{
         font-size: 19px;
         margin-top: -34px;
     }
-    .home .display-name h4{
-        font-size:16px
+    .brand-slogan .slogan p {
+        font-size: 12px;
     }
-    /* .home .display-shoe .shoe {
+    .home .display-name h4 {
+        font-size: 14px;
+    }
+    .home .display-shoe .shoe {
         width: inherit;
         height: 40vh;
         margin: -120px;
         margin-top: inherit;
         
-    } */
-    .display-shoe img{
-        width: 33vw;
     }
     
       .home .shoe-info-container{
@@ -233,73 +296,98 @@ body{
   .platform{
     display: none;
   }
-
+  .owl-carousel {
+    margin-top: 30px;
+}
+.form-price{
+    font-size: 15px;
+    position: relative;
+}
+.owl-carousel .owl-item img {
+    display: block;
+    width: 100%;
+}
 }
 
-
-
-
-
- /* // Large devices (desktops, 992px and up) */
- @media (min-width: 992px) { 
+ /* Medium devices (tablets, less than 992px) */
+@media screen and (min-width: 991.98px) { 
     .home{
-        height: -webkit-fill-available;
+            height: -webkit-fill-available; 
     }
-     .home .container{
-         width: inherit;
-     }
-     .home .shoe-info-container{
-        height: auto; 
-        margin-top: 3vh
-     }
-     .home .brand-image {
-        height: 80px;
-        width: 100px;
+    .home .container{
+        width: inherit;
     }
-    .brand-slogan .slogan h1 {
-        font-size: 45px;
-        margin-top: 0px;
+    .home .shoe-info-container{
+       height: auto; 
+       /* margin-top: 8vh */
     }
-    
-    .home .display-shoe .shoe{
-        width: 42vh;
-        height: inherit;
-        margin: auto;
-        margin-top: -60px;
-        transform: rotate(24deg);
-        position: relative;
-        z-index: 10;
-    }
-    .home .display-name {
-        height: 35vh;
-        justify-content: flex-end;
-        align-items: center;
-    }
-    .home .display-name h4{
-        font-size: 20px
-    }
-    .platform{
-        display: block;
-        position: absolute;
-        border: 8px solid #b5a8a8;
-        width: 27.5vw;
-        height: 50px;
-        border-radius: 50%;
-        top: 50vh;
-        left: 32vw;
-        transform: skewY(24deg);
-        
-    }
-    .form-price{
-        font-size: 20px;
-    }
-   
-}
- /* 
- // X-Large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-     
+    .home .brand-image {
+       height: 80px;
+       width: 100px;
    }
- 
- /* // XX-Large devices (larger desktops, 1400px and up) */
- @media (min-width: 1400px) {  }
+   .brand-slogan .slogan h1 {
+       font-size: 45px;
+       margin-top: 0px;
+   }
+   
+   .home .display-shoe .shoe{
+       width: 42vh;
+       height: inherit;
+       margin: auto;
+       margin-top: -60px;
+       transform: rotate(24deg);
+       position: relative;
+       z-index: 10;
+   }
+   .home .display-name {
+       height: 35vh;
+       justify-content: flex-end;
+       align-items: center;
+   }
+   .home .display-name h4{
+       font-size: 20px
+   }
+   .platform{
+       display: block;
+       position: absolute;
+       border: 8px solid #b5a8a8;
+       width: 27.5vw;
+       height: 50px;
+       border-radius: 50%;
+       top: 50vh;
+       left: 32vw;
+       transform: skewY(24deg);
+       
+   }
+   .form-price{
+    font-size: 15px;
+    position: relative;
+}
+.owl-carousel .owl-item img {
+    display: block;
+    width: 100%;
+}
+}
+
+ /* Large devices (desktops, less than 1200px) */
+@media screen and (min-width: 1199.98px) { 
+    .home{
+        border: 2px solid  brown;
+    }
+    .four{
+        display: none
+    }
+}
+
+ /* X-Large devices (large desktops, less than 1400px) */
+@media screen and (min-width: 1399.98px) { 
+    .home{
+        border: 2px solid red
+    }
+    .five{
+        display: none
+    }
+}
+
+ /* XX-Large devices (larger desktops) */
+ /* No media query since the xxl breakpoint has no upper bound on its width */

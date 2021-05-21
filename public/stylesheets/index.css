@@ -55,11 +55,10 @@ FOOTER
 .footer{
   display: flex;
   justify-content: space-between;
-  align-items: center;
   box-shadow: 0px 0px 12px 0px #021e48;
   }
 .footer p {
-  font-size: 14px;
+  font-size: 10px;
   margin-left: 15px;
   margin-top: 10px;
 }
@@ -80,6 +79,6 @@ FOOTER
   margin-bottom: 30px;
 }
 .footer-payments img {
-height: 30px;
-width: 30px;
+  height: 20px;
+  width: 20px;
 }

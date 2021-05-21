@@ -30,10 +30,7 @@
             </div>
             <div class="col-7 display-item">
                 <div class="display-shoe">
-                    <!-- <div class="shoe"> -->
                         <img src="/images/images/brands/nike.png" alt="front" style=""/>
-                    <!-- </div> -->
-
                   </div>
                   <div class="platform">
                     <div class=" platform1">
@@ -57,13 +54,13 @@
               </div>
             </div>
         </div>
-        <div class="container" >
+        <div class="container carousel-container" >
             <div class="owl-carousel owl-theme">
                 <% for(prod in randomProd){ %> 
                     <div >
                         <div class="card mb-3" style="max-width: 540px;">
-                            <div class="row g-0">
-                              <div class="col-md-9">
+                            <div class="row g-0 img-form-price">
+                              <div class="col-md-9 ">
                                 <a href="/shop/product/<%= randomProd[prod]._id %>">
                                     <img src= <%= randomProd[prod].media.imageUrl %>  alt=""/>
                                 </a>
