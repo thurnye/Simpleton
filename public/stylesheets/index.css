@@ -32,7 +32,18 @@ ul > li.nav-item.active > a{
 }
 ul > li.nav-item:active > a{
 }
-
+.navbar-toggler-icon{
+  background-image: url('/images/images/menutoggle.png');
+}
+.navbar-toggler span{
+  background-color:  aliceblue;
+  border-radius: 8px;
+}
+.navbar-toggler:focus {
+  text-decoration: none;
+  outline: 0;
+  box-shadow: none;
+}
 
 /* .account{
   color: rgba(255,255,255,.55);
