@@ -8,177 +8,166 @@
 
 <section class="catalog">
   <%- include('./includes/hamburgerMenu.ejs')  %> 
-    <div class="container">   
-        <div class="row">
-            <div class="col-sm-2 filter scroll_effect scrollspy-example" data-spy="scroll" data-target="#spy">
-                <div style="margin-top: 5vh;">
-                    <h4>Filter</h4>
-                </div>
-                <form action='/shop/filter' method="GET" enctype="multipart/form-data" id="form">
-                    <div class="accordion accordion-flush" id="accordionFlushExample" style="margin-top: 2vh;">
-                        <div class="accordion-item">
-                          <h2 class="accordion-header" id="flush-headingOne">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                              Brand
-                            </button>
-                          </h2>
-                          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body">
-                                <div> 
-                                    <% brands.map( item => { %> 
-                                        <div class="form-check">
-                                            <input class="form-check-input brand_check" type="checkbox" value=<%= item%> id="flexCheckChecked" name='brand'>
-                                            <label class="form-check-label" for="flexCheckDefault"><%= item%></label>
-                                          </div>
-                                    <% }) %> 
-                                </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="accordion-item">
-                          <h2 class="accordion-header" id="flush-headingTwo">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                              Price
-                            </button>
-                          </h2>
-                          <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body">
-                                <div class="mb-6">
-                                    <label for="exampleFormControlInput1" class="form-label">Min Amount</label>
-                                    <input type="number" class="form-control" name='minAmount' id="exampleFormControlInput1" >
-                                </div>
-                                <div class="mb-6">
-                                    <label for="exampleFormControlInput1" class="form-label">Max Amount</label>
-                                    <input type="number" class="form-control" name='maxAmount' id="exampleFormControlInput1" >
-                                </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="accordion-item">
-                          <h2 class="accordion-header" id="flush-headingThree">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                              Color
-                            </button>
-                          </h2>
-                          <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body">
-                                <div> 
-                                    <% colors.map( item => { %> 
-                                        <div class="form-check">
-                                            <input class="form-check-input color_check" type="checkbox" value=<%= item%> id="flexCheckChecked" name='color' style="background-color:<%= item%> " >
-                                            <label class="form-check-label" for="flexCheckDefault"><%= item%></label>
-                                        </div>
-                                    <% }) %> 
-                                </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="accordion-item">
-                          <h2 class="accordion-header" id="flush-headingFour">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
-                              Gender
-                            </button>
-                          </h2>
-                          <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body"><div> 
-                                <% genders.map( item => { %> 
-                                    <div class="form-check">
-                                        <input class="form-check-input gender_check" type="checkbox" value=<%= item%> id="flexCheckChecked" name='gender'>
-                                        <label class="form-check-label" for="flexCheckDefault"><%= item%></label>
-                                      </div>
-                                <% }) %> 
-                            </div></div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="d-grid gap-2 col-6 mx-auto">
-                        <!-- <button class="btn btn-primary" type="submit" >Filter</button> -->
-                      </div>
-                </form>      
-            
-            
-            
-            </div>
-            <div class="col-sm-1 space"></div>
-            <div class="col-sm-9 scrollspy-example catalog-items" data-spy="scroll" data-target="#spy">
-                <div class="card-body">
-                    <% if(products.length > 0){ %> 
-                        <div class="row">
-                            <% for(let item of products){ %> 
-                                <div class="col-12	col-sm-6 col-md-6 col-lg-4 col-xl-3	col-xxl-3 shoe">
-                                    <div class="card shoe-img"     style="background-color: #<%= Math.floor(Math.random()*16777215).toString(16).padStart(6, '0')%>">
-                                        <a href="/shop/product/<%= item._id %>" class="btn ">
-                                            <img src=<%= item.media.thumbUrl %>  class="card-img-top"  alt="...">
-    
-                                        </a>
-                                     </div>
-                                     <div class="d-flex catalog-info">
-                                        
-    
-                                        <div class="card-body" style="padding-left: 0;">
-                                            <p class="card-text"><%= item.title %></p>
-                                        </div>
-                                        
-                                        <div class="icon-form">
-                                            <form action="/shop/cart" enctype="multipart/form-data" method="POST" class="cart-icon">
-                                                <div class="product-quantity" style="display: none;">
-                                                    <input class=" form-control quantity" name= "quantity" value="1" >
-                                                </div>
-                                                
-                                                <input type="hidden" name="prodId" value="<%= item._id %>">
-                                                <input type="hidden" name="price" value="<%= item.retailPrice %>">
-                                                <button type="submit"><i class="fas fa-shopping-bag"></i></button>
-                                            </form>
-                                            <div class="item-to-cart">
-                                                <p class="card-text price">$<%= item.retailPrice %></p>
-        
-                                            </div>
-                                        </div>
-                                        
-                                     </div>
-                                    
-                                    
-                                </div>
-                            <% } %> 
-                        </div>
-                    <% }else{ %> 
-                      <h1>Shop not Set up yet</h1>
-                    <% } %> 
-                  </div>
-    
-                  <!-- This is the Pagination -->
-                  <% if (pages > 0) { %>
-                    <ul class="pagination text-center">
-                        <% if (current == 1) { %>
-                            <li class="disabled"><a>First</a></li>
-                        <% } else { %>
-                            <li><a href="/shop/catalog/1">First</a></li>
-                        <% } %>
-                        <% let i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
-                        <% if (i !== 1) { %>
-                            <li class="disabled"><a>...</a></li>
-                        <% } %>
-                        <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
-                            <% if (i == current) { %>
-                                <li class="active"><a><%= i %></a></li>
-                            <% } else { %>
-                                <li><a href="/shop/catalog/<%= i %>"><%= i %></a></li>
-                            <% } %>
-                            <% if (i == Number(current) + 4 && i < pages) { %>
-                                <li class="disabled"><a>...</a></li>
-                            <% } %>
-                        <% } %>
-                        <% if (current == pages) { %>
-                            <li class="disabled"><a>Last</a></li>
-                        <% } else { %>
-                            <li><a href="/shop/catalog/<%= pages %>">Last</a></li>
-                        <% } %>
-                    </ul>
-                <% } %>
-                </div>
-            </div>
+  <div class="container">   
+    <div class="row">
+      <div class="col-sm-2 filter scroll_effect scrollspy-example" data-spy="scroll" data-target="#spy">
+        <div style="margin-top: 5vh;">
+          <h4>Filter</h4>
         </div>
+        <form action='/shop/filter' method="GET" enctype="multipart/form-data" id="form">
+          <div class="accordion accordion-flush" id="accordionFlushExample" style="margin-top: 2vh;">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                  Brand
+                </button>
+              </h2>
+              <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                  <div> 
+                    <% brands.map( item => { %> 
+                        <div class="form-check">
+                          <input class="form-check-input brand_check" type="checkbox" value=<%= item%> id="flexCheckChecked" name='brand'>
+                          <label class="form-check-label" for="flexCheckDefault"><%= item%></label>
+                          </div>
+                    <% }) %> 
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                  Price
+                </button>
+              </h2>
+              <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                  <div class="mb-6">
+                    <label for="exampleFormControlInput1" class="form-label">Min Amount</label>
+                    <input type="number" class="form-control" name='minAmount' id="exampleFormControlInput1" >
+                  </div>
+                  <div class="mb-6">
+                    <label for="exampleFormControlInput1" class="form-label">Max Amount</label>
+                    <input type="number" class="form-control" name='maxAmount' id="exampleFormControlInput1" >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                  Color
+                </button>
+              </h2>
+              <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                  <div> 
+                    <% colors.map( item => { %> 
+                      <div class="form-check">
+                        <input class="form-check-input color_check" type="checkbox" value=<%= item%> id="flexCheckChecked" name='color' style="background-color:<%= item%> " >
+                        <label class="form-check-label" for="flexCheckDefault"><%= item%></label>
+                      </div>
+                    <% }) %> 
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingFour">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                  Gender
+                </button>
+              </h2>
+              <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body"><div> 
+                  <% genders.map( item => { %> 
+                    <div class="form-check">
+                      <input class="form-check-input gender_check" type="checkbox" value=<%= item%> id="flexCheckChecked" name='gender'>
+                      <label class="form-check-label" for="flexCheckDefault"><%= item%></label>
+                    </div>
+                  <% }) %> 
+                </div></div>
+              </div>
+            </div>
+          </div>
+          <div class="d-grid gap-2 col-6 mx-auto">
+            <!-- <button class="btn btn-primary" type="submit" >Filter</button> -->
+          </div>
+        </form>      
+      </div>
+      <div class="col-sm-1 space"></div>
+      <div class="col-sm-9 scrollspy-example catalog-items" data-spy="scroll" data-target="#spy">
+        <div class="card-body">
+          <% if(products.length > 0){ %> 
+            <div class="row">
+              <% for(let item of products){ %> 
+                <div class="col-12	col-sm-6 col-md-6 col-lg-4 col-xl-3	col-xxl-3 shoe">
+                  <div class="card shoe-img"     style="background-color: #<%= Math.floor(Math.random()*16777215).toString(16).padStart(6, '0')%>">
+                      <a href="/shop/product/<%= item._id %>" class="btn ">
+                          <img src=<%= item.media.thumbUrl %>  class="card-img-top"  alt="...">
+
+                      </a>
+                    </div>
+                    <div class="d-flex catalog-info">
+                    <div class="card-body" style="padding-left: 0;">
+                      <p class="card-text"><%= item.title %></p>
+                    </div>
+                    <div class="icon-form">
+                      <form action="/shop/cart" enctype="multipart/form-data" method="POST" class="cart-icon">
+                        <div class="product-quantity" style="display: none;">
+                          <input class=" form-control quantity" name= "quantity" value="1" >
+                        </div>
+                        <input type="hidden" name="prodId" value="<%= item._id %>">
+                        <input type="hidden" name="price" value="<%= item.retailPrice %>">
+                        <button type="submit"><i class="fas fa-shopping-bag"></i></button>
+                      </form>
+                      <div class="item-to-cart">
+                        <p class="card-text price">$<%= item.retailPrice %></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% } %> 
+            </div>
+          <% }else{ %> 
+            <h1>Shop not Set up yet</h1>
+          <% } %> 
+        </div>
+
+        <!-- This is the Pagination -->
+        <% if (pages > 0) { %>
+          <ul class="pagination text-center">
+            <% if (current == 1) { %>
+              <li class="disabled"><a>First</a></li>
+            <% } else { %>
+              <li><a href="/shop/catalog/1">First</a></li>
+            <% } %>
+            <% let i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+            <% if (i !== 1) { %>
+              <li class="disabled"><a>...</a></li>
+            <% } %>
+            <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+              <% if (i == current) { %>
+                <li class="active"><a><%= i %></a></li>
+              <% } else { %>
+                <li><a href="/shop/catalog/<%= i %>"><%= i %></a></li>
+              <% } %>
+              <% if (i == Number(current) + 4 && i < pages) { %>
+                <li class="disabled"><a>...</a></li>
+              <% } %>
+            <% } %>
+            <% if (current == pages) { %>
+              <li class="disabled"><a>Last</a></li>
+            <% } else { %>
+              <li><a href="/shop/catalog/<%= pages %>">Last</a></li>
+            <% } %>
+          </ul>
+        <% } %>
+      </div>
     </div>
+  </div>
+  
 </section>
  
 <%- include('./includes/footer.ejs')  %> 

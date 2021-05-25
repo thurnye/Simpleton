@@ -4,87 +4,73 @@
 <link rel='stylesheet' href='/stylesheets/orders.css' />
 
 <section class="orders">
-
-
-    <% if (orders.length <= 0) { %>
-      <div class="container">
-        <div class="card mb-3" style="max-width: 540px;">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="/images/images/empty_cart.jpeg" alt="no_cart" style="height: 150px;">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title"> No Orders Yet</h5>
-                  <p class="card-text"> Please checkout your cart to see made orders</p>
-                  <p class="card-text"><small class="text-muted">..and come back to visit again</small></p>
-                </div>
-              </div>
+  <% if (orders.length <= 0) { %>
+    <div class="container">
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="/images/images/empty_cart.jpeg" alt="no_cart" style="height: 150px;">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title"> No Orders Yet</h5>
+              <p class="card-text"> Please checkout your cart to see made orders</p>
+              <p class="card-text"><small class="text-muted">..and come back to visit again</small></p>
             </div>
           </div>
         </div>
-    <% } else { %>
-        <div class=" mb-3" >
-          <div class="container">
-            <div class="row g-0">
-            <% orders.forEach(order => { %>
+        </div>
+      </div>
+  <% } else { %>
+    <div class=" mb-3" >
+      <div class="container">
+        <div class="row g-0">
+          <% orders.forEach(order => { %>
             <div class="order-container container scrollspy-example" data-spy="scroll" data-target="#spy">
-                <div class="card ordered"> 
-                  <div class="orderNo-paid">
-                      <small class="text-muted">Order - #<%= order._id %></small> 
-                      <!-- this is where you remove the order from -->
-                      <form action="/shop/order/remove" enctype="multipart/form-data" method="POST" class="order-form">
-                          <input type="hidden" name="prodId" value="<%= order._id %>">
-                          <button class="btn remove" type="submit"> remove </button>
-                        </form>
-                  </div>
-                  <div class="container"> 
-                      <div class="row"> 
-                  <% order.products.forEach(el =>{ %>
-                      
+              <div class="card ordered"> 
+                <div class="orderNo-paid">
+                  <small class="text-muted">Order - #<%= order._id %></small> 
+                  <!-- this is where you remove the order from -->
+                  <form action="/shop/order/remove" enctype="multipart/form-data" method="POST" class="order-form">
+                      <input type="hidden" name="prodId" value="<%= order._id %>">
+                      <button class="btn remove" type="submit"> remove </button>
+                  </form>
+                </div>
+              <div class="container"> 
+                <div class="row"> 
+                  <% order.products.forEach(el =>{ %> 
                     <div class="card mb-3 ordered-items">
                       <div class="row g-0">
-                          <div class="col-md-4">
+                        <div class="col-md-4">
                           <img src= <%= el.product.media.imageUrl %>  alt="" style="width: 110px; height: 70px;">
-                          </div>
-                          <div class="col-md-8">
-                            <div class="card-body text-muted">
-                              <div>
-                                  <h6 class="card-title" style="font-size: 14px;"> <%=  el.product.title %></h6>
-                                </div>
-                                <div class="quantity-price d-flex" style="justify-content: space-between; align-items: baseline;">
-                                  <p> Quantity: <span><%=  el.quantity %></span></p>
-                                  <p class="card-text" style="margin-right: -10px;">$<%=  el.totalPrice %></p>
-                                </div>
-                            <p class="card-text"></p>
-                          </div>
-
-                        
-                          </div>
+                        </div>
+                        <div class="col-md-8">
+                          <div class="card-body text-muted">
+                            <div>
+                                <h6 class="card-title" style="font-size: 14px;"> <%=  el.product.title %></h6>
+                              </div>
+                              <div class="quantity-price d-flex" style="justify-content: space-between; align-items: baseline;">
+                                <p> Quantity: <span><%=  el.quantity %></span></p>
+                                <p class="card-text" style="margin-right: -10px;">$<%=  el.totalPrice %></p>
+                              </div>
+                          <p class="card-text"></p>
+                        </div>
+                        </div>
                       </div>
                     </div>
                   <% }) %>
                   <div class="ordered-paid">
                     <h5 class="text-muted" style="align-self: flex-end;">Total Amount : $<%= order.paid %></h5> 
                   </div>
-                  </div>  
                 </div>  
-                </div>
+              </div>  
             </div>
-            <!-- <hr> -->
-        <% }); %>
-              
             </div>
-          </div>
-          </div>
-
-
-
-
-
-    <% } %>
-
-
+          <% }); %>
+        </div>
+      </div>
+    </div>
+  <% } %>
 </section>
 
 
