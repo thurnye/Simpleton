@@ -8,7 +8,7 @@ body{
 
 }
 .catalog{
-    height: 82vh;
+    /* height: 82vh; */
     /* margin-top: 5vh; */
     display: flex;
 }
@@ -275,7 +275,15 @@ body{
 
 }
 
-@media (min-width: 360.98px) and (max-width: 767.98px){ 
+@media screen and (min-width: 318.98px){ 
+    .catalog{
+        /* border: 2px solid red; */
+        /* height: auto; */
+        display: block;
+    }
+    .catalog .container{
+        width: 75%
+    }
    .catalog .filter{
        display: none;
    }
@@ -286,40 +294,89 @@ body{
     width: fit-content;
    }
    
+
+    .catalog-info .card-body p {
+        font-size: 13px;
+    }
+    .catalog .icon-form {
+        height: fit-content;
+    }
+    .catalog .cart-icon button {
+        font-size: 25px;
+    }
+    .catalog .price {
+        font-size: 15px;
+    }
+    .catalog .pagination li {
+        font-size: 20px;
+    }
+    #menuToggle {
+        top: 0px;
+        left: 0px;
+    }
+    .menu {
+        width: 100vw;
+        height: 100vh;
+    }
+    .filter-hamburger .accordion button {
+        font-size: 20px;
+    }
+    .filter-hamburger .accordion label, .filter-hamburger .form-check {
+        font-size: 16px;
+    }
  }
 
  /* // X-Small devices (portrait phones, less than 576px) */
 /* // No media query for `xs` since this is the default in Bootstrap */
 
 /* // Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) {
+@media screen and (min-width: 576px) {
+    .catalog{
+        /* border: 2px solid  white */
+        
+    }
     .catalog .filter{
         display: none;
     }
-    .catalog .space{
-        display: none;
-    }
+    
     .catalog-items{
         width: fit-content;
+    }
+    .filter-hamburger form {
+        height: fit-content;
+    }
+    .menu{
+        padding: 100px;
+        padding-top: 81px;
     }
  }
 
 /* // Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) { 
+@media screen and  (min-width: 768px) { 
+    .catalog{
+        /* border: 2px solid  greenyellow */
+    }
     .catalog .filter{
         display: none;
     }
-    .catalog .space{
-        display: none;
-    }
+   
     .catalog-items{
         width: fit-content;
+    }
+    .filter-hamburger form {
+        height: fit-content;
+    }
+    .menu{
+        padding: 100px;
+        padding-top: 81px;
     }
  }
 
 /* // Large devices (desktops, 992px and up) */
-@media (min-width: 992px) { 
+@media screen and (min-width: 992px) { 
+
     .catalog{
+        /* border: 2px solid pink; */
         height: 82vh;
         margin-top: 5vh;
         display: flex;
