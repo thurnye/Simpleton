@@ -3,7 +3,6 @@ const Products = require('../model/prodModel');
 const request = require('request');
 const fs = require('fs');
 const axios = require("axios").default;
-const { Console } = require('console');
 
 var options = {
     method: 'GET',
@@ -171,9 +170,7 @@ const getOne = async (req, res) => {
 const getEdit = async (req,res) => {
     try{
         const prodId = req.params.id
-        // console.log(prodId)
         const product = await Products.findById(prodId)
-        // console.log(product)
         res.render('admin/edit', {
             title: 'Simpleton',
             product: product,
