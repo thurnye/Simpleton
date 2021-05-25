@@ -170,9 +170,7 @@ const getOne = async (req, res) => {
 const getEdit = async (req,res) => {
     try{
         const prodId = req.params.id
-        // console.log(prodId)
         const product = await Products.findById(prodId)
-        // console.log(product)
         res.render('admin/edit', {
             title: 'Simpleton',
             product: product,

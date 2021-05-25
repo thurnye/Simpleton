@@ -331,10 +331,7 @@ body{
 
 /* // Small devices (landscape phones, 576px and up) */
 @media screen and (min-width: 576px) {
-    .catalog{
-        /* border: 2px solid  white */
-        
-    }
+
     .catalog .filter{
         display: none;
     }
@@ -353,9 +350,7 @@ body{
 
 /* // Medium devices (tablets, 768px and up) */
 @media screen and  (min-width: 768px) { 
-    .catalog{
-        /* border: 2px solid  greenyellow */
-    }
+
     .catalog .filter{
         display: none;
     }
