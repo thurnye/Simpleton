@@ -3,7 +3,6 @@ const Products = require('../model/prodModel');
 const request = require('request');
 const fs = require('fs');
 const axios = require("axios").default;
-const { Console } = require('console');
 
 var options = {
     method: 'GET',
