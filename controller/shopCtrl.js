@@ -13,9 +13,7 @@ const PDFDocument = require("pdfkit");
 const getHome = async (req, res, next) => {
     try{
         const randomProd = await Products.aggregate([{ $sample: { size: 7 } }])
-        // console.log(typeof randomProd)
         for(prod in randomProd){
-            console.log(randomProd[prod].media.imageUrl)
         }
     res.render('shop/home', { 
         title: 'Simpleton',
@@ -41,11 +39,10 @@ const getCatalog = async (req, res, next) => {
                 allGenders.push(catalog[prod].gender)
                 allColors.push(catalog[prod].colorway)
             }
+            // get the unique values
             const brands = [...new Set(allBrands)];
             const genders = [...new Set(allGenders)];
-            // const  colors = [...new Set(allColors)];
-            // console.log('Gender=',genders)
-            // console.log('Colors=',colors)
+
             const colors = ['Red', 'Orange','Black', 'Yellow', 'Green', 'Blue', 'Purple', 'White', 'Brown', 'Pink', 'Multicolor', 'Turquoise', 'Lemon', 'Beige','Cream', 'Silver', 'Gold', 'Grey', 'Off-white']
 
         // pagination
@@ -68,6 +65,7 @@ const getCatalog = async (req, res, next) => {
                     brands: brands,
                     genders: genders,
                     colors: colors,
+                    search: false
                 })
             })
         })
@@ -76,81 +74,6 @@ const getCatalog = async (req, res, next) => {
    }
 
 }
-
-const getFilter = async (req, res) => {
-    try {
-        console.log(req.params.data)
-    //     const c = (req.body.color) ? req.body.color : 'white' ;
-    //     const regex = new RegExp(c, 'i')
-    //     const query = {    
-    //         brand: `${req.body.brand || 'nike'}`,
-    //         retailPrice: {  $gte: Number(req.body.minAmount) || 0, $lte: Number(req.body.maxAmount) || 5000},
-    //         colorway: { "$regex": regex },
-    //         gender: `${req.body.gender || 'male'}` 
-        
-    //     }
-    //     // console.log(query)
-    //    const products = await Products.find(query)
-    //    console.log(products)
-       res.render('shop/catalog', {
-        title: 'Simpleton',
-        user: req.user,
-        products: products,
-        // current: page,
-        // pages: Math.ceil(count / perPage),
-        // brands: brands,
-        // genders: genders,
-        // colors: colors,
-    })
-        // if(req.body.brand && req.body.maxAmount && req.body.color && req.body.gender){
-        //     await Products.find({
-                
-        //         brand: req.body.brand,
-        //         retailPrice: {  $gte: Number(req.body.minAmount) || 0, $lte: Number(req.body.maxAmount) || 5000},
-        //         colorway: { "$regex": regex },
-        //         gender: req.body.gender 
-    
-        //     }, (err, products)=>{
-        //         if(!err){
-        //             // console.log(products)
-    
-        //         }else{
-        //             console.log(err)
-        //         }
-        //     })}else{
-        // // console.log(req.body)
-        // let filter = []
-        // if(req.body.maxAmount && req.body.minAmount){
-        //     const priceRange = await Products.find({
-        //         retailPrice: {  $gte: Number(req.body.minAmount) || 0, $lte: Number(req.body.maxAmount) || 5000}
-        //     }).exec()
-        //     filter.push(priceRange)
-        // }
-        // if(req.body.brand){
-        //     const brand = await Products.find({
-        //         brand: req.body.brand
-        //     }).exec()
-        //     filter.push(brand)
-        // }
-        // if(req.body.gender){
-        //     const gender = await Products.find({
-        //         gender: req.body.gender
-        //     }).exec()
-        //     filter.push(gender)
-        // }
-        // if(req.body.color){
-        //     const colors = await Products.find( { colorway: { "$regex": regex } } )
-        //     .exec()
-        //     filter.push(colors)
-        // }
-        // console.log(filter)
-    // }
-       
-    } catch (error) {
-        
-    }
-}
-
 
 
 
@@ -693,10 +616,100 @@ const getAccount = (req, res) => {
 }
 
 
+
+const postFilter = async (req, res) => {
+    try {
+        console.log(req.params)
+        const c = req.body.color ? req.body.color : 'white' ;
+        const filterColor = req.body.color 
+        const filterBrand = req.body.brand 
+        const filterGender = req.body.gender 
+        const query = {    
+            retailPrice: {  $gte: Number(req.body.minAmount) || 0, $lte: Number(req.body.maxAmount) || 5000},
+        
+        } 
+
+        // check for the filter values and add them to the query
+        if (filterColor !== undefined){
+            query.colorway = new RegExp(filterColor, 'i')
+        }
+
+        if (filterBrand !== undefined){
+            query.brand = new RegExp(filterBrand, 'i')
+        }
+
+        if (filterGender !== undefined){
+            query.gender = filterGender
+        }
+       
+        const catalog = await Products.find();
+            const allBrands = []
+            const allGenders = []
+            const allColors = []
+            for(prod in catalog){
+                allBrands.push(catalog[prod].brand)
+                allGenders.push(catalog[prod].gender)
+                allColors.push(catalog[prod].colorway)
+            }
+            // get the unique values
+            const brands = [...new Set(allBrands)];
+            const genders = [...new Set(allGenders)];
+
+            const colors = ['Red', 'Orange','Black', 'Yellow', 'Green', 'Blue', 'Purple', 'White', 'Brown', 'Pink', 'Multicolor', 'Turquoise', 'Lemon', 'Beige','Cream', 'Silver', 'Gold', 'Grey', 'Off-white']
+
+        
+    //     console.log('with filter',query)
+    //    const products = await Products.find(query)
+    //    console.log(products)
+
+        // pagination
+        const page = req.params.page || 1
+        const perPage = 20;
+        await Products.find(query)
+        .skip((perPage * page) - perPage)
+        .limit(perPage)
+        .exec((err, products) => {
+            Products.count().exec((err, count) => {
+                if (err) return next(err)
+                // console.log(products)
+                res.render('shop/catalog', {
+                    title: 'Simpleton',
+                    user: req.user,
+                    products: products,
+                    current: page,
+                    pages: Math.ceil(count / perPage),
+                    brands: brands,
+                    genders: genders,
+                    colors: colors,
+                    search: true
+                })
+            })
+        })
+
+    //    res.render('shop/catalog', {
+    //     title: 'Simpleton',
+    //     user: req.user,
+    //     products: products,
+    //     current: page,
+    //     pages: Math.ceil(count / perPage),
+    //     brands: brands,
+    //     genders: genders,
+    //     colors: colors,
+    // })
+        
+       
+    } catch (error) {
+        
+    }
+}
+
+
+
+
 module.exports = {
     getHome,
     getCatalog,
-    getFilter,
+    postFilter,
     getOneProduct,
     postAddToCart,
     getCart,
