@@ -10,6 +10,8 @@ const fs = require("fs");
 const PDFDocument = require("pdfkit");
 
 
+const colors = ['Red', 'Orange','Black', 'Yellow', 'Green', 'Blue', 'Purple', 'White', 'Brown', 'Pink', 'Multicolor', 'Turquoise', 'Lemon', 'Beige','Cream', 'Silver', 'Gold', 'Grey', 'Off-white']
+
 const getHome = async (req, res, next) => {
     try{
         const randomProd = await Products.aggregate([{ $sample: { size: 7 } }])
@@ -43,8 +45,11 @@ const getCatalog = async (req, res, next) => {
             const brands = [...new Set(allBrands)];
             const genders = [...new Set(allGenders)];
 
-            const colors = ['Red', 'Orange','Black', 'Yellow', 'Green', 'Blue', 'Purple', 'White', 'Brown', 'Pink', 'Multicolor', 'Turquoise', 'Lemon', 'Beige','Cream', 'Silver', 'Gold', 'Grey', 'Off-white']
 
+            // for quering the next filter page, so as not to throw an error in shop/catalog
+            const query = {    
+                retailPrice: {  $gte: Number(req.body.minAmount) || 0, $lte: Number(req.body.maxAmount) || 5000},
+            } 
         // pagination
         const page = req.params.page || 1
         const perPage = 20;
@@ -65,7 +70,8 @@ const getCatalog = async (req, res, next) => {
                     brands: brands,
                     genders: genders,
                     colors: colors,
-                    search: false
+                    search: false,
+                    filter: query
                 })
             })
         })
@@ -643,25 +649,28 @@ const postFilter = async (req, res) => {
         }
        
         const catalog = await Products.find();
-            const allBrands = []
-            const allGenders = []
-            const allColors = []
-            for(prod in catalog){
-                allBrands.push(catalog[prod].brand)
-                allGenders.push(catalog[prod].gender)
-                allColors.push(catalog[prod].colorway)
-            }
-            // get the unique values
-            const brands = [...new Set(allBrands)];
-            const genders = [...new Set(allGenders)];
+        const allBrands = []
+        const allGenders = []
+        const allColors = []
+        for(prod in catalog){
+            allBrands.push(catalog[prod].brand)
+            allGenders.push(catalog[prod].gender)
+            allColors.push(catalog[prod].colorway)
+        }
+        // get the unique values
+        const brands = [...new Set(allBrands)];
+        const genders = [...new Set(allGenders)];
 
-            const colors = ['Red', 'Orange','Black', 'Yellow', 'Green', 'Blue', 'Purple', 'White', 'Brown', 'Pink', 'Multicolor', 'Turquoise', 'Lemon', 'Beige','Cream', 'Silver', 'Gold', 'Grey', 'Off-white']
+        // get the filterQuery to display
+        const filterQuery = {
+            brand: req.body.brand,
+            color: req.body.color,
+            gender: req.body.gender,
+            retailPrice: {  $gte: Number(req.body.minAmount) || 0, $lte: Number(req.body.maxAmount) || 5000} 
+        }
 
-        
-    //     console.log('with filter',query)
-    //    const products = await Products.find(query)
-    //    console.log(products)
-
+        console.log(filterQuery)
+    
         // pagination
         const page = req.params.page || 1
         const perPage = 20;
@@ -671,7 +680,6 @@ const postFilter = async (req, res) => {
         .exec((err, products) => {
             Products.count().exec((err, count) => {
                 if (err) return next(err)
-                // console.log(products)
                 res.render('shop/catalog', {
                     title: 'Simpleton',
                     user: req.user,
@@ -681,24 +689,16 @@ const postFilter = async (req, res) => {
                     brands: brands,
                     genders: genders,
                     colors: colors,
-                    search: true
+                    search: true,
+                    filter: filterQuery
                 })
             })
         })
 
-    //    res.render('shop/catalog', {
-    //     title: 'Simpleton',
-    //     user: req.user,
-    //     products: products,
-    //     current: page,
-    //     pages: Math.ceil(count / perPage),
-    //     brands: brands,
-    //     genders: genders,
-    //     colors: colors,
-    // })
+  
         
        
-    } catch (error) {
+    } catch (err) {
         
     }
 }
