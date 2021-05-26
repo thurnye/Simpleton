@@ -14,7 +14,7 @@
         <div style="margin-top: 5vh;">
           <h4>Filter</h4>
         </div>
-        <form action='/shop/filter' method="GET" enctype="multipart/form-data" id="form">
+        <form action='/shop/filter/1' method="POST" enctype="multipart/form-data" id="form">
           <div class="accordion accordion-flush" id="accordionFlushExample" style="margin-top: 2vh;">
             <div class="accordion-item">
               <h2 class="accordion-header" id="flush-headingOne">
@@ -25,9 +25,9 @@
               <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
                   <div> 
-                    <% brands.map( item => { %> 
+                    <% brands.forEach( item => { %> 
                         <div class="form-check">
-                          <input class="form-check-input brand_check" type="checkbox" value=<%= item%> id="flexCheckChecked" name='brand'>
+                          <input class="form-check-input brand_check" type="checkbox" value=<%= item %> id="flexCheckChecked" name='brand'>
                           <label class="form-check-label" for="flexCheckDefault"><%= item%></label>
                           </div>
                     <% }) %> 
@@ -92,7 +92,7 @@
             </div>
           </div>
           <div class="d-grid gap-2 col-6 mx-auto">
-            <!-- <button class="btn btn-primary" type="submit" >Filter</button> -->
+            <button class="btn btn-primary" type="submit" >Filter</button>
           </div>
         </form>      
       </div>
@@ -136,34 +136,71 @@
         </div>
 
         <!-- This is the Pagination -->
-        <% if (pages > 0) { %>
-          <ul class="pagination text-center">
-            <% if (current == 1) { %>
-              <li class="disabled"><a>First</a></li>
-            <% } else { %>
-              <li><a href="/shop/catalog/1">First</a></li>
-            <% } %>
-            <% let i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
-            <% if (i !== 1) { %>
-              <li class="disabled"><a>...</a></li>
-            <% } %>
-            <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
-              <% if (i == current) { %>
-                <li class="active"><a><%= i %></a></li>
+       
+
+        <%if (!search){  %> 
+          <!-- show pagination for catalog -->
+          <% if (pages > 0) { %>
+            <ul class="pagination text-center">
+              <% if (current == 1) { %>
+                <li class="disabled"><a>First</a></li>
               <% } else { %>
-                <li><a href="/shop/catalog/<%= i %>"><%= i %></a></li>
+                <li><a href="/shop/catalog/1">First</a></li>
               <% } %>
-              <% if (i == Number(current) + 4 && i < pages) { %>
+              <% let i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+              <% if (i !== 1) { %>
                 <li class="disabled"><a>...</a></li>
               <% } %>
+              <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                <% if (i == current) { %>
+                  <li class="active"><a><%= i %></a></li>
+                <% } else { %>
+                  <li><a href="/shop/catalog/<%= i %>"><%= i %></a></li>
+                <% } %>
+                <% if (i == Number(current) + 4 && i < pages) { %>
+                  <li class="disabled"><a>...</a></li>
+                <% } %>
+              <% } %>
+              <% if (current == pages) { %>
+                <li class="disabled"><a>Last</a></li>
+              <% } else { %>
+                <li><a href="/shop/catalog/<%= pages %>">Last</a></li>
+              <% } %>
+            </ul>
+          <% } %>
+          
+          <% }else {  %>
+          <!-- show pagination for search -->
+            <% if (pages > 0) { %>
+              <ul class="pagination text-center">
+                <% if (current == 1) { %>
+                  <li class="disabled"><a>First</a></li>
+                <% } else { %>
+                  <li><a href="/shop/filter/1">First</a></li>
+                <% } %>
+                <% let i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+                <% if (i !== 1) { %>
+                  <li class="disabled"><a>...</a></li>
+                <% } %>
+                <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                  <% if (i == current) { %>
+                    <li class="active"><a><%= i %></a></li>
+                  <% } else { %>
+                    <li><a href="/shop/filter/<%= i %>"><%= i %></a></li>
+                  <% } %>
+                  <% if (i == Number(current) + 4 && i < pages) { %>
+                    <li class="disabled"><a>...</a></li>
+                  <% } %>
+                <% } %>
+                <% if (current == pages) { %>
+                  <li class="disabled"><a>Last</a></li>
+                <% } else { %>
+                  <li><a href="/shop/filter/<%= pages %>">Last</a></li>
+                <% } %>
+              </ul>
             <% } %>
-            <% if (current == pages) { %>
-              <li class="disabled"><a>Last</a></li>
-            <% } else { %>
-              <li><a href="/shop/catalog/<%= pages %>">Last</a></li>
-            <% } %>
-          </ul>
-        <% } %>
+          <% } %>
+        
       </div>
     </div>
   </div>
