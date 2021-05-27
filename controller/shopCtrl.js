@@ -166,9 +166,7 @@ const postAddToCart = async (req, res) => {
 
                 // if found
                 if(foundProd){
-                    // console.log(foundProd)
                     let cartQuantity = foundProd.quantity
-                   // console.log(req.body.quantity, cartQuantity)
                     updatedQuantity = parseInt(req.body.quantity) + parseInt(cartQuantity)
                     foundProd.quantity = updatedQuantity
                      // total price for the product
@@ -684,7 +682,7 @@ const postFilter = async (req, res) => {
         })
        
     } catch (err) {
-        
+        console.log(err)
     }
 }
 
