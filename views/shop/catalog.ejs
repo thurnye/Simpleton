@@ -229,7 +229,7 @@
                         <input type="hidden" name="gender" value="<%= filter.gender ? filter.gender : undefined %>" >
                         <input type="hidden" name="color" value="<%= filter.color ? filter.color : undefined %>" >
                         <input type="hidden" name="minAmount" value="<%= filter.retailPrice.$gte ? filter.retailPrice.$gte: 0 %>" >
-                        <input type="hidden" name="maxAmount" value="<%= filter.retailPrice.$gte ? filter.retailPrice.$gte: 5000 %>">
+                        <input type="hidden" name="maxAmount" value="<%= filter.retailPrice.$lte ? filter.retailPrice.$lte: 5000 %>">
                         <button type="submit"><%= i %></button>
                       </form>
                   </li>
@@ -247,8 +247,8 @@
                       <input type="hidden" name="gender" value="<%= filter.gender ? filter.gender : undefined %>" >
                       <input type="hidden" name="color" value="<%= filter.color ? filter.color : undefined %>" >
                       <input type="hidden" name="minAmount" value="<%= filter.retailPrice.$gte ? filter.retailPrice.$gte: 0 %>" >
-                      <input type="hidden" name="maxAmount" value="<%= filter.retailPrice.$gte ? filter.retailPrice.$gte: 5000 %>">
-                      <button type="submit"><%= i %></button>
+                      <input type="hidden" name="maxAmount" value="<%= filter.retailPrice.$lte ? filter.retailPrice.$lte: 5000 %>">
+                      <button type="submit"><%= pages %></button>
                     </form>
                 </li>
               <% } %>
