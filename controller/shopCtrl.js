@@ -640,15 +640,15 @@ const postFilter = async (req, res) => {
         } 
 
         // check for the filter values and add them to the query
-        if (typeof filterColor !== undefined ){
+        if (filterColor !== undefined && filterColor !== ''){
             query.colorway = new RegExp(filterColor, 'i')
         }
 
-        if (filterBrand !== undefined){
+        if (filterBrand !== undefined && filterBrand !== ''){
             query.brand = new RegExp(filterBrand, 'i')
         }
 
-        if (filterGender !== undefined){
+        if (filterGender !== undefined && filterGender !== ''){
             query.gender = filterGender
         }
        console.log('query =', query)
