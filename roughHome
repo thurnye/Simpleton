@@ -1,279 +1,82 @@
-body{
-    background-color: #1b3465;
-    color: rgb(216, 216, 216);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: inherit;
 
-}
-.home{
-    margin-bottom: auto;
-    margin-top: 8vh;
-        height: -webkit-fill-available;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-}
+const postFilter = async (req, res) => {
+    try {
+        console.log(req.params)
+        console.log(req.query)
+    //     const c = req.body.color ? req.body.color : 'white' ;
+    //     const filterColor = req.body.color 
+    //     const filterBrand = req.body.brand 
+    //     const filterGender = req.body.gender 
+    //     const query = {    
+    //         retailPrice: {  $gte: Number(req.body.minAmount) || 0, $lte: Number(req.body.maxAmount) || 5000},
+        
+    //     } 
 
-.home-display .container{
-    box-shadow: 1px -8px 20px 9px #021e48;
+    //     // check for the filter values and add them to the query
+    //     if (filterColor !== undefined){
+    //         query.colorway = new RegExp(filterColor, 'i')
+    //     }
+
+    //     if (filterBrand !== undefined){
+    //         query.brand = new RegExp(filterBrand, 'i')
+    //     }
+
+    //     if (filterGender !== undefined){
+    //         query.gender = filterGender
+    //     }
+    //    console.log('query =', query)
+    //     const catalog = await Products.find();
+    //     const allBrands = []
+    //     const allGenders = []
+    //     const allColors = []
+    //     for(prod in catalog){
+    //         allBrands.push(catalog[prod].brand)
+    //         allGenders.push(catalog[prod].gender)
+    //         allColors.push(catalog[prod].colorway)
+    //     }
+    //     // get the unique values
+    //     const brands = [...new Set(allBrands)];
+    //     const genders = [...new Set(allGenders)];
+
+    //     // get the filterQuery to display
+    //     const filterQuery = {
+    //         brand: req.body.brand,
+    //         color: req.body.color,
+    //         gender: req.body.gender,
+    //         retailPrice: {  $gte: Number(req.body.minAmount) || 0, $lte: Number(req.body.maxAmount) || 5000} 
+    //     }
+
+    //     console.log('FilterQuery:',filterQuery)
     
-}
-.home .shoe-info-container{
-    height: auto; 
-    margin-top: 0;
-    width: 90vw;
- }
-.home-display .container .display-item{
-    /* background-color: white; */
-    /* height: 50vh; */
-    
-}
-
-.brand-image{
-    height: 80px;
-    width: 100px;
-}
-.brand-image img{
-    width: inherit;
-    height: inherit;
-}
-.brand-slogan{
-    margin-top: 20px;
-    height: 30vh;
-}
-.brand-slogan .slogan h1 {
-    font-size: 55px;
-    /* letter-spacing: 6px;      this will inline styling */
- }
-.home .display-name{
-    height: 48vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-}
-.home .display-shoe{
-    height: 50vh;
-    display: flex;
-    justify-content: center;
-    
-}
-.home .display-shoe .shoe{
-    width: inherit;
-    height: 34vh;
-    margin: -120px;
-    margin-top: 152.1px;
-    transform: rotate(24deg);
-    position: relative;
-    z-index: 10;
-
-}
-.home .display-shoe .shoe img{
-    width: inherit;
-    height: inherit;
-}
-
+    //     // pagination
+    //     const page = req.params.page || 1
+    //     const perPage = 20;
+    //     await Products.find(query)
+    //     .skip((perPage * page) - perPage)
+    //     .limit(perPage)
+    //     .exec((err, products) => {
+    //         Products.find(query).count().exec((err, count) => {
+    //             console.log(count)
+    //             if (err) return next(err)
+    //             res.render('shop/catalog', {
+    //                 title: 'Simpleton',
+    //                 user: req.user,
+    //                 products: products,
+    //                 current: page,
+    //                 pages: Math.ceil(count / perPage),
+    //                 brands: brands,
+    //                 genders: genders,
+    //                 colors: colors,
+    //                 search: true,
+    //                 filter: filterQuery
+    //             })
+    //         })
+    //     })
 
   
-.platform{
-    
-    position: absolute;
-    border: 8px solid #b5a8a8;
-    width: 49.5vw;
-    height: 50px;
-    border-radius: 50%;
-    /* border-top: none; */
-    top: 50vh;
-    left: 14vw;
-    transform: skewY(
-24deg
-);
-    
-  }
-  
-  .platform1{
-    border: 8px solid #9a2e31;
-    width: 96%;
-    height: 40px;
-    margin-left: 4px;
-    border-radius: 50%;
-  }
-  .platform2{
-    border: 3px solid #9c8c33;
-    width: 94%;
-    height: 30px;
-    margin-left: 4px;
-    border-radius: 50%;
-  
-  }
-  
-
-  /* owl-carousel */
-  /* =======================
-   */
-   .owl-carousel{
-       margin-top: 50px;
-   }
-   .owl-stage{
-    height: fit-content;
-   }
-
-
-/* @media screen and (min-width: 320px) {
-    .home .shoe-info-container{
-        width: 90vw;
-    }
-    .platform{
-        display: none;
-      }
-  } */
-/* X-Small devices (portrait phones, less than 576px) */
-@media screen and (max-width: 575.98px) { 
-    .home{
-        border: 2px solid pink
-    }
-    .brand-image {
-        height: 67px;
-        width: 85px;
-    }
-    .brand-slogan .slogan h1 {
-        font-size: 24px;
-        margin-top: -34px;
-    }
-    .home .display-shoe .shoe {
-        width: inherit;
-        height: 48vh;
-        margin: -120px;
-        margin-top: inherit;
-     
-    }
-     .platform{
-       display: none;
-     }
-    .home .shoe-info-container{
-        width: 90vw;
-    }
-}
-
- /* Small devices (landscape phones, less than 768px) */
-@media screen and (min-width: 767.98px) { 
-    .home{
-        border: 2px solid  white;
-        height: auto
-    }
-    .brand-image {
-        height: 67px;
-        width: 85px;
-    }
-    .brand-slogan .slogan h1 {
-        font-size: 19px;
-        margin-top: -34px;
-    }
-    .brand-slogan .slogan p {
-        font-size: 12px;
-    }
-    .home .display-name h4 {
-        font-size: 14px;
-    }
-    .home .display-shoe .shoe {
-        width: inherit;
-        height: 40vh;
-        margin: -120px;
-        margin-top: inherit;
+        
+       
+    } catch (err) {
         
     }
-    
-      .home .shoe-info-container{
-          width: 90vw;
-      }
- 
-  .home .container, .container-md, .container-sm {
-      max-width: 90vw;
-  }
-  .platform{
-    display: none;
-  }
-  .owl-carousel {
-    margin-top: 30px;
 }
-
-}
-
- /* Medium devices (tablets, less than 992px) */
-@media screen and (min-width: 991.98px) { 
-    .home{
-            height: -webkit-fill-available; 
-    }
-    .home .container{
-        width: inherit;
-    }
-    .home .shoe-info-container{
-       height: auto; 
-       margin-top: 8vh
-    }
-    .home .brand-image {
-       height: 80px;
-       width: 100px;
-   }
-   .brand-slogan .slogan h1 {
-       font-size: 55px;
-       margin-top: 0px;
-   }
-   
-   .home .display-shoe .shoe{
-       width: 42vh;
-       height: inherit;
-       margin: auto;
-       margin-top: -60px;
-       transform: rotate(24deg);
-       position: relative;
-       z-index: 10;
-   }
-   .home .display-name {
-       height: 35vh;
-       justify-content: flex-end;
-       align-items: center;
-   }
-   .home .display-name h4{
-       font-size: 24px
-   }
-   .platform{
-       display: block;
-       position: absolute;
-       border: 8px solid #b5a8a8;
-       width: 27.5vw;
-       height: 50px;
-       border-radius: 50%;
-       top: 50vh;
-       left: 32vw;
-       transform: skewY(24deg);
-       
-   }
-}
-
- /* Large devices (desktops, less than 1200px) */
-@media screen and (min-width: 1199.98px) { 
-    .home{
-        border: 2px solid  brown;
-    }
-    .four{
-        display: none
-    }
-}
-
- /* X-Large devices (large desktops, less than 1400px) */
-@media screen and (min-width: 1399.98px) { 
-    .home{
-        border: 2px solid red
-    }
-    .five{
-        display: none
-    }
-}
-
- /* XX-Large devices (larger desktops) */
- /* No media query since the xxl breakpoint has no upper bound on its width */
