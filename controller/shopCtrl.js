@@ -334,217 +334,214 @@ const getCheckoutSuccess = async (req, res) => {
                     paid += parseInt(el.totalPrice)
                     return {  product: { ...el.product._doc }, quantity: el.quantity, totalPrice: el.totalPrice};
                   });
-                //   console.log(paid)
-                  const order = new Order({
-                    user: {
-                      email: req.user.email,
-                      userId: req.user
-                    },
-                    products: products,
-                    paid: paid
-                  });
-                  order.save((err, result)=>{
-                      if(err) { 
-                          console.log(err)  
-                        }else{  
-                            req.user.cart = [];   //clear the cart
-                            req.user.save((err) =>{
-                                if(err){
-                                    return err
-                                }else{
-                                    const orderedProd = products
-                                    const orderedResult = result
-                                    //create the pdf
-                                    // let receipt = new PDFDocument({ size: "A4", margin: 50 });
-                                    const createInvoice = () => {
-                                        let receipt = new PDFDocument({ size: "A4", margin: 50 });
-                                      
-                                        generateHeader(receipt);
-                                        generateCustomerInformation(receipt, orderedResult);
-                                        generateInvoiceTable(receipt, orderedResult);
-                                        generateFooter(receipt);
-                                      
-                                        //convert the pdf to buffer
+                const order = new Order({
+                user: {
+                    email: req.user.email,
+                    userId: req.user
+                },
+                products: products,
+                paid: paid
+                });
+                order.save((err, result)=>{
+                    if(err) { 
+                        console.log(err)  
+                    }else{  
+                        req.user.cart = [];   //clear the cart
+                        req.user.save((err) =>{
+                            if(err){
+                                return err
+                            }else{
+                                const orderedProd = products
+                                const orderedResult = result
 
-                                        let buffers = [];
-                                        receipt.on('data', buffers.push.bind(buffers));
-                                        receipt.on('end', () => {
+                                //create the pdf
+                                // let receipt = new PDFDocument({ size: "A4", margin: 50 });
+                                const createInvoice = () => {
+                                    let receipt = new PDFDocument({ size: "A4", margin: 50 });
+                                    
+                                    generateHeader(receipt);
+                                    generateCustomerInformation(receipt, orderedResult);
+                                    generateInvoiceTable(receipt, orderedResult);
+                                    generateFooter(receipt);
+                                    
+                                    //convert the pdf to buffer
 
-                                            const invoice = Buffer.concat(buffers);
+                                    let buffers = [];
+                                    receipt.on('data', buffers.push.bind(buffers));
+                                    receipt.on('end', () => {
 
-                                            //send an email of the invoice
-                                            transporter.sendMail({ 
-                                                to: req.user.email, 
-                                                from: process.env.MY_EMAIL,   
-                                                subject: 'Your Simpleton Order',   
-                                                text: `thank you for your order`,
-                                                html:"<p>Thank you for shopping with us. We’ll send a confirmation once your item has shipped. Your order details are indicated below. If you would like to view the status of your order please visit Your Orders on Simpleton.com</p>"
-                                                ,
-                                                attachments : [{
-                                                    filename: 'invoice.pdf',
-                                                    content: invoice
-                                                }]
-                                                
-                                              }).then(res => {
-                                                  console.log('email sent')
-                                                  console.log(res)
-                                              })
+                                        const invoice = Buffer.concat(buffers);
 
+                                        //send an email of the invoice
+                                        transporter.sendMail({ 
+                                            to: req.user.email, 
+                                            from: process.env.MY_EMAIL,   
+                                            subject: 'Your Simpleton Order',   
+                                            text: `thank you for your order`,
+                                            html:"<p>Thank you for shopping with us. We’ll send a confirmation once your item has shipped. Your order details are indicated below. If you would like to view the status of your order please visit Your Orders on Simpleton.com</p>"
+                                            ,
+                                            attachments : [{
+                                                filename: 'invoice.pdf',
+                                                content: invoice
+                                            }]
+                                            
+                                        }).then(res => {
+                                            console.log('email sent')
+                                            console.log(res)
                                         })
-                                        receipt.end();
-                                      }
 
-                                     // generateHeader
-                                    const generateHeader = (receipt) => {
-                                        receipt
-                                            // .text("Simpleton", 50, 45, { width: 50 }) // replace with logo
-                                            .fillColor("#444444")
-                                            .fontSize(20)
-                                            .text("SIMPLETON", 110, 57)
-                                            .fontSize(10)
-                                            .text("123 Main Street", 200, 65, { align: "right" })
-                                            .text("Toronto, Ca, A1B2C3", 200, 80, { align: "right" })
-                                            .moveDown();
-
-                                     }
-
-                                    const generateCustomerInformation = (receipt, orderedResult) => {
-
-                                        receipt
-                                            .fillColor("#444444")
-                                            .fontSize(20)
-                                            .text("Invoice", 50, 160);
-
-                                        generateHr(receipt, 185);
-
-                                        const customerInformationTop = 200;
-                                        
-                                        receipt
-                                            .fontSize(10)
-                                            .text("Order Number:", 50, customerInformationTop)
-                                            .font("Helvetica-Bold")
-                                            .text(`${orderedResult._id}`, 150, customerInformationTop)
-                                            .font("Helvetica")
-                                            .text("Ordered Date:", 50, customerInformationTop + 15)
-                                            .text(formatDate(new Date()), 150, customerInformationTop + 15)
-                                            .text("Amount Paid:", 50, customerInformationTop + 30)
-                                            .text(`$${orderedResult.paid}`,150,customerInformationTop + 30)
-                                            .font("Helvetica-Bold")
-                                            .text(`${orderedResult.user.userId.name}`, 300, customerInformationTop)
-                                            .font("Helvetica")
-                                            .text(`123 Abc Street, Toronto ON, CA`,300,customerInformationTop + 30)
-                                            .moveDown();
-
-                                        generateHr(receipt, 252);
-                                    }
-                                    const generateInvoiceTable = (receipt, orderedResult) => {
-                                        let i;
-                                        const invoiceTableTop = 330;
-                                       receipt.font("Helvetica-Bold");
-                                       generateTableRow(
-                                         receipt,
-                                         invoiceTableTop,
-                                         "Item",
-                                         "Description",
-                                         "Unit Cost",
-                                         "Quantity",
-                                         "Total"
-                                       );
-                                       generateHr(receipt, invoiceTableTop + 20);
-                                       receipt.font("Helvetica");
-
-                                        //loop through the order item and fill the table
-                                        for (i = 0; i < orderedProd.length; i++) {
-                                            const item = orderedProd[i];
-                                            const position = invoiceTableTop + (i + 1) * 30;
-                                            generateTableRow(
-                                            receipt,
-                                            position,
-                                            item.product.title,
-                                            item.product.name,
-                                            `$${item.product.retailPrice}`,
-                                            item.quantity,
-                                            `$${item.totalPrice}`
-                                            );
-                                            generateHr(receipt, position + 20);
-                                        }
-
-                                        const subtotalPosition = invoiceTableTop + (i + 1) * 30;
-                                        generateTableRow(
-                                          receipt,
-                                          subtotalPosition,
-                                          "",
-                                          "",
-                                          "Subtotal",
-                                          "",
-                                          `$${orderedResult.paid}`
-                                        );
-                                      
-                                        const paidToDatePosition = subtotalPosition + 20;
-                                        generateTableRow(
-                                          receipt,
-                                          paidToDatePosition,
-                                          "",
-                                          "",
-                                          "Amount Paid",
-                                          "",
-                                          `$${orderedResult.paid}`
-                                        );
+                                    })
+                                    receipt.end();
                                     }
 
-                                    const generateTableRow = (
-                                        receipt,
-                                        y,
-                                        Item,
-                                        Description,
-                                        UnitCost,
-                                        Quantity,
-                                        Total
-                                      ) => {
-                                        receipt
-                                          .fontSize(10)
-                                          .text(Item, 50, y)
-                                          .text(Description, 150, y)
-                                          .text(UnitCost, 280, y, { width: 90, align: "right" })
-                                          .text(Quantity, 370, y, { width: 90, align: "right" })
-                                          .text(Total, 0, y, { align: "right" });
-                                      }
+                                    // generateHeader
+                                const generateHeader = (receipt) => {
+                                    receipt
+                                        // .text("Simpleton", 50, 45, { width: 50 }) // replace with logo
+                                        .fillColor("#444444")
+                                        .fontSize(20)
+                                        .text("SIMPLETON", 110, 57)
+                                        .fontSize(10)
+                                        .text("123 Main Street", 200, 65, { align: "right" })
+                                        .text("Toronto, Ca, A1B2C3", 200, 80, { align: "right" })
+                                        .moveDown();
 
-                                    // generateFooter
-                                    const generateFooter = (receipt) => {
-                                        generateHr(receipt, 252);
-                                        receipt
-                                            .fontSize(10)
-                                            .text(
-                                            "Payment Received. Thank you for your business.",
-                                            50,
-                                            780,
-                                            { align: "center", width: 500 }
-                                            );
-                                    }
-
-                                    // generateHr
-                                    const generateHr = (receipt, y) => {
-                                        receipt
-                                          .strokeColor("#aaaaaa")
-                                          .lineWidth(1)
-                                          .moveTo(50, y)
-                                          .lineTo(550, y)
-                                          .stroke();
-                                    }
-                                    const formatDate = (date) => {
-                                        const day = date.getDate();
-                                        const month = date.getMonth() + 1;
-                                        const year = date.getFullYear();
-                                        
-                                        return year + "/" + month + "/" + day;
-                                    }
-                                    createInvoice()
-
-
-                                    res.redirect('/shop/account/order')
                                 }
-                            })
+
+                                const generateCustomerInformation = (receipt, orderedResult) => {
+
+                                    receipt
+                                        .fillColor("#444444")
+                                        .fontSize(20)
+                                        .text("Invoice", 50, 160);
+
+                                    generateHr(receipt, 185);
+
+                                    const customerInformationTop = 200;
+                                    
+                                    receipt
+                                        .fontSize(10)
+                                        .text("Order Number:", 50, customerInformationTop)
+                                        .font("Helvetica-Bold")
+                                        .text(`${orderedResult._id}`, 150, customerInformationTop)
+                                        .font("Helvetica")
+                                        .text("Ordered Date:", 50, customerInformationTop + 15)
+                                        .text(formatDate(new Date()), 150, customerInformationTop + 15)
+                                        .text("Amount Paid:", 50, customerInformationTop + 30)
+                                        .text(`$${orderedResult.paid}`,150,customerInformationTop + 30)
+                                        .font("Helvetica-Bold")
+                                        .text(`${orderedResult.user.userId.name}`, 300, customerInformationTop)
+                                        .font("Helvetica")
+                                        .text(`123 Abc Street, Toronto ON, CA`,300,customerInformationTop + 30)
+                                        .moveDown();
+
+                                    generateHr(receipt, 252);
+                                }
+                                const generateInvoiceTable = (receipt, orderedResult) => {
+                                    let i;
+                                    const invoiceTableTop = 330;
+                                    receipt.font("Helvetica-Bold");
+                                    generateTableRow(
+                                        receipt,
+                                        invoiceTableTop,
+                                        "Item",
+                                        "Description",
+                                        "Unit Cost",
+                                        "Quantity",
+                                        "Total"
+                                    );
+                                    generateHr(receipt, invoiceTableTop + 20);
+                                    receipt.font("Helvetica");
+
+                                    //loop through the order item and fill the table
+                                    for (i = 0; i < orderedProd.length; i++) {
+                                        const item = orderedProd[i];
+                                        const position = invoiceTableTop + (i + 1) * 30;
+                                        generateTableRow(
+                                        receipt,
+                                        position,
+                                        item.product.title,
+                                        item.product.name,
+                                        `$${item.product.retailPrice}`,
+                                        item.quantity,
+                                        `$${item.totalPrice}`
+                                        );
+                                        generateHr(receipt, position + 20);
+                                    }
+
+                                    const subtotalPosition = invoiceTableTop + (i + 1) * 30;
+                                    generateTableRow(
+                                        receipt,
+                                        subtotalPosition,
+                                        "",
+                                        "",
+                                        "Subtotal",
+                                        "",
+                                        `$${orderedResult.paid}`
+                                    );
+                                    
+                                    const paidToDatePosition = subtotalPosition + 20;
+                                    generateTableRow(
+                                        receipt,
+                                        paidToDatePosition,
+                                        "",
+                                        "",
+                                        "Amount Paid",
+                                        "",
+                                        `$${orderedResult.paid}`
+                                    );
+                                }
+
+                                const generateTableRow = (
+                                    receipt,
+                                    y,
+                                    Item,
+                                    Description,
+                                    UnitCost,
+                                    Quantity,
+                                    Total
+                                    ) => {
+                                    receipt
+                                        .fontSize(10)
+                                        .text(Item, 50, y)
+                                        .text(Description, 150, y)
+                                        .text(UnitCost, 280, y, { width: 90, align: "right" })
+                                        .text(Quantity, 370, y, { width: 90, align: "right" })
+                                        .text(Total, 0, y, { align: "right" });
+                                    }
+
+                                // generateFooter
+                                const generateFooter = (receipt) => {
+                                    generateHr(receipt, 252);
+                                    receipt
+                                        .fontSize(10)
+                                        .text(
+                                        "Payment Received. Thank you for your business.",
+                                        50,
+                                        780,
+                                        { align: "center", width: 500 }
+                                        );
+                                }
+
+                                // generateHr
+                                const generateHr = (receipt, y) => {
+                                    receipt
+                                        .strokeColor("#aaaaaa")
+                                        .lineWidth(1)
+                                        .moveTo(50, y)
+                                        .lineTo(550, y)
+                                        .stroke();
+                                }
+                                const formatDate = (date) => {
+                                    const day = date.getDate();
+                                    const month = date.getMonth() + 1;
+                                    const year = date.getFullYear();
+                                    return year + "/" + month + "/" + day;
+                                }
+                                createInvoice()
+                                res.redirect('/shop/account/order')
+                            }
+                        })
                     }
                 });
             })
@@ -560,22 +557,15 @@ const getCheckoutSuccess = async (req, res) => {
 
 
 // Get Orders
-
 const getOrders = async (req, res, next) => {
     try{
-        // const result = await Products.find();
         if(req.user){
             userEmail = req.user.email;
             const userOrder = await Order.find({'user.email': userEmail})
-            
-            console.log(userOrder)
-            
-            //  console.log(subtotal)
             res.render('shop/orders',{
                 title: 'Simpleton',
                 user: req.user,
                 orders: userOrder,
-                // products: result
             })
         }else{
             res.redirect('/auth/google')
@@ -621,22 +611,16 @@ const getAccount = (req, res) => {
     
 }
 
-
+// Filter Search
 const postFilter = async (req, res) => {
     try {
-        // console.log(req.params)
-        // console.log(req)
-        
         const filterColor = req.body.color 
         const filterBrand = req.body.brand 
         const filterGender = req.body.gender 
 
-        console.log('brand:', filterBrand)
-        console.log('Color:', filterColor)
-        console.log('Gender:', filterGender)
+        // hold the query
         const  query = {    
             retailPrice: {  $gte: Number(req.body.minAmount) || 0, $lte: Number(req.body.maxAmount) || 5000},
-        
         } 
 
         // check for the filter values and add them to the query
@@ -651,16 +635,18 @@ const postFilter = async (req, res) => {
         if (filterGender !== undefined && filterGender !== ''){
             query.gender = filterGender
         }
-       console.log('query =', query)
+        // get filter fields
         const catalog = await Products.find();
         const allBrands = []
         const allGenders = []
         const allColors = []
+
         for(prod in catalog){
             allBrands.push(catalog[prod].brand)
             allGenders.push(catalog[prod].gender)
             allColors.push(catalog[prod].colorway)
         }
+
         // get the unique values
         const brands = [...new Set(allBrands)];
         const genders = [...new Set(allGenders)];
@@ -673,8 +659,6 @@ const postFilter = async (req, res) => {
             retailPrice: {  $gte: Number(req.body.minAmount) || 0, $lte: Number(req.body.maxAmount) || 5000} 
         }
 
-        console.log('FilterQuery:',filterQuery)
-    
         // pagination
         const page = req.params.page || 1
         const perPage = 20;
@@ -683,7 +667,6 @@ const postFilter = async (req, res) => {
         .limit(perPage)
         .exec((err, products) => {
             Products.find(query).countDocuments().exec((err, count) => {
-                console.log(count)
                 if (err) return next(err)
                 res.render('shop/catalog', {
                     title: 'Simpleton',
@@ -699,9 +682,6 @@ const postFilter = async (req, res) => {
                 })
             })
         })
-
-  
-        
        
     } catch (err) {
         
