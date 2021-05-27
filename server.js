@@ -7,7 +7,7 @@ const multer = require('multer')
 var bb = require('express-busboy');
 var passport = require('passport')
 var session = require('express-session')
-
+var methodOverride = require('method-override');
 
 require('dotenv').config();
 
@@ -37,6 +37,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride('_method'));
 
 app.use(passport.initialize())
 app.use(session ({

@@ -58,7 +58,7 @@ const getCatalog = async (req, res, next) => {
         .skip((perPage * page) - perPage)
         .limit(perPage)
         .exec((err, products) => {
-            Products.count().exec((err, count) => {
+            Products.countDocuments().exec((err, count) => {
                 if (err) return next(err)
                 // console.log(products)
                 res.render('shop/catalog', {
@@ -622,21 +622,25 @@ const getAccount = (req, res) => {
 }
 
 
-
 const postFilter = async (req, res) => {
     try {
-        console.log(req.params)
-        const c = req.body.color ? req.body.color : 'white' ;
+        // console.log(req.params)
+        // console.log(req)
+        
         const filterColor = req.body.color 
         const filterBrand = req.body.brand 
         const filterGender = req.body.gender 
-        const query = {    
+
+        console.log('brand:', filterBrand)
+        console.log('Color:', filterColor)
+        console.log('Gender:', filterGender)
+        const  query = {    
             retailPrice: {  $gte: Number(req.body.minAmount) || 0, $lte: Number(req.body.maxAmount) || 5000},
         
         } 
 
         // check for the filter values and add them to the query
-        if (filterColor !== undefined){
+        if (typeof filterColor !== undefined ){
             query.colorway = new RegExp(filterColor, 'i')
         }
 
@@ -647,7 +651,7 @@ const postFilter = async (req, res) => {
         if (filterGender !== undefined){
             query.gender = filterGender
         }
-       
+       console.log('query =', query)
         const catalog = await Products.find();
         const allBrands = []
         const allGenders = []
@@ -669,7 +673,7 @@ const postFilter = async (req, res) => {
             retailPrice: {  $gte: Number(req.body.minAmount) || 0, $lte: Number(req.body.maxAmount) || 5000} 
         }
 
-        console.log(filterQuery)
+        console.log('FilterQuery:',filterQuery)
     
         // pagination
         const page = req.params.page || 1
@@ -678,7 +682,8 @@ const postFilter = async (req, res) => {
         .skip((perPage * page) - perPage)
         .limit(perPage)
         .exec((err, products) => {
-            Products.count().exec((err, count) => {
+            Products.find(query).countDocuments().exec((err, count) => {
+                console.log(count)
                 if (err) return next(err)
                 res.render('shop/catalog', {
                     title: 'Simpleton',

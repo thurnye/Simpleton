@@ -179,7 +179,7 @@
 
         <%if (! search){  %> 
           <!-- show pagination for catalog -->
-          <% if (pages > 0) { %>
+          <% if (pages > 1) { %>
             <ul class="pagination text-center">
               <% if (current == 1) { %>
                 <li class="disabled"><a>First</a></li>
@@ -210,35 +210,53 @@
           
           <% }else {  %>
           <!-- show pagination for search -->
-            <% if (pages > 0) { %>
-              <ul class="pagination text-center">
-                <% if (current == 1) { %>
-                  <li class="disabled"><a>First</a></li>
+          <% if (pages > 1) { %>
+            <ul class="pagination text-center">
+              <% if (current == 1) { %>
+                <li class="disabled"><a>First</a></li>
+              <% }%>
+              <% let i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+              <% if (i !== 1) { %>
+                <li class="disabled"><a>...</a></li>
+              <% } %>
+              <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                <% if (i == current) { %>
+                  <li class="active"><a><%= i %></a></li>
                 <% } else { %>
-                  <li><a href="/shop/filter/1">First</a></li>
+                  <li>
+                    <form action="/shop/filter/<%= i %>" enctype="multipart/form-data" method="POST" >
+                        <input type="hidden" class=" form-control quantity" name="brand" value="<%= filter.brand ? filter.brand : undefined %>"  >
+                        <input type="hidden" name="gender" value="<%= filter.gender ? filter.gender : undefined %>" >
+                        <input type="hidden" name="color" value="<%= filter.color ? filter.color : undefined %>" >
+                        <input type="hidden" name="minAmount" value="<%= filter.retailPrice.$gte ? filter.retailPrice.$gte: 0 %>" >
+                        <input type="hidden" name="maxAmount" value="<%= filter.retailPrice.$gte ? filter.retailPrice.$gte: 5000 %>">
+                        <button type="submit"><%= i %></button>
+                      </form>
+                  </li>
                 <% } %>
-                <% let i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
-                <% if (i !== 1) { %>
+                <% if (i == Number(current) + 4 && i < pages) { %>
                   <li class="disabled"><a>...</a></li>
                 <% } %>
-                <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
-                  <% if (i == current) { %>
-                    <li class="active"><a><%= i %></a></li>
-                  <% } else { %>
-                    <li><a href="/shop/filter/<%= i %>"><%= i %></a></li>
-                  <% } %>
-                  <% if (i == Number(current) + 4 && i < pages) { %>
-                    <li class="disabled"><a>...</a></li>
-                  <% } %>
-                <% } %>
-                <% if (current == pages) { %>
-                  <li class="disabled"><a>Last</a></li>
-                <% } else { %>
-                  <li><a href="/shop/filter/<%= pages %>">Last</a></li>
-                <% } %>
-              </ul>
-            <% } %>
+              <% } %>
+              <% if (current == pages) { %>
+                <li ><a>Last</a></li>
+              <% } else { %>
+                <li>
+                  <form action="/shop/filter/<%= pages %>" enctype="multipart/form-data" method="POST" >
+                      <input type="hidden" class=" form-control quantity" name="brand" value="<%= filter.brand ? filter.brand : undefined %>"  >
+                      <input type="hidden" name="gender" value="<%= filter.gender ? filter.gender : undefined %>" >
+                      <input type="hidden" name="color" value="<%= filter.color ? filter.color : undefined %>" >
+                      <input type="hidden" name="minAmount" value="<%= filter.retailPrice.$gte ? filter.retailPrice.$gte: 0 %>" >
+                      <input type="hidden" name="maxAmount" value="<%= filter.retailPrice.$gte ? filter.retailPrice.$gte: 5000 %>">
+                      <button type="submit"><%= i %></button>
+                    </form>
+                </li>
+              <% } %>
+            </ul>
+          <% } else { %>
+            <div></div>
           <% } %>
+        <% } %>
         
       </div>
     </div>

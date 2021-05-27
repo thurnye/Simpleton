@@ -20,6 +20,7 @@ router.get('/shop/catalog/:page', shopCtrl.getCatalog);
 
 // Get filter Page
 router.post('/shop/filter/:page', shopCtrl.postFilter)
+// router.get('/shop/filter/:page', shopCtrl.postFilter)
 
 //Get Product Details
  router.get('/shop/product/:id', shopCtrl.getOneProduct)
