@@ -28,7 +28,7 @@
                                     class="form-check-input brand_check" 
                                     type="checkbox" 
                                     value=<%= item %> 
-                                    id="flexCheckChecked" 
+                                    <%# id="flexCheckChecked"   %> 
                                     name='brand'
                                     <%= filter.brand === item ? "checked" : " " %> 
                                      >
@@ -59,12 +59,12 @@
                             >
                           </div>
                           <div class="mb-6">
-                            <label for="exampleFormControlInput1" class="form-label">Max Amount</label>
+                            <label for="exampleFormControlInput2" class="form-label">Max Amount</label>
                             <input 
                             type="number" 
                             class="form-control" 
                             name='maxAmount' 
-                            id="exampleFormControlInput1"
+                            id="exampleFormControlInput2"
                             value="<%= filter.retailPrice.$lte%>"  
                             >
                           </div>
@@ -87,7 +87,7 @@
                                     class="form-check-input color_check" 
                                     type="checkbox" 
                                     value=<%= item%> 
-                                    id="flexCheckChecked" 
+                                    <%# id="flexCheckChecked"   %> 
                                     name='color' 
                                     style="background-color:<%= item %>"
                                     <%= filter.color === item ? "checked" : " " %> 
@@ -114,7 +114,7 @@
                                 class="form-check-input gender_check" 
                                 type="checkbox" 
                                 value=<%= item%> 
-                                id="flexCheckChecked" 
+                                <%# id="flexCheckChecked"   %> 
                                 name='gender' 
                                 <%= filter.gender === item ? "checked" : "" %>  
                                 >

@@ -14,7 +14,7 @@
         <div style="margin-top: 5vh;">
           <h4>Filter</h4>
         </div>
-        <form action='/shop/filter/1' method="POST" enctype="multipart/form-data" id="form">
+        <form action='/shop/filter/1' method="POST" enctype="multipart/form-data" id="formTwo">
           <div class="accordion accordion-flush" id="accordionFlushExample" style="margin-top: 2vh;">
 
             <!-- BRAND -->
@@ -33,7 +33,7 @@
                           class="form-check-input brand_check" 
                           type="checkbox" 
                           value=<%= item %> 
-                          id="flexCheckChecked" 
+                          <%# id="flexCheckChecked"   %> 
                           name='brand'
                           <%= filter.brand === item ? "checked" : " " %> 
                            >
@@ -54,22 +54,22 @@
               <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
                   <div class="mb-6">
-                    <label for="exampleFormControlInput1" class="form-label">Min Amount</label>
+                    <label for="exampleFormControlInput3" class="form-label">Min Amount</label>
                     <input 
                     type="number" 
                     class="form-control" 
                     name='minAmount' 
-                    id="exampleFormControlInput1"
+                    id="exampleFormControlInput3"
                     value="<%= filter.retailPrice.$gte%>" 
                     >
                   </div>
                   <div class="mb-6">
-                    <label for="exampleFormControlInput1" class="form-label">Max Amount</label>
+                    <label for="exampleFormControlInput4" class="form-label">Max Amount</label>
                     <input 
                     type="number" 
                     class="form-control" 
                     name='maxAmount' 
-                    id="exampleFormControlInput1"
+                    id="exampleFormControlInput4"
                     value="<%= filter.retailPrice.$lte%>"  
                     >
                   </div>
@@ -92,7 +92,7 @@
                         class="form-check-input color_check" 
                         type="checkbox" 
                         value=<%= item%> 
-                        id="flexCheckChecked" 
+                        <%# id="flexCheckChecked"   %> 
                         name='color' 
                         style="background-color:<%= item %>"
                         <%= filter.color === item ? "checked" : " " %> 
@@ -119,7 +119,7 @@
                       class="form-check-input gender_check" 
                       type="checkbox" 
                       value=<%= item%> 
-                      id="flexCheckChecked" 
+                      <%# id="flexCheckChecked"   %> 
                       name='gender' 
                       <%= filter.gender === item ? "checked" : "" %>  
                       >
@@ -155,7 +155,7 @@
                     <div class="icon-form">
                       <form action="/shop/cart" enctype="multipart/form-data" method="POST" class="cart-icon">
                         <div class="product-quantity" style="display: none;">
-                          <input class=" form-control quantity" name= "quantity" value="1" >
+                          <input class=" form-control quantity" name= "quantity" value="1">
                         </div>
                         <input type="hidden" name="prodId" value="<%= item._id %>">
                         <input type="hidden" name="price" value="<%= item.retailPrice %>">
@@ -175,8 +175,6 @@
         </div>
 
         <!-- This is the Pagination -->
-       
-
         <%if (! search){  %> 
           <!-- show pagination for catalog -->
           <% if (pages > 1) { %>
@@ -229,7 +227,7 @@
                         <input type="hidden" name="gender" value="<%= filter.gender ? filter.gender : undefined %>" >
                         <input type="hidden" name="color" value="<%= filter.color ? filter.color : undefined %>" >
                         <input type="hidden" name="minAmount" value="<%= filter.retailPrice.$gte ? filter.retailPrice.$gte: 0 %>" >
-                        <input type="hidden" name="maxAmount" value="<%= filter.retailPrice.$lte ? filter.retailPrice.$lte: 5000 %>">
+                        <input type="hidden" name="maxAmount" value="<%= filter.retailPrice.$lte ? filter.retailPrice.$lte: 5000 %>" >
                         <button type="submit"><%= i %></button>
                       </form>
                   </li>
@@ -239,16 +237,16 @@
                 <% } %>
               <% } %>
               <% if (current == pages) { %>
-                <li ><a>Last</a></li>
+                <li class="disabled"><a>Last</a></li>
               <% } else { %>
                 <li>
                   <form action="/shop/filter/<%= pages %>" enctype="multipart/form-data" method="POST" >
-                      <input type="hidden" class=" form-control quantity" name="brand" value="<%= filter.brand ? filter.brand : undefined %>"  >
+                      <input type="hidden" class=" form-control quantity" name="brand" value="<%= filter.brand ? filter.brand : undefined %>"  />
                       <input type="hidden" name="gender" value="<%= filter.gender ? filter.gender : undefined %>" >
                       <input type="hidden" name="color" value="<%= filter.color ? filter.color : undefined %>" >
                       <input type="hidden" name="minAmount" value="<%= filter.retailPrice.$gte ? filter.retailPrice.$gte: 0 %>" >
                       <input type="hidden" name="maxAmount" value="<%= filter.retailPrice.$lte ? filter.retailPrice.$lte: 5000 %>">
-                      <button type="submit"><%= pages %></button>
+                      <button type="submit">Last</button>
                     </form>
                 </li>
               <% } %>
