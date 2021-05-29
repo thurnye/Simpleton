@@ -277,7 +277,7 @@ body{
 
 @media screen and (min-width: 318.98px){ 
     .catalog{
-        /* border: 2px solid red; */
+        border: 2px solid red;
         /* height: auto; */
         display: block;
     }
@@ -350,7 +350,11 @@ body{
 
 /* // Medium devices (tablets, 768px and up) */
 @media screen and  (min-width: 768px) { 
-
+    .catalog{
+        border: 2px solid white;
+        height: inherit;
+        display: block;
+    }
     .catalog .filter{
         display: none;
     }
@@ -359,11 +363,12 @@ body{
         width: fit-content;
     }
     .filter-hamburger form {
-        height: fit-content;
+        height: inherit;
     }
     .menu{
         padding: 100px;
         padding-top: 81px;
+        overflow: auto;
     }
  }
 
@@ -371,7 +376,7 @@ body{
 @media screen and (min-width: 992px) { 
 
     .catalog{
-        /* border: 2px solid pink; */
+        border: 2px solid pink;
         height: 82vh;
         margin-top: 5vh;
         display: flex;
