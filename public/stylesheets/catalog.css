@@ -277,12 +277,12 @@ body{
 
 @media screen and (min-width: 318.98px){ 
     .catalog{
-        border: 2px solid red;
         /* height: auto; */
         display: block;
     }
     .catalog .container{
-        width: 75%
+        width: 75%;
+        margin-top: 10px;
     }
    .catalog .filter{
        display: none;
@@ -331,7 +331,7 @@ body{
 
 /* // Small devices (landscape phones, 576px and up) */
 @media screen and (min-width: 576px) {
-
+    
     .catalog .filter{
         display: none;
     }
@@ -345,13 +345,13 @@ body{
     .menu{
         padding: 100px;
         padding-top: 81px;
+        overflow: auto;
     }
  }
 
 /* // Medium devices (tablets, 768px and up) */
 @media screen and  (min-width: 768px) { 
     .catalog{
-        border: 2px solid white;
         height: inherit;
         display: block;
     }
@@ -365,10 +365,18 @@ body{
     .filter-hamburger form {
         height: inherit;
     }
+    /* .menu {
+        width: 100vw;
+        height: auto
+    } */
     .menu{
+        height: 100vh;
         padding: 100px;
         padding-top: 81px;
         overflow: auto;
+    }
+    .catalog .container {
+        width: 95%;
     }
  }
 
@@ -376,11 +384,11 @@ body{
 @media screen and (min-width: 992px) { 
 
     .catalog{
-        border: 2px solid pink;
         height: 82vh;
         margin-top: 5vh;
         display: flex;
     }
+  
     .catalog .filter{
         display: block;
     }
