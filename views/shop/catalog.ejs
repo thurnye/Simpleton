@@ -211,7 +211,7 @@
           <% if (pages > 1) { %>
             <ul class="pagination text-center">
               <% if (current == 1) { %>
-                <li class="disabled"><a>First</a></li>
+                <!-- <li class="disabled"><a>First</a></li> -->
               <% }%>
               <% let i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
               <% if (i !== 1) { %>
@@ -237,7 +237,7 @@
                 <% } %>
               <% } %>
               <% if (current == pages) { %>
-                <li class="disabled"><a>Last</a></li>
+                <!-- <li class="disabled"><a>Last</a></li> -->
               <% } else { %>
                 <li>
                   <form action="/shop/filter/<%= pages %>" enctype="multipart/form-data" method="POST" >
