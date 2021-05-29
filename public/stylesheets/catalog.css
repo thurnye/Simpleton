@@ -8,15 +8,12 @@ body{
 
 }
 .catalog{
-    /* height: 82vh; */
-    /* margin-top: 5vh; */
     display: flex;
 }
 .scrollspy-example {
     position: relative;
     overflow: auto;
     height: 80vh;
-    /* border: 2px dotted greenyellow; */
     box-shadow: 1px -8px 20px 9px #00292b;
 }
 
@@ -41,7 +38,6 @@ body{
 }
 .catalog .icon-form {
     margin-top: 0px;
-    /* z-index: 1; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -54,8 +50,6 @@ body{
     align-items: baseline;
 }
 .catalog .cart-icon {
-    /* border: 3px solid #ff00008f; */
-    /* border-radius: 50%; */
     width: max-content;
 }
 .catalog .cart-icon button{
@@ -63,8 +57,6 @@ body{
     color: #ea7a7a;
     font-size: 50px;
     border:none;
-    /* border: 2px solid #ea7a7ac2; */
-    /* border-radius: 50%; */
 }
 .catalog .pagination{
     width: -webkit-fill-available;
@@ -105,7 +97,6 @@ body{
 }
 .catalog .accordion button:focus{
     border-bottom: 2px solid #e7f1ff;
-    /* outline: none; */
     box-shadow: none;
 
 }
@@ -126,43 +117,39 @@ body{
 
 #menuToggle
 {
-  display: block;
-  position: relative;
-  top: 50px;
-  left: 50px;
-  
-  z-index: 1;
-  
-  -webkit-user-select: none;
-  user-select: none;
+    display: block;
+    position: relative;
+    top: 50px;
+    left: 50px;
+    z-index: 1;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
-#menuToggle a
-{
-  text-decoration: none;
-  color: #232323;
-  
-  transition: color 0.3s ease;
+#menuToggle a{
+    text-decoration: none;
+    color: #232323;
+    transition: color 0.3s ease;
 }
 
 #menuToggle a:hover
 {
-  color: tomato;
+    color: tomato;
 }
 
 
 #menuToggle .hamburger-trigger{
     border: 2px solid red;
-  display: block;
-  width: 40px;
-  height: 32px;
-  position: absolute;
-  top: -7px;
-  left: -5px;
-  cursor: pointer;
-  opacity: 0; /* hide this */
-  z-index: 2; /* and place it over the hamburger */
-  -webkit-touch-callout: none;
+    display: block;
+    width: 40px;
+    height: 32px;
+    position: absolute;
+    top: -7px;
+    left: -5px;
+    cursor: pointer;
+    opacity: 0; 
+    z-index: 2; 
+    -webkit-touch-callout: none;
 }
 
 /*
@@ -263,9 +250,6 @@ body{
   transform: none;
 }
 .filter-hamburger .accordion button{
-    /* border: none;
-    width: -webkit-fill-available;
-    background: inherit; */
     color: #3e3d3d;
     font-size: 35px;
 
@@ -274,10 +258,15 @@ body{
     font-size: 30px;
 
 }
+.pagination button{ 
+    border: none;
+    background: inherit;
+    color: #c3c3c3;
+
+}
 
 @media screen and (min-width: 318.98px){ 
     .catalog{
-        /* height: auto; */
         display: block;
     }
     .catalog .container{
@@ -365,10 +354,7 @@ body{
     .filter-hamburger form {
         height: inherit;
     }
-    /* .menu {
-        width: 100vw;
-        height: auto
-    } */
+    
     .menu{
         height: 100vh;
         padding: 100px;
@@ -388,7 +374,7 @@ body{
         margin-top: 5vh;
         display: flex;
     }
-  
+
     .catalog .filter{
         display: block;
     }
