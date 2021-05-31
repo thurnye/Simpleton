@@ -32,3 +32,5 @@
 * Create a `.env` file in the root dir and add the necessary credentials
 * Run `npm install`
 * Run `nodemon` or `npm start`
+
+[Live Site](https://thesneakerdatabase.com/api/) - Checkout the live site here
