@@ -1,6 +1,5 @@
 # Simpleton - Just a Ton of Simple Things
 <p>This is an e-commerce website, you can practically do everything a e-commerce site does ranging from window shopping to buying. To checkout or process payment use the inbuilt credit card in the checkout page. Don't worry if you try to use your personal card, we won't charge you and your card will be invalid in the payment field.</p>
----
 
 
 
