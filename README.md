@@ -33,4 +33,4 @@
 * Run `npm install`
 * Run `nodemon` or `npm start`
 
-[Live Site](https://thesneakerdatabase.com/api/) - Checkout the live site here
+[Live Site](https://simpleton-app.herokuapp.com/) - Checkout site here
