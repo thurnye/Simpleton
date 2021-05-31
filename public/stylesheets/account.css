@@ -1,5 +1,10 @@
 body {
     font-size: 0.9rem;
+    border: 2px solid red;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   .page-wrapper .sidebar-wrapper,
   #show-sidebar,
