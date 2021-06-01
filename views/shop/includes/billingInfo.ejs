@@ -1,0 +1,135 @@
+
+
+
+<section class="billing">
+    <div class="container">
+
+        <div>
+            <h3>Billing Information</h3>
+        </div>
+    
+        <div class="row">
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Name on Card: <%= user.name %> </h4>
+                  <h6 class="card-text"> Card Number: 4242 4242 4242 4242 </h6>
+                  <div class=" d-flex justify-content-between ">
+                      <p class="card-text">Exp: 12/34</p>
+                      <p class="card-text">CVC: 123</p>
+                  </div>
+                  <div>
+                    <h4>Billing Address</h4>
+                </div>
+        
+                <h5>123 Main Street, </h5>
+                <h5>Toronto, ON,</h5>
+                <h5>1A2BC3, CA</h5>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="newCard">
+        <!-- Button trigger modal -->
+        <div class="addCard">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+               Add new card
+              </button>
+        </div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered ">
+          
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">ADD A NEW CARD</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="#"> 
+                <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <h3 class=lockit>Billing Address</h3>
+                        <fieldset id=billingAddress>
+                            <input type=text name=first_name id=firstName placeholder="First Name" autocorrect=off>
+
+                            <input type=text name=cast_name id=lastName placeholder="Last Name" autocorrect=off>
+
+                            <input type=text name=street1 id=address class=three-quarters placeholder=Street autocorrect=off>
+
+                            <input type=text name=street2 id=address2 class=quarter placeholder=Apt/Suite autocorrect=off>
+
+                            <input type=text name=city id=city placeholder=City autocorrect=off>
+
+                            <input type=text name=state id=region placeholder=State/Province autocorrect=off>
+
+                            <input type=text name=postal_code id=postal placeholder="Zip Code" autocorrect=off>
+
+                            <input type=text name=country id=country placeholder="Country" autocorrect=off>
+
+                        </fieldset>
+
+                        <h3 class=lockit>Credit Card Information</h3>
+                        <fieldset id=cardInfo>
+                            <input type=tel min=1 name=cc_number id=cc-number placeholder="Card Number" autocorrect=off>
+                            <div class=split-input>
+                            <select name=cc_card_type id=cardType class=three-quarters>
+                                <option value="">Card Type</option>
+                                <option value="Visa">Visa</option>
+                                <option value="Mastercard">Mastercard</option>
+                                <option value="American Express">American Express</option>
+                            </select>
+                            <input type=tel name=cvv id=cc-csc min=1 placeholder=CVV autocorrect=off class=quarter>
+                            </div>
+                            <select name=cc_exp_month id=expMonth>
+                            <option value="">Expiration Month</option>
+                            <option value="01">01 January</option>
+                            <option value="02">02 February</option>
+                            <option value="03">03 March</option>
+                            <option value="04">04 April</option>
+                            <option value="05">05 May</option>
+                            <option value="06">06 June</option>
+                            <option value="07">07 July</option>
+                            <option value="08">08 August</option>
+                            <option value="09">09 September</option>
+                            <option value="10">10 October</option>
+                            <option value="11">11 November</option>
+                            <option value="12">12 December</option>
+                            </select>
+                            <select id=expYear name=cc_exp_year>
+                            <option value="">Expiration Year</option>
+                            <option value=2021>2021</option>
+                            <option value=2022>2022</option>
+                            <option value=2023>2023</option>
+                            <option value=2024>2024</option>
+                            <option value=2025>2025</option>
+                            <option value=2026>2026</option>
+                            <option value=2027>2027</option>
+                            <option value=2028>2028</option>
+                            <option value=2029>2029</option>
+                            <option value=2030>2030</option>
+                            <option value=2031>2031</option>
+                            </select>
+                        </fieldset>
+                       
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary">Add Card</button>
+                </div>
+            </form>
+
+            </div>
+        </div>
+        </div>
+  </div>
+    </section>
+</section>

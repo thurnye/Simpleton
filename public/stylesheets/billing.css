@@ -1,0 +1,204 @@
+
+
+.billing .card{
+    color: #8c8c8c
+}
+
+.addCard{
+    margin-top: 20px;
+    text-align: end;
+}
+/* Form Styles */
+  form,
+  form * {
+    box-sizing: border-box;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-kerning: auto;
+  }
+  form {
+    font-size: 10pt;
+    line-height: 1.4;
+    font-weight: 400;
+    font-family: 'Open Sans', sans-serif;
+    -webkit-text-size-adjust: 100%;
+    margin: 0;
+    padding: 0;
+    transition: opacity .3s ease-in-out;
+  }
+  form:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+  form fieldset {
+    border: none;
+    padding: 0;
+  }
+  form select,
+  form .split-input > input,
+  form .split-input > select,
+  form input,
+  form textarea {
+    float: left;
+    margin: 0 0 2% 0;
+    margin-bottom: 2%;
+    padding: 5px 8px;
+    width: 49%;
+    height: 40px;
+    outline: none;
+    border: 1px solid rgba(255,255,255,.7);
+    border-radius: 2px;
+    background: rgba(255,255,255,.5);
+    box-shadow: rgba(0,0,0,.15) 0 1px 0;
+    color: rgba(0,0,0,.7);
+    font-weight: 400;
+    font-size: 12pt;
+    transition: all .2s ease-in-out;
+    -webkit-appearance: none;
+    appearance: none;
+    -moz-appearance: none;
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+  form select:focus,
+  form .split-input > *:focus,
+  form input:focus {
+    outline: none;
+    border-color: orange;
+    box-shadow: #fc0 0 0 3px;
+  }
+  form select,
+  form .split-input select {
+    color: rgba(0,0,0,.5);
+    background: rgba(255,255,255,.5);
+    padding-right: 1.5em;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAQAAABLCVATAAAAjElEQVR4Ae2QxbkCARDGMlsB2sxe1ovCKR0uuOTh9jL3fH+Gu/DPP236dG+8Pm1IGTJmdMONGZJCQs78xstJAOJGVU6wJmd2lWRGzg5BcYVqRkHAoepS0aHGAz3KV/mao6ryT5qSQCmY6YsdD5QoCZQoCZSoG1bpGle5Rii3NI6v8jVO0Cwv+OefT2IBOYykNaMbWusAAAAASUVORK5CYII=') !important;
+    background-repeat: no-repeat !important;
+    background-position: calc(100% - .5em) 50% !important;
+    background-size: 12px !important;
+    text-indent: 0.01px;
+    text-overflow: '';
+  }
+  form select:active,
+  form .split-input select:active {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAQAAABLCVATAAABBklEQVR4Ae3PQY7TQBCG0VfNLLgGd2SBhO207SBxuZgzcAsWIxfbHiuTFsnsyCd505Kf/gof1P8NPaHfX3z26rFe/IlfX7N6yT2kcFfFa9TYPuWYJw8Vc6yxyTCp7l9ULTIuIOo+3eVkWVSIDQg1x3+mMlZVthAlTyYSIZuvfWkLlpjt0ELIasq4AbUvaVEb9qKpRN3HkILDr8eXWLPa34NEMeegs4g4O7UMsTmWszHjBpRWJ4fiwrGiGt87Datqpw9RzIbri7RHdSFYDOKwKONscqwDRS4xvF3kbJJ96OqBukf1IVhzAOJshDuhKJb8Tvww2d0oNp1K/iS+2elDj/eEntCH9BdocplPRQvKAQAAAABJRU5ErkJggg==');
+  }
+  form select::-ms-expand {
+    display: none;
+  }
+  form textarea {
+    min-height: 5em;
+  }
+  form select[class=three-quarters],
+  form input[class=three-quarters],
+  form textarea[class=three-quarters] {
+    width: 74%;
+  }
+  form select[class=quarter],
+  form input[class=quarter],
+  form textarea[class=quarter] {
+    margin-left: 2% !important;
+    width: 24%;
+  }
+  form .split-input > select[class=three-quarters],
+  form .split-input > input[class=three-quarters],
+  form .split-input > textarea[class=three-quarters] {
+    width: 73%;
+  }
+  form .split-input > select[class=quarter],
+  form .split-input > input[class=quarter],
+  form .split-input > textarea[class=quarter] {
+    margin-left: 4% !important;
+    width: 23%;
+  }
+  form .split-input {
+    float: left;
+    width: 49%;
+    margin-bottom: 2%;
+  }
+  form .split-input > input,
+  form .split-input > select {
+    margin-bottom: 0;
+    width: 48%;
+  }
+  form .split-input input:nth-child(even),
+  form .split-input select:nth-child(even) {
+    margin-left: 2%;
+  }
+  form select:nth-child(even),
+  form input:nth-child(even),
+  form .split-input:nth-child(even) {
+    margin-left: 2%;
+  }
+  form .tooltip-inner {
+    padding: 7px;
+    border-radius: 2px;
+    color: #fff;
+    font-weight: 300;
+    font-size: 12pt;
+  }
+  form [type=number]::-webkit-inner-spin-button,
+  form [type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  form [data-button] {
+    width: auto;
+    padding: .5em .75em;
+    font-size: 18pt;
+    font-weight: 700;
+    font-style: italic;
+    display: block;
+    margin: 1em auto .5em auto;
+  }
+  form .lockit {
+    position: relative;
+  }
+  form .lockit:after {
+    content: '';
+    display: block;
+    width: 20px;
+
+    background-size: 20px 24px;
+    background-position: middle bottom;
+    position: absolute;
+    bottom: .25em;
+    right: 0;
+  }
+
+@media screen and (max-width: 450px) {
+  form select,
+  form .split-input,
+  form .split-input > *,
+  form input {
+    width: 100%;
+  }
+  form .split-input {
+    margin-bottom: 0;
+  }
+  form .split-input > input,
+  form .split-input > select {
+    margin-bottom: 2%;
+    width: 100%;
+  }
+  form select:nth-child(even),
+  form input:nth-child(even),
+  form .split-input:nth-child(even) {
+    margin-left: 0;
+  }
+  form .lockit:after {
+    display: none;
+  }
+  form .split-input > select[class=three-quarters],
+  form .split-input > input[class=three-quarters],
+  form .split-input > textarea[class=three-quarters] {
+    width: 74%;
+  }
+  form .split-input > select[class=quarter],
+  form .split-input > input[class=quarter],
+  form .split-input > textarea[class=quarter] {
+    margin-left: 2% !important;
+    width: 24%;
+  }
+}

@@ -580,7 +580,7 @@ const removeOrderItem = async (req, res) => {
         const orderId = req.body.prodId
         console.log(orderId)
         await Order.findById(orderId, (err, order) => {
-            console.log(order)
+            // console.log(order)
             order.remove()
             res.redirect('/shop/account/order')
         })
@@ -592,13 +592,17 @@ const removeOrderItem = async (req, res) => {
 
 
 
-const getAccount = (req, res) => {
+const getAccount = async (req, res) => {
 
     try{
         if(req.user){
+            userEmail = req.user.email;
+            const userOrder = await Order.find({'user.email': userEmail})
+            console.log(req.user)
             res.render('shop/account',{
                 title: 'Simpleton',
                 user: req.user,
+                orders: userOrder,
             })
         }else{
             res.redirect('/auth/google')
