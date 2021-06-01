@@ -1,6 +1,8 @@
 <%- include('./includes/head.ejs')  %> 
 <%- include('./includes/nav.ejs')  %> 
 <link rel='stylesheet' href='/stylesheets/account.css' />
+<link rel='stylesheet' href='/stylesheets/orders.css' />
+<link rel='stylesheet' href='/stylesheets/billing.css' />
 
 
 <section class="myaccount">
@@ -23,8 +25,8 @@
                 <img class="img-responsive img-rounded" src="/images/shopper.jpeg" alt="User picture">
               </div>
               <div class="user-info">
-                <span class="user-name">FirstName
-                  <strong>LastName</strong>
+                <span class="user-name">
+                  <strong><%= user.name %> </strong>
                 </span>
                 <span class="user-role">Favorite shopper</span>
               </div>
@@ -40,8 +42,6 @@
 
               </ul>
             <br>
-
-
               <div class="nav sidebar-items flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 
                 <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true"><i class="fa fa-globe"></i>
@@ -60,6 +60,8 @@
             </div>
             <!-- sidebar-menu  -->
           </div>
+
+
           <!-- sidebar-content  -->
           <div class="sidebar-footer">
             <a href="#">
@@ -84,8 +86,14 @@
             <div class="tab-content" id="v-pills-tabContent">
                 <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">Profile</div>
                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">Manage Address</div>
-                <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">Purchases</div>
-                <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">Billing Information</div>
+                <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+
+                  <%- include('./includes/orders.ejs')  %> 
+                  
+                </div>
+                <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                  <%- include('./includes/billingInfo.ejs')  %> 
+                </div>
             </div>
         </main>
         <!-- page-content" -->
