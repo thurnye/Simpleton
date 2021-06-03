@@ -598,7 +598,6 @@ const getAccount = async (req, res) => {
         if(req.user){
             userEmail = req.user.email;
             const userOrder = await Order.find({'user.email': userEmail})
-            console.log(req.user)
             res.render('shop/account',{
                 title: 'Simpleton',
                 user: req.user,
