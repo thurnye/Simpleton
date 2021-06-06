@@ -29,12 +29,15 @@
         </li>
         <li class="nav-item">
           <% if (user) { %>
-            <a href="/logout" class="nav-link" >Log Out</a>
+            <a href="/logout" class="nav-link log" ><i class="fas fa-sign-out-alt"></i></a>
+              <p class='hide'>Logout</p>
           <% } else { %>
-            <a href="/auth/google" class="nav-link" >Login</a>
+            <a href="/auth/google" class="nav-link log" >Login</a>
+            <p class="hide">Login</p>
           <% } %>
         </li>
       </ul>
+
       
       <div class="nav-icon">
         <div class="shopping-cart">
