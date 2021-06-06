@@ -83,12 +83,26 @@
           </div>
         </nav>
         <!-- sidebar-wrapper  -->
-        <main class="page-content">
+
           <div class="tab-content" id="v-pills-tabContent">
             <!-- Profile -->
             <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
               <%- include('./includes/profile.ejs')  %> 
             </div>
+            <div class="tab-content" id="v-pills-tabContent">
+
+                <!-- Profile -->
+                <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                  <%- include('./includes/profile.ejs')  %> 
+                </div>
+
+
+                  <!-- Shipping Address -->
+                <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                  Manage Address
+
+                </div>
+
 
               <!-- Shipping Address -->
             <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
