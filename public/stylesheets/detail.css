@@ -55,7 +55,7 @@ body{
 .cart-form{
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
 }
 .product-quantity {
   display: flex;
@@ -80,7 +80,7 @@ body{
 .quantity{
  margin-left: 25px;
  margin-right: 25px;
- font-size: 20px;
+ font-size: 14px;
  margin-top: 2px;
  width: 70px;
  text-align: center;
@@ -90,7 +90,9 @@ body{
 .product-cart form {
   margin-right: 10px;
 }
-
+.product-cart .add-to-cart {
+  font-size: 14px;
+}
 
 .product-category span {
   margin-left: 10px;
@@ -120,35 +122,55 @@ body{
 }
 
 
+/* ======================================== */
+/* Media Query */
 
-@media (min-width: 360.98px) and (max-width: 767.98px){ 
-  
+@media screen and (min-width: 320px) {
+  .product-image {
+    max-width: -webkit-fill-available;
+    height: 235px;
+    box-shadow: 4px 5px 2px 0px #e4e4e4;
+}
+  .details {
+    box-shadow: 7px 7px 0px 2px #e4e4e4;
+    height: inherit;
+    margin-top: 5vh;
+  }
+    .product-cart .add-to-cart {
+      font-size: 10px;
+  }
+}
+/* X-Small devices (portrait phones, less than 576px) */
+@media screen and (min-width: 565.98px) { 
+  .product-image {
+    height: 270px;
+    }
+    .product-cart .add-to-cart {
+      font-size: 14px;
+  }
+}
+
+/* Small devices (landscape phones, less than 768px) */
+@media screen and (min-width: 767.98px) { 
   
 }
 
-/* // X-Small devices (portrait phones, less than 576px) */
-/* // No media query for `xs` since this is the default in Bootstrap */
-
-/* // Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) {
-  
-}
-
-/* // Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) { 
-   
-}
-
-/* // Large devices (desktops, 992px and up) */
-@media (min-width: 810px) { 
-  
-}
-/* 
-// X-Large devices (large desktops, 1200px and up) */
+/*  X-Large devices (large desktops, 1200px and up) */
 @media (min-width: 992px) { 
   .details{
     width: 40vw;
     height: 54vh'
+  }
+  .product-image{
+    height: 360px;
+    box-shadow: 3px 6px 10px 2px #e4e4e4;
+  }
+  .details{
+    box-shadow: 1px 6px 10px 2px #e4e4e4;
+    height: 37vh;
+    margin-top: 5vh;
+    color: black;
+    margin-bottom: 15px;
   }
    
  }
@@ -162,3 +184,4 @@ body{
 
 /* // XX-Large devices (larger desktops, 1400px and up) */
 @media (min-width: 1400px) {  }
+
