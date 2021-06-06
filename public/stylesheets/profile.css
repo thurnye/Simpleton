@@ -1,0 +1,30 @@
+.profile{
+    /* border: 2px solid white; */
+}
+.profile .container{
+    display: flex;
+    justify-content: center;
+}
+
+.profile .user-info{
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile .user-info label{
+    width: 85px;
+    margin-right: 10px;
+}
+
+/* } Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+    .profile .user-info input{
+        width: 450px;
+    }
+    .profile .user-info{
+        display: flex;
+
+    }
+ }
