@@ -53,7 +53,44 @@ ul > li.nav-item:active > a{
 ul li.nav-item a:hover{
   color: rgba(255, 255, 255, 0.705);
 }
+/* .hide {
+  display: none;
+  
 
+}
+    
+.log:hover + .hide {
+  display: block;
+  color: rgba(255, 255, 255, 0.705);
+  position: absolute;
+  top: 32px;  
+  font-size: 12px;
+  cursor: pointer;
+} */
+
+
+/* // Small devices (landscape phones, 576px and up) */
+@media (max-width: 990px) { 
+  .navbar-collapse ul{
+    height: 91vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .navbar-toggler{
+      border: 2px solid #a2a2a2;
+  }
+  
+  .navbar-light .navbar-nav .nav-link {
+      /* color: #12284C; */
+      color: white;
+  }
+  .desktop-nav{
+      display: none;
+  }
+  
+
+}
 
 
 

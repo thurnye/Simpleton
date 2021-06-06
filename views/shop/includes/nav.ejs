@@ -22,21 +22,30 @@
         </li>
         <li class="nav-item">
           <% if (user) { %>
-            <a href="/shop/account" class="nav-link" ><i class="fas fa-user-circle"></i></a>
+            <a href="/shop/account" class="nav-link" ><i class="fas fa-user-circle"></i> My Account</a>
           <% } else { %>
             <a href="/auth/google" class="nav-link"> My Account</a>
           <% } %>
         </li>
-        <li class="nav-item">
+        <li class="nav-item log">
           <% if (user) { %>
-            <a href="/logout" class="nav-link" >Log Out</a>
+            <a href="/logout" class="nav-link log" ><i class="fas fa-sign-out-alt"></i> <span class='hide'> Logout</span> </a>
+              
           <% } else { %>
-            <a href="/auth/google" class="nav-link" >Login</a>
+            <a href="/auth/google" class="nav-link log" ><span><i class="fas fa-sign-out-alt"></i></span><span class="hide">Login</span></a>
+            
           <% } %>
         </li>
+        <li class="nav-item log">
+          <% if (user) { %>
+            <a href="/shop/cart" class="nav-link"><i class="fas fa-shopping-bag"></i> Cart</a>
+          <% } else { %>
+            <a href="/shop/cart" class="nav-link"><i class="fas fa-shopping-bag"></i> Cart</a>
+          <% } %>
+        </li>
+
       </ul>
-      
-      <div class="nav-icon">
+      <!-- <div class="nav-icon">
         <div class="shopping-cart">
           <% if (user) { %>
             <a href="/shop/cart" class="nav-link"><i class="fas fa-shopping-bag"></i></a>
@@ -44,7 +53,7 @@
             <a href="/shop/cart" class="nav-link"><i class="fas fa-shopping-bag"></i></a>
           <% } %>
         </div>
-      </div>
+      </div> -->
 
 
     </div>
