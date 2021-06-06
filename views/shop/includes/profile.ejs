@@ -1,0 +1,40 @@
+
+<section class="profile">
+    <form id="contact-form" onSubmit={onSubmit}>
+        <div className="controls">
+            <div className="row">
+                <div className="col-md-6">
+                    <div className="form-group">
+                        <label htmlFor="form_name">Name</label>
+                        <input 
+                        id="form_name" 
+                        type="text" 
+                        class="form-control" 
+                        name='name'
+                        value=""
+                        onChange={handleChange}
+                        />
+                        <div className="help-block with-errors"></div>
+                    </div>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-md-6">
+                    <div className="form-group">
+                        <label htmlFor="form_email">Email *</label>
+                        <input 
+                        id="form_email" 
+                        type="email" 
+                        name='email' 
+                        class="form-control" 
+                        required="required" 
+                        data-error="Valid email is required."
+                        value=''
+                        />
+                        <div className="help-block with-errors"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form> 
+</section>
