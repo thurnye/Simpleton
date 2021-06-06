@@ -360,6 +360,13 @@ body{
     display: block;
     width: 100%;
 }
+.home .display-name h4 {
+    font-size: 17px;
+}
+.brand-slogan .slogan h1 {
+    font-size: 25px;
+    margin-top: 0px;
+}
 }
 
  /* Large devices (desktops, less than 1200px) */
