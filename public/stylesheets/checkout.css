@@ -13,6 +13,12 @@ body {
   margin-bottom: auto;
   margin-top: 8vh;
 }
+.credit-card img{
+  height: 135px; 
+  border-radius: 5px; 
+  width: 250px;     
+  transform: none;
+}
   
   .checkout-item{
     width: 25rem;
@@ -41,3 +47,24 @@ body {
     margin-top: 20px;
 }
   
+
+
+
+/* // Medium devices (tablets, 768px and up) */
+@media screen and  (max-width: 768px) { 
+  .alert h2 {
+    font-size: 15px;
+  }
+   .credit-card .front img {
+    height: 120px;
+    width: 230px;
+   }
+   .credit-card .back img {
+    height: 109px;
+    width: 190px;
+   }
+   .checkout-item {
+    height: auto;
+   }
+  
+}
