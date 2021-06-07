@@ -13,6 +13,12 @@ body {
     justify-content: space-between;
     align-items: center;
   }
+.name-price a {
+  color: #2d3b50;
+  }
+.name-price p {
+  color: #3e2d71;
+  }
   .cart{
     display: flex;
     justify-content: space-evenly;
@@ -94,3 +100,69 @@ body {
     text-decoration: none;
   }
   
+
+  @media screen and (min-width: 318.98px){ 
+    
+  }
+ 
+  /* // X-Small devices (portrait phones, less than 576px) */
+ /* // No media query for `xs` since this is the default in Bootstrap */
+ 
+ /* // Small devices (landscape phones, 576px and up) */
+ @media screen and (min-width: 576px) {
+     
+    
+  }
+ 
+ /* // Medium devices (tablets, 768px and up) */
+ @media screen and  (max-width: 768px) { 
+  .cart{
+    flex-direction: column;
+    }
+    .cart .container {
+      display: flex;
+      flex-direction: column;
+      align-items: initial;
+      justify-content: space-evenly;
+  }
+    .cart .itemTotalContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: initial;
+    }
+    .cart .alltotal {
+      height: 120px;
+      margin-right: 93px;
+      margin: inherit;
+      width: 300px;
+    }
+    .cart .itemtotal{
+      max-width: 540px; 
+      max-height: 100px;
+    }
+  
+  }
+ 
+ /* // Large devices (desktops, 992px and up) */
+ @media screen and (min-width: 992px) { 
+  .cart-items .card {
+    max-width: 540px; 
+    max-height: 130px;
+  }
+  .cart .alltotal{
+    height: 120px;  
+    margin-right: 93px;
+  }
+  .cart .itemtotal{
+    max-width: 540px; 
+    max-height: 100px;
+  }
+    
+  }
+ /* 
+ // X-Large devices (large desktops, 1200px and up) */
+ @media (min-width: 1200px) {  }
+ 
+ /* // XX-Large devices (larger desktops, 1400px and up) */
+ @media (min-width: 1400px) {  }
