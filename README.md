@@ -24,7 +24,7 @@
 
 ## Screens
 
-<!-- | <img src="./public/Image/screenshot1.png?raw=true" width= "300px" height="300px"> |<img src="./src/Public/Image/screenshot2.png?raw=true" width= "300px" height="300px">| -->
+| <img src="./public/image/home.png?raw=true" width= "300px" height="300px"> | <img src="./src/Public/image/catalog.png?raw=true" width= "300px" height="300px">|
 
 ---
 ### To Run Local
