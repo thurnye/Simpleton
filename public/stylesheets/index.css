@@ -4,11 +4,25 @@ body{
   /* NAV BAR
   =============================================================================================== */
 
-  .navbar-nav{
-    width: -webkit-fill-available;
-    display: flex;
-    justify-content: space-evenly;
-  }
+.navbar-nav{
+  width: -webkit-fill-available;
+  display: flex;
+  justify-content: space-evenly;
+}
+.navbar-brand img{
+  /* position: absolute;
+  left: 21px;
+  top: 5px;
+  width: 55px; */
+  margin-left: 15px;
+  width: 50px;
+}
+.navbar-brand  span{
+  position: absolute;
+    left: 0;
+    top: 25px;
+    color: #f3f3f352;
+}
 nav a{
     color: #c5c5c5e8;
   }
@@ -33,7 +47,7 @@ ul > li.nav-item.active > a{
 ul > li.nav-item:active > a{
 }
 .navbar-toggler-icon{
-  background-image: url('/images/images/menutoggle.png');
+  background-image: url('/images/menutoggle.png');
 }
 .navbar-toggler span{
   background-color:  aliceblue;
