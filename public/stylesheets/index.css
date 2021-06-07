@@ -10,10 +10,7 @@ body{
   justify-content: space-evenly;
 }
 .navbar-brand img{
-  /* position: absolute;
-  left: 21px;
-  top: 5px;
-  width: 55px; */
+ 
   margin-left: 15px;
   width: 50px;
 }
@@ -59,28 +56,12 @@ ul > li.nav-item:active > a{
   box-shadow: none;
 }
 
-/* .account{
-  color: rgba(255,255,255,.55);
-  font-size: 20px;
-} */
+
 
 ul li.nav-item a:hover{
   color: rgba(255, 255, 255, 0.705);
 }
-/* .hide {
-  display: none;
-  
 
-}
-    
-.log:hover + .hide {
-  display: block;
-  color: rgba(255, 255, 255, 0.705);
-  position: absolute;
-  top: 32px;  
-  font-size: 12px;
-  cursor: pointer;
-} */
 
 
 /* // Small devices (landscape phones, 576px and up) */
@@ -92,15 +73,14 @@ ul li.nav-item a:hover{
     align-items: center;
   }
   .navbar-toggler{
-      border: 2px solid #a2a2a2;
+    border: 2px solid #a2a2a2;
   }
   
   .navbar-light .navbar-nav .nav-link {
-      /* color: #12284C; */
-      color: white;
+    color: white;
   }
   .desktop-nav{
-      display: none;
+    display: none;
   }
   
 
