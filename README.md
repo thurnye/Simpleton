@@ -23,8 +23,7 @@
 
 
 ## Screens
-
-| <img src="./public/images/home.png?raw=true" width= "450px" height="300px"> | <img src="./public/images/catalog.png?raw=true" width= "450px" height="300px">|
+ <img src="./public/images/home.png?raw=true" width= "450px" height="300px"> <img src="./public/images/catalog.png?raw=true" width= "450px" height="300px">
 
 ---
 ### To Run Local
