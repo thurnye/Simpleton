@@ -443,7 +443,7 @@ const getCheckoutSuccess = async (req, res) => {
                                         receipt,
                                         invoiceTableTop,
                                         "Item",
-                                        "Description",
+                                        "Brand",
                                         "Unit Cost",
                                         "Quantity",
                                         "Total"
@@ -459,7 +459,7 @@ const getCheckoutSuccess = async (req, res) => {
                                         receipt,
                                         position,
                                         item.product.title,
-                                        item.product.name,
+                                        item.product.brand,
                                         `$${item.product.retailPrice}`,
                                         item.quantity,
                                         `$${item.totalPrice}`
@@ -494,15 +494,15 @@ const getCheckoutSuccess = async (req, res) => {
                                     receipt,
                                     y,
                                     Item,
-                                    Description,
+                                    Brand,
                                     UnitCost,
                                     Quantity,
                                     Total
                                     ) => {
                                     receipt
                                         .fontSize(10)
-                                        .text(Item, 50, y)
-                                        .text(Description, 150, y)
+                                        .text(Item, 50, y, { width: 130, height: 200})
+                                        .text(Brand, 200, y)
                                         .text(UnitCost, 280, y, { width: 90, align: "right" })
                                         .text(Quantity, 370, y, { width: 90, align: "right" })
                                         .text(Total, 0, y, { align: "right" });
