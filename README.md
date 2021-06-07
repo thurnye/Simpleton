@@ -37,6 +37,6 @@
 [Live Site](https://simpleton-app.herokuapp.com/) - Checkout site here
 
 ### DATABASE MODEL
-[DATABAE MODEL DESIGN](https://lucid.app/lucidchart/invitations/accept/inv_5a80b349-2589-40cb-98e7-4cce3eec7340?viewport_loc=-464%2C-46%2C2933%2C1612%2C0_0) - Database Modeling
+[DATABAE MODEL DESIGN](https://lucid.app/lucidchart/invitations/accept/inv_5a80b349-2589-40cb-98e7-4cce3eec7340?viewport_loc=-464%2C-46%2C2933%2C1612%2C0_0)
 
 
